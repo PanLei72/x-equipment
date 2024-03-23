@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://equipmentListView.title"
+      focusComponent="equipmentsDataGrid">
+    <data>
+        <collection id="equipmentsDc"
+                    class="com.x.equipment.entity.Equipment">
+            <fetchPlan extends="_base"/>
+            <loader id="equipmentsDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from EQUI_Equipment e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="equipmentsDl">
+            <configurations>
+                <configuration id="defaultFilter" default="true">
+                    <propertyFilter property="equipmentName" operation="CONTAINS"/>
+                    <propertyFilter property="description" operation="CONTAINS"/>
+                    <propertyFilter property="category" operation="CONTAINS"/>
+                </configuration>
+            </configurations>
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button id="createBtn" action="equipmentsDataGrid.create"/>
+            <button id="editBtn" action="equipmentsDataGrid.edit"/>
+            <button id="removeBtn" action="equipmentsDataGrid.remove"/>
+            <simplePagination id="pagination" dataLoader="equipmentsDl"/>
+        </hbox>
+        <dataGrid id="equipmentsDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="equipmentsDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="create" type="list_create">
+                    <properties>
+                        <property name="openMode" value="DIALOG"/>
+                    </properties>
+                </action>
+                <action id="edit" type="list_edit">
+                    <properties>
+                        <property name="openMode" value="DIALOG"/>
+                    </properties>
+                </action>
+                <action id="remove" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="equipmentName"/>
+                <column property="description"/>
+                <column property="category"/>
+                <column property="assetCode"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectBtn" action="selectAction"/>
+            <button id="discardBtn" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>

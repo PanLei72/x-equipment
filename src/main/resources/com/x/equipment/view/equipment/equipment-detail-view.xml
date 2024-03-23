@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://equipmentDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="equipmentDc"
+                  class="com.x.equipment.entity.Equipment">
+            <fetchPlan extends="_base"/>
+            <loader/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <formLayout id="form" dataContainer="equipmentDc" labelsPosition="ASIDE">
+            <formItem>
+                <textField id="equipmentNameField" property="equipmentName"/>
+            </formItem>
+            <formItem>
+                <textField id="descriptionField" property="description"/>
+            </formItem>
+            <formItem>
+                <textField id="categoryField" property="category"/>
+            </formItem>
+            <formItem>
+                <textField id="assetCodeField" property="assetCode"/>
+            </formItem>
+        </formLayout>
+        <hbox id="detailActions">
+            <button id="saveAndCloseBtn" action="saveAction"/>
+            <button id="closeBtn" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>
