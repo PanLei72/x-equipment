@@ -1,6 +1,7 @@
 package com.x.equipment.entity;
 
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.Composition;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import jakarta.persistence.*;
@@ -11,14 +12,15 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "EQUI_EQUIPMENT", uniqueConstraints = {
-        @UniqueConstraint(name = "UC_EQUIPMENT_EQUIPMENT_NAME", columnNames = {"EQUIPMENT_NAME"})
+@Table(name = "EQUI_EQUIPMENT_CLASS", uniqueConstraints = {
+        @UniqueConstraint(name = "UC_EQUIPMENTCLASS", columnNames = {"EQUIPMENT_CLASS_NAME"})
 })
-@Entity(name = "EQUI_Equipment")
-public class Equipment {
+@Entity(name = "EQUI_EquipmentClass")
+public class EquipmentClass {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
@@ -45,9 +47,9 @@ public class Equipment {
     private OffsetDateTime lastModifiedDate;
 
     @InstanceName
-    @Column(name = "EQUIPMENT_NAME", nullable = false)
+    @Column(name = "EQUIPMENT_CLASS_NAME", nullable = false)
     @NotNull
-    private String equipmentName;
+    private String equipmentClassName;
 
     @Column(name = "DESCRIPTION")
     private String description;
@@ -55,8 +57,9 @@ public class Equipment {
     @Column(name = "CATEGORY")
     private String category;
 
-    @Column(name = "ASSET_CODE")
-    private String assetCode;
+    @Composition
+    @OneToMany(mappedBy = "equipmentClass", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<EquipmentClassEquipment> equipmentClassEquipments;
 
     public OffsetDateTime getLastModifiedDate() {
         return lastModifiedDate;
@@ -107,12 +110,12 @@ public class Equipment {
     }
 
 
-    public String getEquipmentName() {
-        return equipmentName;
+    public String getEquipmentClassName() {
+        return equipmentClassName;
     }
 
-    public void setEquipmentName(String equipmentName) {
-        this.equipmentName = equipmentName;
+    public void setEquipmentClassName(String equipmentClassName) {
+        this.equipmentClassName = equipmentClassName;
     }
 
     public String getDescription() {
@@ -131,11 +134,11 @@ public class Equipment {
         this.category = category;
     }
 
-    public String getAssetCode() {
-        return assetCode;
+    public List<EquipmentClassEquipment> getEquipmentClassEquipments() {
+        return equipmentClassEquipments;
     }
 
-    public void setAssetCode(String assetCode) {
-        this.assetCode = assetCode;
+    public void setEquipmentClassEquipments(List<EquipmentClassEquipment> equipmentClassEquipments) {
+        this.equipmentClassEquipments = equipmentClassEquipments;
     }
 }

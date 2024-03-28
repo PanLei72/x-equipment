@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://equipmentClassListView.title"
+      focusComponent="equipmentClassesDataGrid">
+    <data>
+        <collection id="equipmentClassesDc"
+                    class="com.x.equipment.entity.EquipmentClass">
+            <fetchPlan extends="_base">
+                <property name="equipmentClassEquipments" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="equipmentClassesDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from EQUI_EquipmentClass e order by e.equipmentClassName]]>
+                </query>
+            </loader>
+            <collection id="equipmentClassEquipmentsDc" property="equipmentClassEquipments"></collection>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="equipmentClassesDl">
+            <configurations>
+                <configuration id="defaultFilter" name="msg://defaultFilter" default="true">
+                    <propertyFilter property="equipmentClassName" operation="CONTAINS"/>
+                    <propertyFilter property="description" operation="CONTAINS"/>
+<!--                    <propertyFilter property="category" operation="CONTAINS"/>-->
+                </configuration>
+            </configurations>
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button id="createBtn" action="equipmentClassesDataGrid.create"/>
+            <button id="editBtn" action="equipmentClassesDataGrid.edit"/>
+            <button id="removeBtn" action="equipmentClassesDataGrid.remove"/>
+            <simplePagination id="pagination" dataLoader="equipmentClassesDl"/>
+        </hbox>
+        <split height="100%" width="100%" orientation="VERTICAL">
+            <dataGrid id="equipmentClassesDataGrid"
+                      width="100%"
+                      height="100%"
+                      dataContainer="equipmentClassesDc"
+                      columnReorderingAllowed="true">
+                <actions>
+                    <action id="create" type="list_create">
+                        <properties>
+                            <property name="openMode" value="DIALOG"/>
+                        </properties>
+                    </action>
+                    <action id="edit" type="list_edit">
+                        <properties>
+                            <property name="openMode" value="DIALOG"/>
+                        </properties>
+                    </action>
+                    <action id="remove" type="list_remove"/>
+                </actions>
+                <columns resizable="true">
+                    <column property="equipmentClassName"/>
+                    <column property="description"/>
+                    <column property="category"/>
+                </columns>
+            </dataGrid>
+            <tabSheet id="tabSheet" width="100%" height="100%" minHeight="20em">
+                <tab id="tabEquipment" label="msg://equipments">
+                    <dataGrid id="equipmentClassEquipmentsDataGrid"
+                              width="100%"
+                              height="100%"
+                              dataContainer="equipmentClassEquipmentsDc"
+                              columnReorderingAllowed="true">
+                        <columns resizable="true">
+                            <column property="equipment.equipmentName"/>
+                            <column property="equipment.description"/>
+                            <column property="equipment.category"/>
+                            <column property="equipment.assetCode"/>
+                        </columns>
+                    </dataGrid>
+                </tab>
+            </tabSheet>
+        </split>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectBtn" action="selectAction"/>
+            <button id="discardBtn" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>

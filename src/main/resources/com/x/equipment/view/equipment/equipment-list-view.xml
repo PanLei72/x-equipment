@@ -29,7 +29,7 @@
         <genericFilter id="genericFilter"
                        dataLoader="equipmentsDl">
             <configurations>
-                <configuration id="defaultFilter" default="true">
+                <configuration id="defaultFilter" name="msg://defaultFilter" default="true">
                     <propertyFilter property="equipmentName" operation="CONTAINS"/>
                     <propertyFilter property="description" operation="CONTAINS"/>
                     <propertyFilter property="category" operation="CONTAINS"/>

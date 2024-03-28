@@ -7,30 +7,26 @@
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
 
     <changeSet id="1" author="x-equipment" context="!cuba">
-
-        <createTable tableName="EQUI_EQUIPMENT">
+        <createTable tableName="EQUI_EQUIPMENT_CLASS_EQUIPMENT">
             <column name="ID" type="${uuid.type}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="VERSION" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="EQUIPMENT_NAME" type="varchar(255)">
+            <column name="EQUIPMENT_CLASS_ID" type="${uuid.type}">
                 <constraints nullable="false"/>
             </column>
-            <column name="DESCRIPTION" type="varchar(255)"/>
-            <column name="CATEGORY" type="varchar(255)"/>
-            <column name="ASSET_CODE" type="varchar(255)"/>
+            <column name="EQUIPMENT_ID" type="${uuid.type}">
+                <constraints nullable="false"/>
+            </column>
             <column name="CREATED_BY" type="varchar(255)"/>
             <column name="CREATED_DATE" type="DATETIME"/>
             <column name="LAST_MODIFIED_BY" type="varchar(255)"/>
             <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
-
         </createTable>
-
-        <addUniqueConstraint
-                columnNames="EQUIPMENT_NAME"
-                constraintName="UC_EQUIPMENT_EQUIPMENT_NAME"
-                tableName="EQUI_EQUIPMENT"/>
     </changeSet>
+
+
+
 </databaseChangeLog>

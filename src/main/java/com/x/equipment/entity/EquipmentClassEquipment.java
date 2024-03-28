@@ -14,11 +14,9 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "EQUI_EQUIPMENT", uniqueConstraints = {
-        @UniqueConstraint(name = "UC_EQUIPMENT_EQUIPMENT_NAME", columnNames = {"EQUIPMENT_NAME"})
-})
-@Entity(name = "EQUI_Equipment")
-public class Equipment {
+@Table(name = "EQUI_EQUIPMENT_CLASS_EQUIPMENT")
+@Entity(name = "EQUI_EquipmentClassEquipment")
+public class EquipmentClassEquipment {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
@@ -44,19 +42,33 @@ public class Equipment {
     @Column(name = "LAST_MODIFIED_DATE")
     private OffsetDateTime lastModifiedDate;
 
-    @InstanceName
-    @Column(name = "EQUIPMENT_NAME", nullable = false)
+
+    @JoinColumn(name = "EQUIPMENT_CLASS_ID", nullable = false)
     @NotNull
-    private String equipmentName;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private EquipmentClass equipmentClass;
 
-    @Column(name = "DESCRIPTION")
-    private String description;
+    @JoinColumn(name = "EQUIPMENT_ID", nullable = false)
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Equipment equipment;
 
-    @Column(name = "CATEGORY")
-    private String category;
+    public Equipment getEquipment() {
+        return equipment;
+    }
 
-    @Column(name = "ASSET_CODE")
-    private String assetCode;
+    public void setEquipment(Equipment equipment) {
+        this.equipment = equipment;
+    }
+
+    public EquipmentClass getEquipmentClass() {
+        return equipmentClass;
+    }
+
+    public void setEquipmentClass(EquipmentClass equipmentClass) {
+        this.equipmentClass = equipmentClass;
+    }
+
 
     public OffsetDateTime getLastModifiedDate() {
         return lastModifiedDate;
@@ -104,38 +116,5 @@ public class Equipment {
 
     public void setId(UUID id) {
         this.id = id;
-    }
-
-
-    public String getEquipmentName() {
-        return equipmentName;
-    }
-
-    public void setEquipmentName(String equipmentName) {
-        this.equipmentName = equipmentName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getAssetCode() {
-        return assetCode;
-    }
-
-    public void setAssetCode(String assetCode) {
-        this.assetCode = assetCode;
     }
 }

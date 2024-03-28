@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://equipmentClassDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="equipmentClassDc"
+                  class="com.x.equipment.entity.EquipmentClass">
+            <fetchPlan extends="_base">
+                <property name="equipmentClassEquipments" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+            <collection id="equipmentClassEquipmentsDc" property="equipmentClassEquipments"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <formLayout id="form" dataContainer="equipmentClassDc">
+            <textField id="equipmentClassNameField" property="equipmentClassName"/>
+            <textField id="descriptionField" property="description"/>
+            <textField id="categoryField" property="category"/>
+        </formLayout>
+        <h4 text="msg://com.x.equipment.entity/EquipmentClass.equipmentClassEquipments"/>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button action="equipmentClassEquipmentsDataGrid.add"/>
+            <button action="equipmentClassEquipmentsDataGrid.remove"/>
+        </hbox>
+        <dataGrid id="equipmentClassEquipmentsDataGrid" dataContainer="equipmentClassEquipmentsDc" width="100%"
+                  height="15em">
+            <actions>
+                <action id="add" type="list_add">
+                </action>
+                <action id="remove" type="list_remove"/>
+            </actions>
+            <columns>
+                <column property="equipment.equipmentName" />
+                <column property="equipment.description" />
+                <column property="equipment.category" />
+                <column property="equipment.assetCode"/>
+            </columns>
+        </dataGrid>
+        <hbox id="detailActions">
+            <button id="saveAndCloseBtn" action="saveAction"/>
+            <button id="closeBtn" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>
