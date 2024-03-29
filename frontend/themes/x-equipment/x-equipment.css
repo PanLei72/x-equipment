@@ -1,1 +1,40 @@
 /* Define your styles here */
+.jmix-login-main-layout {
+    background: url("./branding/background.svg");
+}
+.jmix-main-view-header {
+    background: #f4f5f7;
+}
+.application-logo {
+  display: flex;
+  align-items: center;
+  height: var(--lumo-size-xl);
+  margin: 0;
+  padding-left: var(--lumo-space-m);
+}
+
+vaadin-login-form-wrapper {
+  border-radius: var(--lumo-border-radius-l);
+  background: #f4f5f7;
+}
+
+vaadin-grid {
+  border-radius: var(--lumo-border-radius-l);
+}
+vaadin-grid::part(header-cell) {
+  border-radius: var(--lumo-border-radius-l) var(--lumo-border-radius-l) 0 0;
+  background-color: #f8f8f8;
+}
+
+body
+{
+    background: #f1f4f6;
+}
+
+vaadin-dialog-overlay::part(overlay)
+{
+    background: #f1f4f6;
+}
+vaadin-dialog-overlay::part(header) {
+    background: #f1f4f6;
+}

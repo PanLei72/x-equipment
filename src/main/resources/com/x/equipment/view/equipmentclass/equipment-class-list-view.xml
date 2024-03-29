@@ -46,7 +46,7 @@
             <button id="removeBtn" action="equipmentClassesDataGrid.remove"/>
             <simplePagination id="pagination" dataLoader="equipmentClassesDl"/>
         </hbox>
-        <split height="100%" width="100%" orientation="VERTICAL">
+        <split height="100%" width="100%" orientation="VERTICAL" themeNames="minimal">
             <dataGrid id="equipmentClassesDataGrid"
                       width="100%"
                       height="100%"
@@ -71,7 +71,7 @@
                     <column property="category"/>
                 </columns>
             </dataGrid>
-            <tabSheet id="tabSheet" width="100%" height="100%" minHeight="20em">
+            <tabSheet id="tabSheet" width="100%" height="100%" themeNames="small">
                 <tab id="tabEquipment" label="msg://equipments">
                     <dataGrid id="equipmentClassEquipmentsDataGrid"
                               width="100%"
