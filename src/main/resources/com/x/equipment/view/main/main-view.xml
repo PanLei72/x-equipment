@@ -16,9 +16,12 @@
         </navigationBar>
         <drawerLayout>
             <section id="section" classNames="jmix-main-view-section">
-                <h2 id="applicationTitle"
-                    text="msg://applicationTitle.text"
-                    classNames="jmix-main-view-application-title"/>
+                <hbox>
+                    <image resource="./logo/logo.svg" classNames="application-logo" />
+                    <h2 id="applicationTitle"
+                        text="msg://applicationTitle.text"
+                        classNames="jmix-main-view-application-title"/>
+                </hbox>
                 <nav id="navigation"
                      classNames="jmix-main-view-navigation"
                      ariaLabel="msg://navigation.ariaLabel">
