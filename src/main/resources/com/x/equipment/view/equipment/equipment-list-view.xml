@@ -9,7 +9,7 @@
             <fetchPlan extends="_base"/>
             <loader id="equipmentsDl" readOnly="true">
                 <query>
-                    <![CDATA[select e from EQUI_Equipment e]]>
+                    <![CDATA[select e from EQUI_Equipment e order by e.equipmentName]]>
                 </query>
             </loader>
         </collection>
@@ -41,6 +41,8 @@
             <button id="createBtn" action="equipmentsDataGrid.create"/>
             <button id="editBtn" action="equipmentsDataGrid.edit"/>
             <button id="removeBtn" action="equipmentsDataGrid.remove"/>
+            <gridColumnVisibility icon="COG" themeNames="icon"
+                                  dataGrid="equipmentsDataGrid" exclude="picture"/>
             <simplePagination id="pagination" dataLoader="equipmentsDl"/>
         </hbox>
         <dataGrid id="equipmentsDataGrid"

@@ -22,6 +22,8 @@
                         text="msg://applicationTitle.text"
                         classNames="jmix-main-view-application-title"/>
                 </hbox>
+                <menuFilterField menu="menu"
+                                 placeholder="Search..." classNames="ms-s me-s"/>
                 <nav id="navigation"
                      classNames="jmix-main-view-navigation"
                      ariaLabel="msg://navigation.ariaLabel">

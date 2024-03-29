@@ -44,6 +44,8 @@
             <button id="createBtn" action="equipmentClassesDataGrid.create"/>
             <button id="editBtn" action="equipmentClassesDataGrid.edit"/>
             <button id="removeBtn" action="equipmentClassesDataGrid.remove"/>
+            <gridColumnVisibility icon="COG" themeNames="icon"
+                                  dataGrid="equipmentClassesDataGrid" exclude="picture"/>
             <simplePagination id="pagination" dataLoader="equipmentClassesDl"/>
         </hbox>
         <split height="100%" width="100%" orientation="VERTICAL" themeNames="minimal">
