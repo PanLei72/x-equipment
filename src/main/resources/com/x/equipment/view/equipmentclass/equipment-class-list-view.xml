@@ -31,11 +31,14 @@
     <layout>
         <genericFilter id="genericFilter"
                        dataLoader="equipmentClassesDl">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="3"/>
+            </responsiveSteps>
             <configurations>
                 <configuration id="defaultFilter" name="msg://defaultFilter" default="true">
                     <propertyFilter property="equipmentClassName" operation="CONTAINS"/>
                     <propertyFilter property="description" operation="CONTAINS"/>
-<!--                    <propertyFilter property="category" operation="CONTAINS"/>-->
+                    <propertyFilter property="category" operation="CONTAINS"/>
                 </configuration>
             </configurations>
             <properties include=".*"/>

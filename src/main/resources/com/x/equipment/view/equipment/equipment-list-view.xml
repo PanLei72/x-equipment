@@ -28,6 +28,9 @@
     <layout>
         <genericFilter id="genericFilter"
                        dataLoader="equipmentsDl">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="3"/>
+            </responsiveSteps>
             <configurations>
                 <configuration id="defaultFilter" name="msg://defaultFilter" default="true">
                     <propertyFilter property="equipmentName" operation="CONTAINS"/>
