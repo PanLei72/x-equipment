@@ -32,7 +32,7 @@
                 <responsiveStep minWidth="0" columns="3"/>
             </responsiveSteps>
             <configurations>
-                <configuration id="defaultFilter" name="msg://defaultFilter" default="true">
+                <configuration id="defaultFilter" name="msg:///defaultFilter" default="true">
                     <propertyFilter property="equipmentName" operation="CONTAINS"/>
                     <propertyFilter property="description" operation="CONTAINS"/>
                     <propertyFilter property="category" operation="CONTAINS"/>

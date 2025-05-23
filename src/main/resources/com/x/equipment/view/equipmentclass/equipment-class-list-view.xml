@@ -14,7 +14,7 @@
                     <![CDATA[select e from EQUI_EquipmentClass e order by e.equipmentClassName]]>
                 </query>
             </loader>
-            <collection id="equipmentClassEquipmentsDc" property="equipmentClassEquipments"></collection>
+            <collection id="equipmentClassEquipmentsDc" property="equipmentClassEquipments"/>
         </collection>
     </data>
     <facets>
@@ -35,7 +35,7 @@
                 <responsiveStep minWidth="0" columns="3"/>
             </responsiveSteps>
             <configurations>
-                <configuration id="defaultFilter" name="msg://defaultFilter" default="true">
+                <configuration id="defaultFilter" name="msg:///defaultFilter" default="true">
                     <propertyFilter property="equipmentClassName" operation="CONTAINS"/>
                     <propertyFilter property="description" operation="CONTAINS"/>
                     <propertyFilter property="category" operation="CONTAINS"/>

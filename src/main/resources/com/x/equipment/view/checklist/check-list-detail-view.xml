@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://checkListDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="checkListDc"
+                  class="com.x.equipment.entity.CheckList">
+            <fetchPlan extends="_base">
+                <property name="checkListItems" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="checkListDl"/>
+            <collection id="checkListItemsDc" property="checkListItems"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <formLayout id="form" dataContainer="checkListDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="2"/>
+            </responsiveSteps>
+            <textField id="checkListNameField" property="checkListName"/>
+            <textField id="descriptionField" property="description"/>
+            <textField id="categoryField" property="category"/>
+            <checkbox id="activeField" property="active"/>
+        </formLayout>
+        <h4 text="msg://com.x.equipment.entity/CheckList.checkListItems"/>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button action="checkListItemsDataGrid.createAction"/>
+            <button action="checkListItemsDataGrid.editAction"/>
+            <button action="checkListItemsDataGrid.removeAction"/>
+        </hbox>
+        <dataGrid id="checkListItemsDataGrid" dataContainer="checkListItemsDc" width="100%" minHeight="10em">
+            <actions>
+                <action id="createAction" type="list_create">
+                    <properties>
+                        <property name="openMode" value="DIALOG"/>
+                    </properties>
+                </action>
+                <action id="editAction" type="list_edit">
+                    <properties>
+                        <property name="openMode" value="DIALOG"/>
+                    </properties>
+                </action>
+                <action id="removeAction" type="list_remove"/>
+            </actions>
+            <columns>
+                <column property="checklistItemName"/>
+                <column property="description"/>
+                <column property="category"/>
+                <column property="checkListItemType"/>
+                <column property="sequence"/>
+                <column property="minValue"/>
+                <column property="standardValue"/>
+                <column property="maxValue"/>
+            </columns>
+        </dataGrid>
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>

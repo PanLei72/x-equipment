@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://checkListListView.title"
+      focusComponent="checkListsDataGrid">
+    <data>
+        <collection id="checkListsDc"
+                    class="com.x.equipment.entity.CheckList">
+            <fetchPlan extends="_base">
+                <property name="checkListItems" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="checkListsDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from EQUI_CheckList e order by e.checkListName]]>
+                </query>
+            </loader>
+            <collection id="checkListItemsDc" property="checkListItems"/>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="checkListsDl">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="3"/>
+            </responsiveSteps>
+            <configurations>
+                <configuration id="defaultFilter" name="msg:///defaultFilter" default="true">
+                    <propertyFilter property="checkListName" operation="CONTAINS"/>
+                    <propertyFilter property="description" operation="CONTAINS"/>
+                    <propertyFilter property="category" operation="CONTAINS"/>
+                </configuration>
+            </configurations>
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button id="createButton" action="checkListsDataGrid.createAction"/>
+            <button id="editButton" action="checkListsDataGrid.editAction"/>
+            <button id="removeButton" action="checkListsDataGrid.removeAction"/>
+            <simplePagination id="pagination" dataLoader="checkListsDl"/>
+        </hbox>
+        <split height="100%" width="100%" orientation="VERTICAL" themeNames="minimal">
+            <dataGrid id="checkListsDataGrid"
+                      width="100%"
+                      minHeight="10em"
+                      dataContainer="checkListsDc"
+                      columnReorderingAllowed="true">
+                <actions>
+                    <action id="createAction" type="list_create">
+                        <properties>
+                            <property name="openMode" value="DIALOG"/>
+                        </properties>
+                    </action>
+                    <action id="editAction" type="list_edit">
+                        <properties>
+                            <property name="openMode" value="DIALOG"/>
+                        </properties>
+                    </action>
+                    <action id="removeAction" type="list_remove"/>
+                </actions>
+                <columns resizable="true">
+                    <column property="checkListName"/>
+                    <column property="description"/>
+                    <column property="category"/>
+                    <column property="active"/>
+                </columns>
+            </dataGrid>
+            <tabSheet id="tabSheet" width="100%" height="100%" themeNames="small">
+                <tab id="tabChecklistItems" label="msg://com.x.equipment.entity/CheckList.checkListItems">
+                    <dataGrid id="checkListItemsDataGrid" dataContainer="checkListItemsDc" width="100%"
+                              height="100%">
+                        <actions>
+                            <action id="createAction" type="list_create">
+                                <properties>
+                                    <property name="openMode" value="DIALOG"/>
+                                </properties>
+                            </action>
+                            <action id="editAction" type="list_edit">
+                                <properties>
+                                    <property name="openMode" value="DIALOG"/>
+                                </properties>
+                            </action>
+                            <action id="removeAction" type="list_remove"/>
+                        </actions>
+                        <columns>
+                            <column property="checklistItemName"/>
+                            <column property="description"/>
+                            <column property="category"/>
+                            <column property="checkListItemType"/>
+                            <column property="sequence"/>
+                            <column property="minValue"/>
+                            <column property="standardValue"/>
+                            <column property="maxValue"/>
+                        </columns>
+                    </dataGrid>
+                </tab>
+            </tabSheet>
+        </split>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectButton" action="selectAction"/>
+            <button id="discardButton" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>

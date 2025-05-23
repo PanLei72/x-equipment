@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://chcekListItemDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="chcekListItemDc"
+                  class="com.x.equipment.entity.ChcekListItem">
+            <fetchPlan extends="_base"/>
+            <loader id="chcekListItemDl"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <formLayout id="form" dataContainer="chcekListItemDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="2"/>
+            </responsiveSteps>
+            <textField id="checklistItemNameField" property="checklistItemName"/>
+            <textField id="descriptionField" property="description"/>
+            <textField id="categoryField" property="category"/>
+            <select id="checkListItemTypeField" property="checkListItemType"/>
+            <textField id="sequenceField" property="sequence"/>
+            <textField id="standardValueField" property="standardValue"/>
+            <textField id="maxValueField" property="maxValue"/>
+            <textField id="minValueField" property="minValue"/>
+        </formLayout>
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>
