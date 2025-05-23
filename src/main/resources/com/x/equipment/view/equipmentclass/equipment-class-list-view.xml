@@ -76,7 +76,7 @@
                     <column property="category"/>
                 </columns>
             </dataGrid>
-            <tabSheet id="tabSheet" width="100%" height="100%" themeNames="small">
+            <tabSheet id="tabSheet" width="100%" height="100%" themeNames="small" classNames="content-padding">
                 <tab id="tabEquipment" label="msg://equipments">
                     <dataGrid id="equipmentClassEquipmentsDataGrid"
                               width="100%"
