@@ -17,6 +17,7 @@
                   icon="LIST"/>
         </menu>
         <menu id="jobManagement" title="msg://com.x.equipment/jobManagement" opened="true">
+            <item view="EQUI_CheckPlan.list" title="msg://com.x.equipment.view.checkplan/checkPlanListView.title" icon="TIMER"/>
             <item view="EQUI_EquipmentCheckJob.list"
                   title="msg://com.x.equipment.view.equipmentcheckjob/equipmentCheckJobListView.title"
                   icon="LINES_LIST"/>

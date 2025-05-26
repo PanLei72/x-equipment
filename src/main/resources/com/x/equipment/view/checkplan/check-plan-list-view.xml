@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://checkPlanListView.title"
+      focusComponent="checkPlansDataGrid">
+    <data>
+        <collection id="checkPlansDc"
+                    class="com.x.equipment.entity.CheckPlan">
+            <fetchPlan extends="_base">
+                <property name="checklist" fetchPlan="_base"/>
+                <property name="equipmentClass" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="checkPlansDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from EQUI_CheckPlan e order by e.checkPlanName]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="checkPlansDl">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="3"/>
+            </responsiveSteps>
+            <configurations>
+                <configuration id="defaultFilter" name="msg:///defaultFilter" default="true">
+                    <propertyFilter property="checkPlanName" operation="CONTAINS"/>
+                    <propertyFilter property="description" operation="CONTAINS"/>
+                    <propertyFilter property="category" operation="CONTAINS"/>
+                </configuration>
+            </configurations>
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button id="createButton" action="checkPlansDataGrid.createAction"/>
+            <button id="editButton" action="checkPlansDataGrid.editAction"/>
+            <button id="removeButton" action="checkPlansDataGrid.removeAction"/>
+            <simplePagination id="pagination" dataLoader="checkPlansDl"/>
+        </hbox>
+        <dataGrid id="checkPlansDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="checkPlansDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="createAction" type="list_create">
+                    <properties>
+                        <property name="openMode" value="DIALOG"/>
+                    </properties>
+                </action>
+                <action id="editAction" type="list_edit">
+                    <properties>
+                        <property name="openMode" value="DIALOG"/>
+                    </properties>
+                </action>
+                <action id="removeAction" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="checkPlanName" autoWidth="true"/>
+                <column property="description" autoWidth="true"/>
+                <column property="category" autoWidth="true"/>
+                <column property="equipmentClass" autoWidth="true"/>
+                <column property="checklist" autoWidth="true"/>
+                <column property="checkCycle" autoWidth="true"/>
+                <column property="checkCycleUnit" autoWidth="true"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectButton" action="selectAction"/>
+            <button id="discardButton" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>

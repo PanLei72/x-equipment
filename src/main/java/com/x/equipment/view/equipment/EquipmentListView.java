@@ -1,18 +1,14 @@
 package com.x.equipment.view.equipment;
 
-import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.data.renderer.Renderer;
 import com.vaadin.flow.dom.Element;
+import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
 import com.x.equipment.entity.Equipment;
-
 import com.x.equipment.view.main.MainView;
-
-import com.vaadin.flow.router.Route;
 import io.jmix.core.FileRef;
 import io.jmix.core.FileStorage;
 import io.jmix.flowui.UiComponents;

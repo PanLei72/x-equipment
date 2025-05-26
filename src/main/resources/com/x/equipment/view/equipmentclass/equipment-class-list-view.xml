@@ -54,7 +54,7 @@
         <split height="100%" width="100%" orientation="VERTICAL" themeNames="minimal">
             <dataGrid id="equipmentClassesDataGrid"
                       width="100%"
-                      height="100%"
+                      minHeight="15em"
                       dataContainer="equipmentClassesDc"
                       columnReorderingAllowed="true">
                 <actions>
