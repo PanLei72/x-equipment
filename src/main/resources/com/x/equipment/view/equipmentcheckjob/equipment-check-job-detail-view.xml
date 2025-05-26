@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://equipmentCheckJobDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="equipmentCheckJobDc"
+                  class="com.x.equipment.entity.EquipmentCheckJob">
+            <fetchPlan extends="_base">
+                <property name="checklist" fetchPlan="_base"/>
+                <property name="equipment" fetchPlan="_base"/>
+                <property name="checkJobItems" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="equipmentCheckJobDl"/>
+            <collection id="checkJobItemsDc" property="checkJobItems"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <formLayout id="form" dataContainer="equipmentCheckJobDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="2"/>
+            </responsiveSteps>
+            <entityPicker id="equipmentField" property="equipment">
+                <actions>
+                    <action id="entityLookup" type="entity_lookup"/>
+                    <action id="entityClear" type="entity_clear"/>
+                </actions>
+            </entityPicker>
+            <entityPicker id="checklistField" property="checklist">
+                <actions>
+                    <action id="entityLookup" type="entity_lookup"/>
+                    <action id="entityClear" type="entity_clear"/>
+                </actions>
+            </entityPicker>
+            <textField id="jobNameField" property="jobName"/>
+            <textField id="descriptionField" property="description"/>
+            <textField id="categoryField" property="category"/>
+            <select id="jobStatusField" property="jobStatus" readOnly="true"/>
+            <dateTimePicker id="planTimeField" property="planTime"/>
+            <textField id="checkCycleField" property="checkCycle"/>
+            <select id="checkCycleUnitField" property="checkCycleUnit"/>
+            <dateTimePicker id="actualTimeField" property="actualTime"/>
+        </formLayout>
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>

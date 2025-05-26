@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://equipmentCheckJobListView.title"
+      focusComponent="equipmentCheckJobsDataGrid">
+    <data>
+        <collection id="equipmentCheckJobsDc"
+                    class="com.x.equipment.entity.EquipmentCheckJob">
+            <fetchPlan extends="_base">
+                <property name="checklist" fetchPlan="_base"/>
+                <property name="equipment" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="equipmentCheckJobsDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from EQUI_EquipmentCheckJob e order by e.jobName]]>
+                </query>
+            </loader>
+            <collection id="checkJobItemsDc" property="checkJobItems"/>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="equipmentCheckJobsDl">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="3"/>
+            </responsiveSteps>
+            <configurations>
+                <configuration id="defaultFilter" name="msg:///defaultFilter" default="true">
+                    <propertyFilter property="jobName" operation="CONTAINS"/>
+                    <propertyFilter property="description" operation="CONTAINS"/>
+                    <propertyFilter property="category" operation="CONTAINS"/>
+                </configuration>
+            </configurations>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button id="createButton" action="equipmentCheckJobsDataGrid.createAction"/>
+            <button id="editButton" action="equipmentCheckJobsDataGrid.editAction"/>
+            <button id="removeButton" action="equipmentCheckJobsDataGrid.removeAction"/>
+            <simplePagination id="pagination" dataLoader="equipmentCheckJobsDl"/>
+        </hbox>
+        <split height="100%" width="100%" orientation="VERTICAL" themeNames="minimal">
+            <dataGrid id="equipmentCheckJobsDataGrid"
+                      width="100%"
+                      minHeight="20em"
+                      dataContainer="equipmentCheckJobsDc"
+                      columnReorderingAllowed="true">
+                <actions>
+                    <action id="createAction" type="list_create">
+                        <properties>
+                            <property name="openMode" value="DIALOG"/>
+                        </properties>
+                    </action>
+                    <action id="editAction" type="list_edit">
+                        <properties>
+                            <property name="openMode" value="DIALOG"/>
+                        </properties>
+                    </action>
+                    <action id="removeAction" type="list_remove"/>
+                </actions>
+                <columns resizable="true">
+                    <column property="jobName"/>
+                    <column property="description"/>
+                    <column property="category"/>
+                    <column property="jobStatus"/>
+                    <column property="planTime"/>
+                    <column property="checkCycle"/>
+                    <column property="checkCycleUnit"/>
+                    <column property="actualTime"/>
+                    <column property="checklist"/>
+                    <column property="equipment"/>
+                </columns>
+            </dataGrid>
+            <tabSheet id="tabSheet" width="100%" height="100%" themeNames="small" classNames="content-padding">
+                <tab id="tabChecklistItems" label="msg://com.x.equipment.entity/CheckList.checkListItems">
+                    <dataGrid id="checkJobItemsDataGrid" dataContainer="checkJobItemsDc" width="100%" height="100%" >
+                        <actions>
+                            <action id="createAction" type="list_create">
+                                <properties>
+                                    <property name="openMode" value="DIALOG"/>
+                                </properties>
+                            </action>
+                            <action id="editAction" type="list_edit">
+                                <properties>
+                                    <property name="openMode" value="DIALOG"/>
+                                </properties>
+                            </action>
+                            <action id="removeAction" type="list_remove"/>
+                        </actions>
+                        <columns>
+                            <column property="sequence"/>
+                            <column property="jobItemName"/>
+                            <column property="category"/>
+                            <column property="description"/>
+                            <column property="checkListItemType"/>
+                            <column property="standardValue"/>
+                            <column property="minValue"/>
+                            <column property="maxValue"/>
+                            <column property="checkResult"/>
+                        </columns>
+                    </dataGrid>
+                </tab>
+            </tabSheet>
+        </split>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectButton" action="selectAction"/>
+            <button id="discardButton" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>
