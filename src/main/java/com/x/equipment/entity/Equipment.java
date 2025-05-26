@@ -1,5 +1,6 @@
 package com.x.equipment.entity;
 
+import io.jmix.core.FileRef;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
@@ -57,6 +58,9 @@ public class Equipment {
 
     @Column(name = "ASSET_CODE")
     private String assetCode;
+
+    @Column(name = "IMAGE", length = 1024)
+    private FileRef image;
 
     public OffsetDateTime getLastModifiedDate() {
         return lastModifiedDate;
@@ -137,5 +141,13 @@ public class Equipment {
 
     public void setAssetCode(String assetCode) {
         this.assetCode = assetCode;
+    }
+
+    public FileRef getImage() {
+        return image;
+    }
+
+    public void setImage(FileRef image) {
+        this.image = image;
     }
 }

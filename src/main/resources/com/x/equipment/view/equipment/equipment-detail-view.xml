@@ -30,6 +30,13 @@
             <formItem>
                 <textField id="assetCodeField" property="assetCode"/>
             </formItem>
+            <formItem>
+                <fileStorageUploadField id="imageField" property="image"
+                                        uploadIcon="UPLOAD"
+                                        fileNotSelectedText="msg://fileNotSelectedText"
+                                        acceptedFileTypes="image/png, .png, .jpg, .jpeg, .jif, .bmp"
+                                        maxFileSize="10485760"/>
+            </formItem>
         </formLayout>
         <hbox id="detailActions">
             <button id="saveAndCloseBtn" action="saveAction"/>
