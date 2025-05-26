@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://repairOrderListView.title"
+      focusComponent="repairOrdersDataGrid">
+    <data>
+        <collection id="repairOrdersDc"
+                    class="com.x.equipment.entity.RepairOrder">
+            <fetchPlan extends="_base">
+                <property name="equipment" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="repairOrdersDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from EQUI_RepairOrder e order by e.orderNumber]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="repairOrdersDl">
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button id="createButton" action="repairOrdersDataGrid.createAction"/>
+            <button id="editButton" action="repairOrdersDataGrid.editAction"/>
+            <button id="removeButton" action="repairOrdersDataGrid.removeAction"/>
+            <simplePagination id="pagination" dataLoader="repairOrdersDl"/>
+        </hbox>
+        <dataGrid id="repairOrdersDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="repairOrdersDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="createAction" type="list_create">
+                    <properties>
+                        <property name="openMode" value="DIALOG"/>
+                    </properties>
+                </action>
+                <action id="editAction" type="list_edit">
+                    <properties>
+                        <property name="openMode" value="DIALOG"/>
+                    </properties>
+                </action>
+                <action id="removeAction" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="orderNumber"/>
+                <column property="description"/>
+                <column property="equipment"/>
+                <column property="equipment.description"/>
+                <column property="equipment.category"/>
+                <column property="equipment.level"/>
+                <column property="orderStatus"/>
+                <column property="repairTime"/>
+                <column property="startRepairTime"/>
+                <column property="completeRepairTime"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectButton" action="selectAction"/>
+            <button id="discardButton" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>

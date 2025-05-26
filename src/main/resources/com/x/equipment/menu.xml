@@ -9,6 +9,7 @@
               title="msg://com.x.equipment.view.equipmentcheckjob/equipmentCheckJobListView.title" icon="LINES_LIST"/>
         <item view="EQUI_EquipmentLevel.list"
               title="msg://com.x.equipment.view.equipmentlevel/equipmentLevelListView.title" icon="LIST_OL"/>
+        <item view="EQUI_RepairOrder.list" title="msg://com.x.equipment.view.repairorder/repairOrderListView.title" icon="FILE_PROCESS"/>
     </menu>
 
     <menu id="userData" title="msg://com.x.mes/menu.userManagement" icon="USERS">
