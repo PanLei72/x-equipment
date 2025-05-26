@@ -69,6 +69,31 @@ public class RepairOrder {
     @Column(name = "COMPLETE_REPAIR_TIME")
     private LocalDateTime completeRepairTime;
 
+    @JoinColumn(name = "FAULT_LEVEL_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private FaultLevel faultLevel;
+
+    @JoinColumn(name = "FAULT_TYPE_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private FaultType faultType;
+
+
+    public FaultLevel getFaultLevel() {
+        return faultLevel;
+    }
+
+    public void setFaultLevel(FaultLevel faultLevel) {
+        this.faultLevel = faultLevel;
+    }
+
+    public FaultType getFaultType() {
+        return faultType;
+    }
+
+    public void setFaultType(FaultType faultType) {
+        this.faultType = faultType;
+    }
+
     public String getDescription() {
         return description;
     }

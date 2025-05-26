@@ -51,14 +51,14 @@
                 <action id="removeAction" type="list_remove"/>
             </actions>
             <columns>
-                <column property="checklistItemName"/>
-                <column property="description"/>
-                <column property="category"/>
-                <column property="checkListItemType"/>
-                <column property="sequence"/>
-                <column property="lowerLimitValue"/>
-                <column property="standardValue"/>
-                <column property="upperLimitValue"/>
+                <column property="checklistItemName" autoWidth="true"/>
+                <column property="description" autoWidth="true"/>
+                <column property="category" autoWidth="true"/>
+                <column property="checkListItemType" autoWidth="true"/>
+                <column property="sequence" autoWidth="true"/>
+                <column property="lowerLimitValue" autoWidth="true"/>
+                <column property="standardValue" autoWidth="true"/>
+                <column property="upperLimitValue" autoWidth="true"/>
             </columns>
         </dataGrid>
         <hbox id="detailActions">

@@ -98,15 +98,15 @@
                             <action id="removeAction" type="list_remove"/>
                         </actions>
                         <columns>
-                            <column property="sequence"/>
-                            <column property="jobItemName"/>
-                            <column property="category"/>
-                            <column property="description"/>
-                            <column property="checkListItemType"/>
-                            <column property="standardValue"/>
-                            <column property="upperLimitValue"/>
-                            <column property="lowerLimitValue"/>
-                            <column property="checkResult"/>
+                            <column property="sequence" autoWidth="true"/>
+                            <column property="jobItemName" autoWidth="true"/>
+                            <column property="category" autoWidth="true"/>
+                            <column property="description" autoWidth="true"/>
+                            <column property="checkListItemType" autoWidth="true"/>
+                            <column property="standardValue" autoWidth="true"/>
+                            <column property="upperLimitValue" autoWidth="true"/>
+                            <column property="lowerLimitValue" autoWidth="true"/>
+                            <column property="checkResult" autoWidth="true"/>
                         </columns>
                     </dataGrid>
                 </tab>

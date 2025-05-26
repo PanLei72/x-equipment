@@ -2,14 +2,29 @@
 <menu-config xmlns="http://jmix.io/schema/flowui/menu">
 
     <menu id="equipment" title="msg://com.x.equipment/equipmentManagement" opened="true">
-        <item view="EQUI_Equipment.list" title="msg://com.x.equipment.view.equipment/equipmentListView.title" icon="COG"/>
-        <item view="EQUI_EquipmentClass.list" title="msg://com.x.equipment.view.equipmentclass/equipmentClassListView.title" icon="COGS"/>
-        <item view="EQUI_CheckList.list" title="msg://com.x.equipment.view.checklist/checkListListView.title" icon="LIST_UL"/>
-        <item view="EQUI_EquipmentCheckJob.list"
-              title="msg://com.x.equipment.view.equipmentcheckjob/equipmentCheckJobListView.title" icon="LINES_LIST"/>
-        <item view="EQUI_EquipmentLevel.list"
-              title="msg://com.x.equipment.view.equipmentlevel/equipmentLevelListView.title" icon="LIST_OL"/>
-        <item view="EQUI_RepairOrder.list" title="msg://com.x.equipment.view.repairorder/repairOrderListView.title" icon="FILE_PROCESS"/>
+        <menu id="masterData" title="msg://com.x.equipment/masterData" opened="true">
+            <item view="EQUI_Equipment.list" title="msg://com.x.equipment.view.equipment/equipmentListView.title"
+                  icon="COG"/>
+            <item view="EQUI_EquipmentClass.list"
+                  title="msg://com.x.equipment.view.equipmentclass/equipmentClassListView.title" icon="COGS"/>
+            <item view="EQUI_CheckList.list" title="msg://com.x.equipment.view.checklist/checkListListView.title"
+                  icon="LIST_UL"/>
+            <item view="EQUI_EquipmentLevel.list"
+                  title="msg://com.x.equipment.view.equipmentlevel/equipmentLevelListView.title" icon="LIST_OL"/>
+            <item view="EQUI_FaultType.list" title="msg://com.x.equipment.view.faulttype/faultTypeListView.title"
+                  icon="TWIN_COL_SELECT"/>
+            <item view="EQUI_FaultLevel.list" title="msg://com.x.equipment.view.faultlevel/faultLevelListView.title"
+                  icon="LIST"/>
+        </menu>
+        <menu id="jobManagement" title="msg://com.x.equipment/jobManagement" opened="true">
+            <item view="EQUI_EquipmentCheckJob.list"
+                  title="msg://com.x.equipment.view.equipmentcheckjob/equipmentCheckJobListView.title"
+                  icon="LINES_LIST"/>
+        </menu>
+        <menu id="repairManagement" title="msg://com.x.equipment/repairManagement" opened="true">
+            <item view="EQUI_RepairOrder.list" title="msg://com.x.equipment.view.repairorder/repairOrderListView.title"
+                  icon="TASKS"/>
+        </menu>
     </menu>
 
     <menu id="userData" title="msg://com.x.mes/menu.userManagement" icon="USERS">
@@ -21,7 +36,8 @@
         <item view="userSession.view" title="msg://io.jmix.auditflowui.view.entitylog/UserSessionsView.menu"/>
     </menu>
     <menu id="administration" title="msg://com.x.equipment/administration" icon="COGS">
-        <item view="datatl_entityInspectorListView" title="msg://io.jmix.datatoolsflowui.view.entityinspector/listTitle"/>
+        <item view="datatl_entityInspectorListView"
+              title="msg://io.jmix.datatoolsflowui.view.entityinspector/listTitle"/>
         <item view="entityLog.view" title="msg://io.jmix.auditflowui.view.entitylog/entityLogView.menu"/>
         <item view="quartz_JobModel.list" title="msg://io.jmix.quartzflowui.view.jobs/jobModelListView.menu"/>
         <item view="pslock_LockInfo.list"

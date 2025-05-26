@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view xmlns="http://jmix.io/schema/flowui/view"
       xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
-      title="msg://equipmentLevelListView.title"
-      focusComponent="equipmentLevelsDataGrid">
+      title="msg://faultTypeListView.title"
+      focusComponent="faultTypesDataGrid">
     <data>
-        <collection id="equipmentLevelsDc"
-                    class="com.x.equipment.entity.EquipmentLevel">
+        <collection id="faultTypesDc"
+                    class="com.x.equipment.entity.FaultType">
             <fetchPlan extends="_base"/>
-            <loader id="equipmentLevelsDl" readOnly="true">
+            <loader id="faultTypesDl" readOnly="true">
                 <query>
-                    <![CDATA[select e from EQUI_EquipmentLevel e order by e.levelName]]>
+                    <![CDATA[select e from EQUI_FaultType e order by e.faultTypeCode]]>
                 </query>
             </loader>
         </collection>
@@ -27,19 +27,19 @@
     </actions>
     <layout>
         <genericFilter id="genericFilter"
-                       dataLoader="equipmentLevelsDl">
+                       dataLoader="faultTypesDl">
             <properties include=".*"/>
         </genericFilter>
         <hbox id="buttonsPanel" classNames="buttons-panel">
-            <button id="createButton" action="equipmentLevelsDataGrid.createAction"/>
-            <button id="editButton" action="equipmentLevelsDataGrid.editAction"/>
-            <button id="removeButton" action="equipmentLevelsDataGrid.removeAction"/>
-            <simplePagination id="pagination" dataLoader="equipmentLevelsDl"/>
+            <button id="createButton" action="faultTypesDataGrid.createAction"/>
+            <button id="editButton" action="faultTypesDataGrid.editAction"/>
+            <button id="removeButton" action="faultTypesDataGrid.removeAction"/>
+            <simplePagination id="pagination" dataLoader="faultTypesDl"/>
         </hbox>
-        <dataGrid id="equipmentLevelsDataGrid"
+        <dataGrid id="faultTypesDataGrid"
                   width="100%"
                   minHeight="20em"
-                  dataContainer="equipmentLevelsDc"
+                  dataContainer="faultTypesDc"
                   columnReorderingAllowed="true">
             <actions>
                 <action id="createAction" type="list_create">
@@ -55,7 +55,7 @@
                 <action id="removeAction" type="list_remove"/>
             </actions>
             <columns resizable="true">
-                <column property="levelName" autoWidth="true"/>
+                <column property="faultTypeCode" autoWidth="true"/>
                 <column property="description" autoWidth="true"/>
             </columns>
         </dataGrid>

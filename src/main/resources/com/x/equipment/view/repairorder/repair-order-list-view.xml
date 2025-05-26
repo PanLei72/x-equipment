@@ -8,6 +8,8 @@
                     class="com.x.equipment.entity.RepairOrder">
             <fetchPlan extends="_base">
                 <property name="equipment" fetchPlan="_base"/>
+                <property name="faultLevel" fetchPlan="_base"/>
+                <property name="faultType" fetchPlan="_base"/>
             </fetchPlan>
             <loader id="repairOrdersDl" readOnly="true">
                 <query>
@@ -30,6 +32,18 @@
     <layout>
         <genericFilter id="genericFilter"
                        dataLoader="repairOrdersDl">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="3"/>
+            </responsiveSteps>
+            <configurations>
+                <configuration id="defaultFilter" name="msg:///defaultFilter" default="true">
+                    <propertyFilter property="orderNumber" operation="CONTAINS"/>
+                    <propertyFilter property="description" operation="CONTAINS"/>
+                    <propertyFilter property="equipment" operation="EQUAL"/>
+                    <propertyFilter property="faultLevel" operation="EQUAL"/>
+                    <propertyFilter property="faultType" operation="EQUAL"/>
+                </configuration>
+            </configurations>
             <properties include=".*"/>
         </genericFilter>
         <hbox id="buttonsPanel" classNames="buttons-panel">
@@ -57,16 +71,18 @@
                 <action id="removeAction" type="list_remove"/>
             </actions>
             <columns resizable="true">
-                <column property="orderNumber"/>
-                <column property="description"/>
-                <column property="equipment"/>
-                <column property="equipment.description"/>
-                <column property="equipment.category"/>
-                <column property="equipment.level"/>
-                <column property="orderStatus"/>
-                <column property="repairTime"/>
-                <column property="startRepairTime"/>
-                <column property="completeRepairTime"/>
+                <column property="orderNumber" autoWidth="true"/>
+                <column property="equipment" autoWidth="true"/>
+                <column property="equipment.description" autoWidth="true"/>
+                <column property="equipment.category" autoWidth="true"/>
+                <column property="equipment.level" autoWidth="true"/>
+                <column property="faultLevel" autoWidth="true"/>
+                <column property="faultType" autoWidth="true"/>
+                <column property="orderStatus" autoWidth="true"/>
+                <column property="repairTime" autoWidth="true"/>
+                <column property="description" autoWidth="true"/>
+                <column property="startRepairTime" autoWidth="true"/>
+                <column property="completeRepairTime" autoWidth="true"/>
             </columns>
         </dataGrid>
         <hbox id="lookupActions" visible="false">

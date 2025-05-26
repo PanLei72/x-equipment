@@ -38,10 +38,10 @@
                 <action id="remove" type="list_remove"/>
             </actions>
             <columns>
-                <column property="equipment.equipmentName" />
-                <column property="equipment.description" />
-                <column property="equipment.category" />
-                <column property="equipment.assetCode"/>
+                <column property="equipment.equipmentName"  autoWidth="true"/>
+                <column property="equipment.description"  autoWidth="true"/>
+                <column property="equipment.category"  autoWidth="true"/>
+                <column property="equipment.assetCode" autoWidth="true"/>
             </columns>
         </dataGrid>
         <hbox id="detailActions">
