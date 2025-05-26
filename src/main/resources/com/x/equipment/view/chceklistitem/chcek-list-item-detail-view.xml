@@ -5,7 +5,9 @@
     <data>
         <instance id="chcekListItemDc"
                   class="com.x.equipment.entity.ChcekListItem">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+                <property name="checkList" fetchPlan="_base"/>
+            </fetchPlan>
             <loader id="chcekListItemDl"/>
         </instance>
     </data>
@@ -28,8 +30,15 @@
             <select id="checkListItemTypeField" property="checkListItemType"/>
             <textField id="sequenceField" property="sequence"/>
             <textField id="standardValueField" property="standardValue"/>
-            <textField id="maxValueField" property="maxValue"/>
-            <textField id="minValueField" property="minValue"/>
+            <textField id="maxValueField" property="upperLimitValue"/>
+            <textField id="minValueField" property="lowerLimitValue"/>
+            <textField id="checkMethodField" property="checkMethod"/>
+            <entityPicker id="checkListField" property="checkList">
+                <actions>
+                    <action id="entityLookup" type="entity_lookup"/>
+                    <action id="entityClear" type="entity_clear"/>
+                </actions>
+            </entityPicker>
         </formLayout>
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveAction"/>

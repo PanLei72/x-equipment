@@ -98,9 +98,9 @@
                             <column property="category"/>
                             <column property="checkListItemType"/>
                             <column property="sequence"/>
-                            <column property="minValue"/>
+                            <column property="lowerLimitValue"/>
                             <column property="standardValue"/>
-                            <column property="maxValue"/>
+                            <column property="upperLimitValue"/>
                         </columns>
                     </dataGrid>
                 </tab>

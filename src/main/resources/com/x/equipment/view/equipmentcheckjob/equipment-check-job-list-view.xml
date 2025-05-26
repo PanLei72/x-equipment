@@ -104,8 +104,8 @@
                             <column property="description"/>
                             <column property="checkListItemType"/>
                             <column property="standardValue"/>
-                            <column property="minValue"/>
-                            <column property="maxValue"/>
+                            <column property="upperLimitValue"/>
+                            <column property="lowerLimitValue"/>
                             <column property="checkResult"/>
                         </columns>
                     </dataGrid>

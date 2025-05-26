@@ -64,6 +64,9 @@ public class ChcekListItem {
     @Column(name = "CATEGORY")
     private String category;
 
+    @Column(name = "CHECK_METHOD")
+    private String checkMethod;
+
     @Column(name = "CHECK_LIST_ITEM_TYPE", nullable = false)
     @NotNull
     private String checkListItemType;
@@ -71,26 +74,34 @@ public class ChcekListItem {
     @Column(name = "STANDARD_VALUE", precision = 19, scale = 2)
     private BigDecimal standardValue;
 
-    @Column(name = "MIN_VALUE", precision = 19, scale = 2)
-    private BigDecimal minValue;
+    @Column(name = "LOWER_LIMIT_VALUE", precision = 19, scale = 2)
+    private BigDecimal lowerLimitValue;
 
-    @Column(name = "MAX_VALUE", precision = 19, scale = 2)
-    private BigDecimal maxValue;
+    @Column(name = "UPPER_LIMIT_VALUE", precision = 19, scale = 2)
+    private BigDecimal upperLimitValue;
 
-    public BigDecimal getMaxValue() {
-        return maxValue;
+    public String getCheckMethod() {
+        return checkMethod;
     }
 
-    public void setMaxValue(BigDecimal maxValue) {
-        this.maxValue = maxValue;
+    public void setCheckMethod(String checkMethod) {
+        this.checkMethod = checkMethod;
     }
 
-    public BigDecimal getMinValue() {
-        return minValue;
+    public BigDecimal getUpperLimitValue() {
+        return upperLimitValue;
     }
 
-    public void setMinValue(BigDecimal minValue) {
-        this.minValue = minValue;
+    public void setUpperLimitValue(BigDecimal maxValue) {
+        this.upperLimitValue = maxValue;
+    }
+
+    public BigDecimal getLowerLimitValue() {
+        return lowerLimitValue;
+    }
+
+    public void setLowerLimitValue(BigDecimal minValue) {
+        this.lowerLimitValue = minValue;
     }
 
     public BigDecimal getStandardValue() {

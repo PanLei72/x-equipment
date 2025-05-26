@@ -66,14 +66,17 @@ public class EquipmentCheckJobItem {
     @NotNull
     private String checkListItemType;
 
+    @Column(name = "CHECK_METHOD")
+    private String checkMethod;
+
     @Column(name = "STANDARD_VALUE", precision = 19, scale = 2)
     private BigDecimal standardValue;
 
-    @Column(name = "MIN_VALUE", precision = 19, scale = 2)
-    private BigDecimal minValue;
+    @Column(name = "UPPER_LIMIT_VALUE", precision = 19, scale = 2)
+    private BigDecimal upperLimitValue;
 
-    @Column(name = "MAX_VALUE", precision = 19, scale = 2)
-    private BigDecimal maxValue;
+    @Column(name = "LOWER_LIMIT_VALUE", precision = 19, scale = 2)
+    private BigDecimal lowerLimitValue;
 
     @Column(name = "CHECK_RESULT")
     private String checkResult;
@@ -82,6 +85,14 @@ public class EquipmentCheckJobItem {
     @JoinColumn(name = "EQUIPMENT_CHECK_JOB_ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private EquipmentCheckJob equipmentCheckJob;
+
+    public String getCheckMethod() {
+        return checkMethod;
+    }
+
+    public void setCheckMethod(String checkMethod) {
+        this.checkMethod = checkMethod;
+    }
 
     public EquipmentCheckJob getEquipmentCheckJob() {
         return equipmentCheckJob;
@@ -99,20 +110,20 @@ public class EquipmentCheckJobItem {
         this.checkResult = checkResult;
     }
 
-    public BigDecimal getMaxValue() {
-        return maxValue;
+    public BigDecimal getLowerLimitValue() {
+        return lowerLimitValue;
     }
 
-    public void setMaxValue(BigDecimal maxValue) {
-        this.maxValue = maxValue;
+    public void setLowerLimitValue(BigDecimal maxValue) {
+        this.lowerLimitValue = maxValue;
     }
 
-    public BigDecimal getMinValue() {
-        return minValue;
+    public BigDecimal getUpperLimitValue() {
+        return upperLimitValue;
     }
 
-    public void setMinValue(BigDecimal minValue) {
-        this.minValue = minValue;
+    public void setUpperLimitValue(BigDecimal minValue) {
+        this.upperLimitValue = minValue;
     }
 
     public BigDecimal getStandardValue() {
