@@ -53,6 +53,8 @@ dependencies {
     implementation 'io.jmix.translations:jmix-translations-zh-cn'
     implementation 'io.jmix.audit:jmix-audit-starter'
     implementation 'io.jmix.audit:jmix-audit-flowui-starter'
+    implementation 'io.jmix.quartz:jmix-quartz-flowui-starter'
+    implementation 'io.jmix.quartz:jmix-quartz-starter'
 }
 
 configurations.implementation {
