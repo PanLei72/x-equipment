@@ -11,8 +11,20 @@
               title="msg://com.x.equipment.view.equipmentlevel/equipmentLevelListView.title" icon="LIST_OL"/>
     </menu>
 
-    <menu id="application" title="msg://com.x.equipment/menu.application.title" opened="true">
+    <menu id="userData" title="msg://com.x.mes/menu.userManagement" icon="USERS">
         <item view="EQUI_User.list" title="msg://com.x.equipment.view.user/UserListView.title"/>
+        <item view="sec_ResourceRoleModel.list"
+              title="msg://io.jmix.securityflowui.view.resourcerole/resourceRoleModelListView.menu"/>
+        <item view="sec_RowLevelRoleModel.list"
+              title="msg://io.jmix.securityflowui.view.rowlevelrole/rowLevelRoleModelListView.menu"/>
+        <item view="userSession.view" title="msg://io.jmix.auditflowui.view.entitylog/UserSessionsView.menu"/>
+    </menu>
+    <menu id="administration" title="msg://com.x.equipment/administration" icon="COGS">
+        <item view="datatl_entityInspectorListView" title="msg://io.jmix.datatoolsflowui.view.entityinspector/listTitle"/>
+        <item view="entityLog.view" title="msg://io.jmix.auditflowui.view.entitylog/entityLogView.menu"/>
+        <item view="quartz_JobModel.list" title="msg://io.jmix.quartzflowui.view.jobs/jobModelListView.menu"/>
+        <item view="pslock_LockInfo.list"
+              title="msg://io.jmix.pessimisticlockflowui/pessimisticLockListView.menu"/>
     </menu>
 
 </menu-config>
