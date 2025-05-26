@@ -1,6 +1,5 @@
 package com.x.equipment.entity;
 
-import io.jmix.core.FileRef;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
@@ -15,13 +14,9 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "EQUI_EQUIPMENT", indexes = {
-        @Index(name = "IDX_EQUI_EQUIPMENT_LEVEL", columnList = "LEVEL_ID")
-}, uniqueConstraints = {
-        @UniqueConstraint(name = "UC_EQUIPMENT_EQUIPMENT_NAME", columnNames = {"EQUIPMENT_NAME"})
-})
-@Entity(name = "EQUI_Equipment")
-public class Equipment {
+@Table(name = "EQUI_EQUIPMENT_LEVEL")
+@Entity(name = "EQUI_EquipmentLevel")
+public class EquipmentLevel {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
@@ -47,33 +42,28 @@ public class Equipment {
     @Column(name = "LAST_MODIFIED_DATE")
     private OffsetDateTime lastModifiedDate;
 
-    @InstanceName
-    @Column(name = "EQUIPMENT_NAME", nullable = false)
+    @Column(name = "LEVEL_NAME", nullable = false)
     @NotNull
-    private String equipmentName;
+    private String levelName;
 
+    @InstanceName
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @Column(name = "CATEGORY")
-    private String category;
-
-    @Column(name = "ASSET_CODE")
-    private String assetCode;
-
-    @Column(name = "IMAGE", length = 1024)
-    private FileRef image;
-
-    @JoinColumn(name = "LEVEL_ID")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private EquipmentLevel level;
-
-    public EquipmentLevel getLevel() {
-        return level;
+    public String getDescription() {
+        return description;
     }
 
-    public void setLevel(EquipmentLevel level) {
-        this.level = level;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getLevelName() {
+        return levelName;
+    }
+
+    public void setLevelName(String levelName) {
+        this.levelName = levelName;
     }
 
     public OffsetDateTime getLastModifiedDate() {
@@ -124,44 +114,4 @@ public class Equipment {
         this.id = id;
     }
 
-
-    public String getEquipmentName() {
-        return equipmentName;
-    }
-
-    public void setEquipmentName(String equipmentName) {
-        this.equipmentName = equipmentName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getAssetCode() {
-        return assetCode;
-    }
-
-    public void setAssetCode(String assetCode) {
-        this.assetCode = assetCode;
-    }
-
-    public FileRef getImage() {
-        return image;
-    }
-
-    public void setImage(FileRef image) {
-        this.image = image;
-    }
 }

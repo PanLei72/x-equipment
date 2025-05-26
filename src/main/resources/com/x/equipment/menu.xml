@@ -6,7 +6,9 @@
         <item view="EQUI_EquipmentClass.list" title="msg://com.x.equipment.view.equipmentclass/equipmentClassListView.title" icon="COGS"/>
         <item view="EQUI_CheckList.list" title="msg://com.x.equipment.view.checklist/checkListListView.title" icon="LIST_UL"/>
         <item view="EQUI_EquipmentCheckJob.list"
-              title="msg://com.x.equipment.view.equipmentcheckjob/equipmentCheckJobListView.title" icon="LIST_OL"/>
+              title="msg://com.x.equipment.view.equipmentcheckjob/equipmentCheckJobListView.title" icon="LINES_LIST"/>
+        <item view="EQUI_EquipmentLevel.list"
+              title="msg://com.x.equipment.view.equipmentlevel/equipmentLevelListView.title" icon="LIST_OL"/>
     </menu>
 
     <menu id="application" title="msg://com.x.equipment/menu.application.title" opened="true">

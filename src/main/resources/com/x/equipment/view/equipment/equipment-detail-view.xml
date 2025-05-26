@@ -5,9 +5,20 @@
     <data>
         <instance id="equipmentDc"
                   class="com.x.equipment.entity.Equipment">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+                <property name="level" fetchPlan="_base"/>
+            </fetchPlan>
             <loader/>
         </instance>
+        <collection class="com.x.equipment.entity.EquipmentLevel"
+                    id="equipmentLevelsDc">
+            <fetchPlan extends="_base"/>
+            <loader id="equipmentLevelsDl">
+                <query>
+                    <![CDATA[select e from EQUI_EquipmentLevel e order by e.levelName]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -36,6 +47,15 @@
                                         fileNotSelectedText="msg://fileNotSelectedText"
                                         acceptedFileTypes="image/png, .png, .jpg, .jpeg, .jif, .bmp"
                                         maxFileSize="10485760"/>
+            </formItem>
+            <formItem>
+                <entityComboBox dataContainer="equipmentDc"
+                                property="level"
+                                itemsContainer="equipmentLevelsDc">
+                    <actions>
+                        <action id="entityClear" type="entity_clear"/>
+                    </actions>
+                </entityComboBox>
             </formItem>
         </formLayout>
         <hbox id="detailActions">

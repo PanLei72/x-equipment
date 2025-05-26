@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://equipmentLevelListView.title"
+      focusComponent="equipmentLevelsDataGrid">
+    <data>
+        <collection id="equipmentLevelsDc"
+                    class="com.x.equipment.entity.EquipmentLevel">
+            <fetchPlan extends="_base"/>
+            <loader id="equipmentLevelsDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from EQUI_EquipmentLevel e order by e.levelName]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="equipmentLevelsDl">
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button id="createButton" action="equipmentLevelsDataGrid.createAction"/>
+            <button id="editButton" action="equipmentLevelsDataGrid.editAction"/>
+            <button id="removeButton" action="equipmentLevelsDataGrid.removeAction"/>
+            <simplePagination id="pagination" dataLoader="equipmentLevelsDl"/>
+        </hbox>
+        <dataGrid id="equipmentLevelsDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="equipmentLevelsDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="createAction" type="list_create">
+                    <properties>
+                        <property name="openMode" value="DIALOG"/>
+                    </properties>
+                </action>
+                <action id="editAction" type="list_edit">
+                    <properties>
+                        <property name="openMode" value="DIALOG"/>
+                    </properties>
+                </action>
+                <action id="removeAction" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="levelName"/>
+                <column property="description"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectButton" action="selectAction"/>
+            <button id="discardButton" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>
