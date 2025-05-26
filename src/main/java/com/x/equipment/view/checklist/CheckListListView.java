@@ -1,6 +1,7 @@
 package com.x.equipment.view.checklist;
 
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.router.Route;
 import com.x.equipment.entity.CheckList;
 import com.x.equipment.view.main.MainView;
@@ -23,8 +24,9 @@ public class CheckListListView extends StandardListView<CheckList> {
 
     @Subscribe
     public void onBeforeShow(final BeforeShowEvent event) {
-        if(getElement().getParent() != null) {
-            if (getElement().getParent().getAttribute("class").contains("jmix-dialog")) {
+        Element parentElement = getElement().getParent();
+        if(parentElement != null && parentElement.getAttribute("class") != null) {
+            if (parentElement.getAttribute("class").contains("jmix-dialog")) {
                 buttonsPanel.setVisible(false);
             }
         }

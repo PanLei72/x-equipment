@@ -6,6 +6,7 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.data.renderer.Renderer;
+import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.server.StreamResource;
 import com.x.equipment.entity.Equipment;
 
@@ -36,8 +37,9 @@ public class EquipmentListView extends StandardListView<Equipment> {
 
     @Subscribe
     public void onBeforeShow(final BeforeShowEvent event) {
-        if(getElement().getParent() != null) {
-            if (getElement().getParent().getAttribute("class").contains("jmix-dialog")) {
+        Element parentElement = getElement().getParent();
+        if(parentElement != null && parentElement.getAttribute("class") != null) {
+            if (parentElement.getAttribute("class").contains("jmix-dialog")) {
                 buttonsPanel.setVisible(false);
             }
         }

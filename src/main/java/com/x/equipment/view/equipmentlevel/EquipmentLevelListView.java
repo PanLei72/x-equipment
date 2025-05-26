@@ -1,5 +1,7 @@
 package com.x.equipment.view.equipmentlevel;
 
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.router.Route;
 import com.x.equipment.entity.EquipmentLevel;
 import com.x.equipment.view.main.MainView;
@@ -12,4 +14,18 @@ import io.jmix.flowui.view.*;
 @LookupComponent("equipmentLevelsDataGrid")
 @DialogMode(width = "64em")
 public class EquipmentLevelListView extends StandardListView<EquipmentLevel> {
+
+    @ViewComponent
+    private HorizontalLayout buttonsPanel;
+
+    @Subscribe
+    public void onBeforeShow(final BeforeShowEvent event) {
+        Element parentElement = getElement().getParent();
+        if(parentElement != null && parentElement.getAttribute("class") != null) {
+            if (parentElement.getAttribute("class").contains("jmix-dialog")) {
+                buttonsPanel.setVisible(false);
+            }
+        }
+    }
+
 }
