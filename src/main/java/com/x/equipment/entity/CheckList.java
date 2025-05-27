@@ -63,7 +63,7 @@ public class CheckList {
 
     @Composition
     @OneToMany(mappedBy = "checkList")
-    private List<ChcekListItem> checkListItems;
+    private List<CheckListItem> checkListItems;
 
     public UUID getId() {
         return id;
@@ -74,11 +74,11 @@ public class CheckList {
     }
 
 
-    public List<ChcekListItem> getCheckListItems() {
+    public List<CheckListItem> getCheckListItems() {
         return checkListItems;
     }
 
-    public void setCheckListItems(List<ChcekListItem> checkListItems) {
+    public void setCheckListItems(List<CheckListItem> checkListItems) {
         this.checkListItems = checkListItems;
     }
 

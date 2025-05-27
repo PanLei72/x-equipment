@@ -16,11 +16,11 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "EQUI_CHCEK_LIST_ITEM", indexes = {
-        @Index(name = "IDX_EQUI_CHCEK_LIST_ITEM_CHECK_LIST", columnList = "CHECK_LIST_ID")
+@Table(name = "EQUI_CHECK_LIST_ITEM", indexes = {
+        @Index(name = "IDX_EQUI_CHECK_LIST_ITEM_CHECK_LIST", columnList = "CHECK_LIST_ID")
 })
 @Entity(name = "EQUI_ChcekListItem")
-public class ChcekListItem {
+public class CheckListItem {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id

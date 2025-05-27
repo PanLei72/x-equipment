@@ -1,7 +1,7 @@
 package com.x.equipment.view.chceklistitem;
 
 import com.vaadin.flow.router.Route;
-import com.x.equipment.entity.ChcekListItem;
+import com.x.equipment.entity.CheckListItem;
 import com.x.equipment.view.main.MainView;
 import io.jmix.flowui.view.*;
 
@@ -10,5 +10,5 @@ import io.jmix.flowui.view.*;
 @ViewDescriptor(path = "chcek-list-item-detail-view.xml")
 @EditedEntityContainer("chcekListItemDc")
 @DialogMode(width = "64em")
-public class ChcekListItemDetailView extends StandardDetailView<ChcekListItem> {
+public class ChcekListItemDetailView extends StandardDetailView<CheckListItem> {
 }

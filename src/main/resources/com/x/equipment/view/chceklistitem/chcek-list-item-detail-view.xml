@@ -4,7 +4,7 @@
       focusComponent="form">
     <data>
         <instance id="chcekListItemDc"
-                  class="com.x.equipment.entity.ChcekListItem">
+                  class="com.x.equipment.entity.CheckListItem">
             <fetchPlan extends="_base">
                 <property name="checkList" fetchPlan="_base"/>
             </fetchPlan>

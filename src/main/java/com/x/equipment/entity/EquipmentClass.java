@@ -12,8 +12,10 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @JmixEntity
 @Table(name = "EQUI_EQUIPMENT_CLASS", uniqueConstraints = {
@@ -140,5 +142,12 @@ public class EquipmentClass {
 
     public void setEquipmentClassEquipments(List<EquipmentClassEquipment> equipmentClassEquipments) {
         this.equipmentClassEquipments = equipmentClassEquipments;
+    }
+
+    public List<Equipment> getEquipments() {
+        if(equipmentClassEquipments == null){
+            return new ArrayList<>();
+        }
+        return equipmentClassEquipments.stream().map(EquipmentClassEquipment::getEquipment).collect(Collectors.toList());
     }
 }
