@@ -8,6 +8,7 @@ import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
 import com.x.equipment.entity.Equipment;
+import com.x.equipment.service.EquipmentService;
 import com.x.equipment.view.main.MainView;
 import io.jmix.core.FileRef;
 import io.jmix.core.FileStorage;
@@ -24,12 +25,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class EquipmentListView extends StandardListView<Equipment> {
     @ViewComponent
     private HorizontalLayout buttonsPanel;
-    @ViewComponent
-    private DataGrid<Equipment> equipmentsDataGrid;
     @Autowired
     private UiComponents uiComponents;
     @Autowired
     private FileStorage fileStorage;
+    @Autowired
+    private EquipmentService equipmentService;
+
+    @Install(to = "equipmentsDataGrid.create", subject = "initializer")
+    private void equipmentsDataGridCreateInitializer(final Equipment equipment) {
+        equipment.setEquipmentName(equipmentService.generateName());
+    }
 
     @Subscribe
     public void onBeforeShow(final BeforeShowEvent event) {

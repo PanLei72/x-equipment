@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menu-config xmlns="http://jmix.io/schema/flowui/menu">
 
-    <menu id="equipment" title="msg://com.x.equipment/equipmentManagement" opened="true">
+    <menu id="equipment" title="msg://com.x.equipment/equipmentManagement" opened="true" icon="MENU">
         <menu id="masterData" title="msg://com.x.equipment/masterData" opened="true">
             <item view="EQUI_Equipment.list" title="msg://com.x.equipment.view.equipment/equipmentListView.title"
                   icon="COG"/>
