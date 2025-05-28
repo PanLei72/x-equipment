@@ -1,4 +1,4 @@
-package com.x.equipment;
+package com.x.equipment.utility;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

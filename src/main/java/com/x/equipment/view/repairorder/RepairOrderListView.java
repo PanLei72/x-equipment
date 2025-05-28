@@ -15,9 +15,4 @@ import java.time.LocalDateTime;
 @LookupComponent("repairOrdersDataGrid")
 @DialogMode(width = "64em")
 public class RepairOrderListView extends StandardListView<RepairOrder> {
-    @Install(to = "repairOrdersDataGrid.createAction", subject = "initializer")
-    private void repairOrdersDataGridCreateActionInitializer(final RepairOrder repairOrder) {
-        repairOrder.setRepairTime(LocalDateTime.now());
-        repairOrder.setOrderStatus(RepairOrderStatus.CREATED);
-    }
 }

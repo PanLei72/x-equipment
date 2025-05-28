@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component("EQUI_EquipmentService")
-public class EquipmentService extends BaseService{
+public class EquipmentService extends BaseService<Equipment>{
 
     @Autowired
     private DataManager dataManager;
@@ -21,7 +21,7 @@ public class EquipmentService extends BaseService{
     }
 
     @Override
-    public Object loadObjectByName(String name) {
+    public Equipment loadObjectByName(String name) {
         if(StringUtils.isEmpty(name))
         {
             return null;

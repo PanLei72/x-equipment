@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view">
+    <actions>
+        <action id="logout" type="logout" text="msg:///actions.logout.description"/>
+    </actions>
+    <layout width="100%" height="100%" padding="false" margin="false">
+        <vbox id="vbox" width="100%" height="100%" expand="moduleVbox" margin="false" padding="false">
+            <hbox classNames="portal-header" height="60px" expand="blankSpan">
+                <hbox>
+                    <image resource="./logo/logo.svg" classNames="application-logo" />
+                    <h2 id="applicationTitle"
+                        text="msg://applicationTitle.text"
+                        classNames="jmix-main-view-application-title" width="150px" css="color: white; text-align:left"/>
+                </hbox>
+                <span id="blankSpan" width="100%"/>
+                <button id="fullScreenButton" icon="EXPAND_FULL" themeNames="tertiary" alignSelf="CENTER"/>
+                <dropdownButton icon="USER" id="userBtn" alignSelf="CENTER">
+                    <items>
+                        <actionItem id="logOutActionItem" ref="logout">
+                        </actionItem>
+                    </items>
+                </dropdownButton>
+            </hbox>
+            <vbox id="moduleVbox" expand="tabSheet" >
+                <button css="font-size: 20px"
+                       text="msg:///home"
+                        themeNames="tertiary"
+                       icon="HOME_O"/>
+                <tabSheet id="tabSheet"
+                          themeNames="large"
+                          width="100%"
+                          height="100%"
+                >
+                    <tab id="tabAllModule" label="msg://allModule">
+                        <flexLayout id="contentFlexLayout" alignItems="START" css="gap: 0.5em" flexWrap="WRAP" width="100%">
+                            <button id="equipmentManagementButton" text="设备管理" icon="GRID_SMALL" themeNames="large"/>
+                            <button id="mobileAppButton" text="操作执行" icon="COGS" themeNames="large"/>
+                            <button id="reportButton" text="统计报表" icon="CHART_GRID" themeNames="large"/>
+                        </flexLayout>
+                    </tab>
+                    <tab id="tabSystemManagement" label="msg://systemManagement"
+                         >
+                        <flexLayout  alignItems="START" css="gap: 0.5em" flexWrap="WRAP" width="100%">
+                            <button  text="设备管理" icon="GRID_SMALL" themeNames="large"/>
+                            <button  text="统计报表" icon="CHART_GRID" themeNames="large"/>
+                        </flexLayout>
+                    </tab>
+                    <tab id="tabOperationExecution" label="msg://manufactureExecution">
+                        <flexLayout alignItems="START" css="gap: 0.5em" flexWrap="WRAP" width="100%">
+                            <button text="操作执行" icon="COGS" themeNames="large"/>
+                        </flexLayout>
+                    </tab>
+                </tabSheet>
+            </vbox>
+        </vbox>
+    </layout>
+</view>

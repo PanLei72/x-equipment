@@ -1,10 +1,10 @@
 package com.x.equipment.service;
 
-import com.x.equipment.ComponentUtilities;
+import com.x.equipment.utility.ComponentUtilities;
 import org.springframework.stereotype.Component;
 
 @Component("EQUI_BaseService")
-public abstract class BaseService implements IBaseService{
+public abstract class BaseService<T> implements IBaseService<T> {
     private int cnt = 0;
 
     protected String generateName(String sampleName) {

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mainView xmlns="http://jmix.io/schema/flowui/main-view"
+          title="msg://MainView.title">
+    <actions>
+        <action id="logout" type="logout"/>
+    </actions>
+    <appLayout>
+        <navigationBar touchOptimized="true">
+            <header id="header" classNames="jmix-main-view-header">
+                <drawerToggle id="drawerToggle"
+                              classNames="jmix-main-view-drawer-toggle"
+                              themeNames="contrast"/>
+                <h1 id="viewTitle" classNames="jmix-main-view-title" text="msg://functions"/>
+                <button id="homeButton" icon="HOME_O" themeNames="tertiary" width="65px"/>
+            </header>
+        </navigationBar>
+        <drawerLayout>
+            <section id="section" classNames="jmix-main-view-section">
+                <vbox classNames="menu-header">
+                    <image classNames="menu-avatar" resource="icons/avatar.jpg"/>
+                    <h3 text="msg://currentUser"/>
+                </vbox>
+
+                <nav id="navigationMobile"
+                     classNames="jmix-main-view-navigation"
+                     ariaLabel="msg://navigation.ariaLabel">
+                    <listMenu id="menu" loadMenuConfig="false"/>
+                </nav>
+                <footer id="footer" classNames="jmix-main-view-footer">
+                    <userIndicator id="userIndicator"/>
+                    <button id="logoutButton"
+                            action="logout"
+                            classNames="jmix-logout-button"/>
+                </footer>
+            </section>
+        </drawerLayout>
+        <initialLayout>
+            <flexLayout flexDirection="COLUMN">
+                <vbox>
+                    <nativeLabel text="msg://equipmentCheck" classNames="mobile-main-label"/>
+                    <hbox classNames="flex-wrap">
+                        <button text="设备点检" icon="FILE_ADD" width="120px" height="80px"/>
+                        <button text="点检确认" icon="CHECK_CIRCLE_O" width="120px" height="80px"/>
+                        <button text="点检查询" icon="SEARCH" width="120px" height="80px"/>
+                    </hbox>
+                </vbox>
+                <vbox>
+                    <nativeLabel text="msg://equipmentMaintenance" classNames="mobile-main-label"/>
+                    <hbox classNames="flex-wrap">
+                        <button text="设备保养" icon="COG" width="120px" height="80px"/>
+                        <button text="保养确认" icon="CHECK_CIRCLE_O" width="120px" height="80px"/>
+                        <button text="保养查询" icon="SEARCH" width="120px" height="80px"/>
+                    </hbox>
+                </vbox>
+                <vbox>
+                <nativeLabel text="msg://equipmentRepair" classNames="mobile-main-label"/>
+                <hbox>
+                    <button id="equipmentRepair" text="设备维修" icon="COG" width="120px" height="80px"/>
+                    <button id="equipmentRepairCreate" text="故障报修" icon="COG" width="120px" height="80px"/>
+                    <button id="equipmentRepairOrderQuery" text="维修查询" icon="SEARCH" width="120px" height="80px"/>
+                </hbox>
+                </vbox>
+            </flexLayout>
+        </initialLayout>
+    </appLayout>
+</mainView>

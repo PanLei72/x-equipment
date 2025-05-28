@@ -20,6 +20,7 @@ vaadin-login-form-wrapper {
 
 vaadin-grid {
   border-radius: var(--lumo-border-radius-l);
+  scrollbar-color: rgba(99, 99, 99, 0.2) rgba(255,255,255,0);
 }
 vaadin-grid::part(header-cell) {
   border-radius: var(--lumo-border-radius-l) var(--lumo-border-radius-l) 0 0;
@@ -42,4 +43,28 @@ vaadin-dialog-overlay::part(header) {
 jmix-tabsheet.content-padding::part(content) {
     padding-left: 0;
     padding-right: 0;
+}
+
+
+.portal-header {
+    width: 100%;
+    gap: 0.5em;
+    background-color: #0c2040;
+    box-shadow: 0 0 5px 1px #0c2040;
+}
+
+.display-white-space {
+    white-space: nowrap;
+}
+
+.#{$app-prefix}editor-cont ::-webkit-scrollbar-track {
+   background: #0c2040;
+}
+
+.jmix-main-view-navigation {
+    scrollbar-color: rgba(99, 99, 99, 0.2) rgba(255,255,255,0);
+}
+
+vaadin-virtual-list {
+    scrollbar-color: rgba(99, 99, 99, 0.2) rgba(255,255,255,0);
 }

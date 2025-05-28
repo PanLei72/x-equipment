@@ -13,7 +13,6 @@ import com.x.equipment.view.main.MainView;
 import io.jmix.core.FileRef;
 import io.jmix.core.FileStorage;
 import io.jmix.flowui.UiComponents;
-import io.jmix.flowui.component.grid.DataGrid;
 import io.jmix.flowui.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
