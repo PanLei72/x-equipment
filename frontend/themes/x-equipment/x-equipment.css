@@ -57,10 +57,6 @@ jmix-tabsheet.content-padding::part(content) {
     white-space: nowrap;
 }
 
-.#{$app-prefix}editor-cont ::-webkit-scrollbar-track {
-   background: #0c2040;
-}
-
 .jmix-main-view-navigation {
     scrollbar-color: rgba(99, 99, 99, 0.2) rgba(255,255,255,0);
 }
