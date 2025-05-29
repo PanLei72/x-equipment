@@ -28,6 +28,16 @@
     <layout>
         <genericFilter id="genericFilter"
                        dataLoader="faultLevelsDl">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="3"/>
+            </responsiveSteps>
+            <configurations>
+                <configuration id="defaultFilter" name="msg:///defaultFilter" default="true">
+                    <propertyFilter property="faultLevelCode" operation="CONTAINS"/>
+                    <propertyFilter property="description" operation="CONTAINS"/>
+                </configuration>
+            </configurations>
             <properties include=".*"/>
         </genericFilter>
         <hbox id="buttonsPanel" classNames="buttons-panel">

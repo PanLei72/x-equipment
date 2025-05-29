@@ -11,6 +11,5 @@ import io.jmix.flowui.view.*;
 @ViewController(id = "EQUI_FaultLevel.detail")
 @ViewDescriptor(path = "fault-level-detail-view.xml")
 @EditedEntityContainer("faultLevelDc")
-@DialogMode(width = "64em")
 public class FaultLevelDetailView extends StandardDetailView<FaultLevel> {
 }

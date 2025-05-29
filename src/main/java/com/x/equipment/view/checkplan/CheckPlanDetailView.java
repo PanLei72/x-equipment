@@ -9,6 +9,5 @@ import io.jmix.flowui.view.*;
 @ViewController(id = "EQUI_CheckPlan.detail")
 @ViewDescriptor(path = "check-plan-detail-view.xml")
 @EditedEntityContainer("checkPlanDc")
-@DialogMode(width = "64em")
 public class CheckPlanDetailView extends StandardDetailView<CheckPlan> {
 }

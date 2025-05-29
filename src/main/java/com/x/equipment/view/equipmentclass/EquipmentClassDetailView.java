@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 @ViewController("EQUI_EquipmentClass.detail")
 @ViewDescriptor("equipment-class-detail-view.xml")
 @EditedEntityContainer("equipmentClassDc")
-@DialogMode(width = "64em")
 public class EquipmentClassDetailView extends StandardDetailView<EquipmentClass> {
     @Autowired
     private DialogWindows dialogWindows;

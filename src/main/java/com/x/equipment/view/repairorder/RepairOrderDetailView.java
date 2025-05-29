@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 @ViewController(id = "EQUI_RepairOrder.detail")
 @ViewDescriptor(path = "repair-order-detail-view.xml")
 @EditedEntityContainer("repairOrderDc")
-@DialogMode(width = "64em")
 public class RepairOrderDetailView extends StandardDetailView<RepairOrder> {
 
     @Subscribe

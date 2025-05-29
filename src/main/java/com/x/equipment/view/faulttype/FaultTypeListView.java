@@ -12,7 +12,6 @@ import io.jmix.flowui.view.*;
 @ViewController(id = "EQUI_FaultType.list")
 @ViewDescriptor(path = "fault-type-list-view.xml")
 @LookupComponent("faultTypesDataGrid")
-@DialogMode(width = "64em")
 public class FaultTypeListView extends StandardListView<FaultType> {
 
     @ViewComponent

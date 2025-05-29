@@ -32,7 +32,8 @@
         <genericFilter id="genericFilter"
                        dataLoader="checkPlansDl">
             <responsiveSteps>
-                <responsiveStep minWidth="0" columns="3"/>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="3"/>
             </responsiveSteps>
             <configurations>
                 <configuration id="defaultFilter" name="msg:///defaultFilter" default="true">

@@ -28,7 +28,11 @@
         <action id="closeAction" type="detail_close"/>
     </actions>
     <layout>
-        <formLayout id="form" dataContainer="equipmentDc" labelsPosition="ASIDE">
+        <formLayout id="form" dataContainer="equipmentDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="2"/>
+            </responsiveSteps>
             <formItem>
                 <textField id="equipmentNameField" property="equipmentName"/>
             </formItem>

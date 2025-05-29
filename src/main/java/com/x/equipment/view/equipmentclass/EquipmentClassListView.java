@@ -14,7 +14,6 @@ import io.jmix.flowui.view.*;
 @ViewController("EQUI_EquipmentClass.list")
 @ViewDescriptor("equipment-class-list-view.xml")
 @LookupComponent("equipmentClassesDataGrid")
-@DialogMode(width = "64em")
 public class EquipmentClassListView extends StandardListView<EquipmentClass> {
     @ViewComponent
     private HorizontalLayout buttonsPanel;
@@ -28,5 +27,4 @@ public class EquipmentClassListView extends StandardListView<EquipmentClass> {
             }
         }
     }
-
 }

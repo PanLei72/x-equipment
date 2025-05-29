@@ -2,6 +2,7 @@ package com.x.equipment.view.main;
 
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.html.Nav;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.router.Route;
 import com.x.equipment.utility.UIUtilities;

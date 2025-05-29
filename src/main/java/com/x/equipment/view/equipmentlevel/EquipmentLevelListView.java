@@ -12,7 +12,6 @@ import io.jmix.flowui.view.*;
 @ViewController(id = "EQUI_EquipmentLevel.list")
 @ViewDescriptor(path = "equipment-level-list-view.xml")
 @LookupComponent("equipmentLevelsDataGrid")
-@DialogMode(width = "64em")
 public class EquipmentLevelListView extends StandardListView<EquipmentLevel> {
 
     @ViewComponent

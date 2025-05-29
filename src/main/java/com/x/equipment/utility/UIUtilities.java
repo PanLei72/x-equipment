@@ -28,7 +28,6 @@ public class UIUtilities {
             }
         }, error -> {
             // 處理 JavaScript 執行錯誤
-            button.setText("全屏切換失敗");
             System.err.println("Fullscreen toggle error: " + error);
         });
     }

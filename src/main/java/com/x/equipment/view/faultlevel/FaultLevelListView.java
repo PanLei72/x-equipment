@@ -14,7 +14,6 @@ import io.jmix.flowui.view.*;
 @ViewController(id = "EQUI_FaultLevel.list")
 @ViewDescriptor(path = "fault-level-list-view.xml")
 @LookupComponent("faultLevelsDataGrid")
-@DialogMode(width = "64em")
 public class FaultLevelListView extends StandardListView<FaultLevel> {
 
     @ViewComponent

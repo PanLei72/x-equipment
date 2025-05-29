@@ -6,10 +6,13 @@ import com.vaadin.flow.component.icon.SvgIcon;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
 import com.x.equipment.entity.RepairOrder;
+import com.x.equipment.entity.User;
 import com.x.equipment.view.mobile.equipmentrepair.EquipmentRepairView;
 import com.x.equipment.view.mobile.equipmentrepair.RepairOrderStartView;
 import com.x.equipment.view.repairorder.RepairOrderDetailView;
 import com.x.equipment.view.repairorder.RepairOrderListView;
+import com.x.equipment.view.user.UserDetailView;
+import io.jmix.core.security.CurrentAuthentication;
 import io.jmix.flowui.Notifications;
 import io.jmix.flowui.UiComponents;
 import io.jmix.flowui.ViewNavigators;
@@ -34,6 +37,8 @@ public class MobileMainView extends StandardMainView {
     private Notifications notifications;
     @ViewComponent
     private MessageBundle messageBundle;
+    @Autowired
+    private CurrentAuthentication currentAuthentication;
 
     @Subscribe(id = "homeButton", subject = "clickListener")
     public void onHomeButtonClick(final ClickEvent<JmixButton> event) {
@@ -77,16 +82,16 @@ public class MobileMainView extends StandardMainView {
                 ListMenu.MenuItem.create("myProfile")
                         .withTitle(messageBundle.getMessage("myProfile"))
                         .withPrefixComponent(icon("user.svg"))
-                        .withClickHandler(e -> notifications.create(messageBundle.getMessage("notImplemented"))
-                                .withType(Notifications.Type.WARNING)
-                                .show()
+                        .withClickHandler(e ->
+                                viewNavigators.detailView(this, User.class)
+                                        .withViewClass(UserDetailView.class)
+                                        .editEntity((User) this.currentAuthentication.getUser())
+                                        .withBackwardNavigation(true)
+                                        .navigate()
                         ),
                 0
         );
 
-
-        setMenuIcon("Turbine.list", "turbine-white.svg");
-        setMenuIcon("Inspection.list", "inspection-white.svg");
 
         menu.addMenuItem(
                 ListMenu.MenuItem.create("settings")

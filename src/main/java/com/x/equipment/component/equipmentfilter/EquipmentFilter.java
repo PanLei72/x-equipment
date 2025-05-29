@@ -56,7 +56,7 @@ public class EquipmentFilter extends Composite<Details> implements InitializingB
         layout = uiComponents.create(FormLayout.class);
         layout.setResponsiveSteps(
                 new FormLayout.ResponsiveStep("0", 1),
-                new FormLayout.ResponsiveStep("32em", 2),
+                new FormLayout.ResponsiveStep("40em", 2),
                 new FormLayout.ResponsiveStep("50em", 3)
         );
 

@@ -12,7 +12,6 @@ import io.jmix.flowui.view.*;
 @ViewController(id = "EQUI_CheckList.list")
 @ViewDescriptor(path = "check-list-list-view.xml")
 @LookupComponent("checkListsDataGrid")
-@DialogMode(width = "64em")
 public class CheckListListView extends StandardListView<CheckList> {
     @ViewComponent
     private HorizontalLayout buttonsPanel;

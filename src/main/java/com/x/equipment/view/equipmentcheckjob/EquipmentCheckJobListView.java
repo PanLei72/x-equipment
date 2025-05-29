@@ -15,8 +15,4 @@ import io.jmix.flowui.view.*;
 @DialogMode(width = "64em")
 public class EquipmentCheckJobListView extends StandardListView<EquipmentCheckJob> {
 
-    @Install(to = "equipmentCheckJobsDataGrid.createAction", subject = "initializer")
-    private void checkListsDataGridCreateActionInitializer(final EquipmentCheckJob equipmentCheckJob) {
-        equipmentCheckJob.setJobStatus(JobStatus.NEW);
-    }
 }

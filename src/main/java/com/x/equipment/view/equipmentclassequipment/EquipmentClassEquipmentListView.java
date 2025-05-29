@@ -24,7 +24,6 @@ import java.util.List;
 @ViewController("EQUI_EquipmentClassEquipment.list")
 @ViewDescriptor("equipment-class-equipment-list-view.xml")
 @LookupComponent("equipmentClassEquipmentsDataGrid")
-@DialogMode(width = "64em")
 public class EquipmentClassEquipmentListView extends StandardListView<EquipmentClassEquipment> {
     @ViewComponent
     private CollectionContainer<EquipmentClassEquipment> equipmentClassEquipmentsDc;
@@ -52,7 +51,7 @@ public class EquipmentClassEquipmentListView extends StandardListView<EquipmentC
     private void initFilter() {
         EquipmentFilter filter = uiComponents.create(EquipmentFilter.class);
         filter.addEquipmentFilterChangeListener(this::onEquipmentFilterChange);
-
+        filter.getContent().setOpened(true);
         getContent().addComponentAsFirst(filter);
     }
 

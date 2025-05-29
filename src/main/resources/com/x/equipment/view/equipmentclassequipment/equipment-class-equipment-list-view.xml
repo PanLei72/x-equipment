@@ -19,7 +19,6 @@
     </actions>
     <layout>
         <dataGrid id="equipmentClassEquipmentsDataGrid"
-                  width="100%"
                   minHeight="20em"
                   dataContainer="equipmentClassEquipmentsDc"
                   columnReorderingAllowed="true">

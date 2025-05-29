@@ -11,6 +11,5 @@ import io.jmix.flowui.view.*;
 @ViewController("EQUI_Equipment.detail")
 @ViewDescriptor("equipment-detail-view.xml")
 @EditedEntityContainer("equipmentDc")
-@DialogMode(width = "64em")
 public class EquipmentDetailView extends StandardDetailView<Equipment> {
 }

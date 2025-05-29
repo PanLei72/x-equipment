@@ -10,7 +10,7 @@
                 <drawerToggle id="drawerToggle"
                               classNames="jmix-main-view-drawer-toggle"
                               themeNames="contrast"/>
-                <h1 id="viewTitle" classNames="jmix-main-view-title" text="msg://functions"/>
+                <nativeLabel id="viewTitle" classNames="jmix-main-view-title" text="msg://functions"/>
                 <button id="homeButton" icon="HOME_O" themeNames="tertiary" width="65px"/>
             </header>
         </navigationBar>
