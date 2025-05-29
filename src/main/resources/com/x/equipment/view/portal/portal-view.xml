@@ -10,7 +10,7 @@
                     <image resource="./logo/logo.svg" classNames="application-logo" />
                     <h2 id="applicationTitle"
                         text="msg://applicationTitle.text"
-                        classNames="jmix-main-view-application-title" width="120px" css="color: white; text-align:left"/>
+                        classNames="jmix-main-view-application-title" css="color: white; white-space: nowrap; text-align:left"/>
                 </hbox>
                 <span id="blankSpan" width="100%"/>
                 <button id="fullScreenButton" icon="EXPAND_FULL" themeNames="tertiary" alignSelf="CENTER"/>

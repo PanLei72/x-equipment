@@ -2,13 +2,12 @@ package com.x.equipment.view.portal;
 
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.ClickEvent;
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLayout;
 import com.x.equipment.utility.UIUtilities;
-import com.x.equipment.view.main.MainView;
+import com.x.equipment.view.web.main.MainView;
 import com.x.equipment.view.mobile.main.MobileMainView;
 import io.jmix.flowui.ViewNavigators;
 import io.jmix.flowui.component.layout.ViewLayout;

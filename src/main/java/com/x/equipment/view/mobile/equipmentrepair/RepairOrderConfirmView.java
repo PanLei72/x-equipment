@@ -3,7 +3,6 @@ package com.x.equipment.view.mobile.equipmentrepair;
 import com.vaadin.flow.router.Route;
 import com.x.equipment.constants.RepairOrderStatus;
 import com.x.equipment.entity.RepairOrder;
-import com.x.equipment.view.main.MainView;
 import com.x.equipment.view.mobile.main.MobileMainView;
 import io.jmix.flowui.kit.action.ActionPerformedEvent;
 import io.jmix.flowui.view.*;

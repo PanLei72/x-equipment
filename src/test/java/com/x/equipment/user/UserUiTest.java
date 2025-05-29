@@ -2,8 +2,8 @@ package com.x.equipment.user;
 
 import com.x.equipment.XEquipmentApplication;
 import com.x.equipment.entity.User;
-import com.x.equipment.view.user.UserDetailView;
-import com.x.equipment.view.user.UserListView;
+import com.x.equipment.view.web.user.UserDetailView;
+import com.x.equipment.view.web.user.UserListView;
 import com.vaadin.flow.component.Component;
 import io.jmix.core.DataManager;
 import io.jmix.flowui.ViewNavigators;

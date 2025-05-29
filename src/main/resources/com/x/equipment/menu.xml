@@ -3,27 +3,27 @@
 
     <menu id="equipment" title="msg://com.x.equipment/equipmentManagement" opened="true" icon="MENU">
         <menu id="masterData" title="msg://com.x.equipment/masterData" opened="true">
-            <item view="EQUI_Equipment.list" title="msg://com.x.equipment.view.equipment/equipmentListView.title"
+            <item view="EQUI_Equipment.list" title="msg://com.x.equipment.view.web.equipment/equipmentListView.title"
                   icon="COG"/>
             <item view="EQUI_EquipmentClass.list"
-                  title="msg://com.x.equipment.view.equipmentclass/equipmentClassListView.title" icon="COGS"/>
-            <item view="EQUI_CheckList.list" title="msg://com.x.equipment.view.checklist/checkListListView.title"
+                  title="msg://com.x.equipment.view.web.equipmentclass/equipmentClassListView.title" icon="COGS"/>
+            <item view="EQUI_CheckList.list" title="msg://com.x.equipment.view.web.checklist/checkListListView.title"
                   icon="LIST_UL"/>
             <item view="EQUI_EquipmentLevel.list"
-                  title="msg://com.x.equipment.view.equipmentlevel/equipmentLevelListView.title" icon="LIST_OL"/>
-            <item view="EQUI_FaultType.list" title="msg://com.x.equipment.view.faulttype/faultTypeListView.title"
+                  title="msg://com.x.equipment.view.web.equipmentlevel/equipmentLevelListView.title" icon="LIST_OL"/>
+            <item view="EQUI_FaultType.list" title="msg://com.x.equipment.view.web.faulttype/faultTypeListView.title"
                   icon="TWIN_COL_SELECT"/>
-            <item view="EQUI_FaultLevel.list" title="msg://com.x.equipment.view.faultlevel/faultLevelListView.title"
+            <item view="EQUI_FaultLevel.list" title="msg://com.x.equipment.view.web.faultlevel/faultLevelListView.title"
                   icon="LIST"/>
         </menu>
         <menu id="jobManagement" title="msg://com.x.equipment/jobManagement" opened="true">
-            <item view="EQUI_CheckPlan.list" title="msg://com.x.equipment.view.checkplan/checkPlanListView.title" icon="TIMER"/>
+            <item view="EQUI_CheckPlan.list" title="msg://com.x.equipment.view.web.checkplan/checkPlanListView.title" icon="TIMER"/>
             <item view="EQUI_EquipmentCheckJob.list"
-                  title="msg://com.x.equipment.view.equipmentcheckjob/equipmentCheckJobListView.title"
+                  title="msg://com.x.equipment.view.web.equipmentcheckjob/equipmentCheckJobListView.title"
                   icon="LINES_LIST"/>
         </menu>
         <menu id="repairManagement" title="msg://com.x.equipment/repairManagement" opened="true">
-            <item view="EQUI_RepairOrder.list" title="msg://com.x.equipment.view.repairorder/repairOrderListView.title"
+            <item view="EQUI_RepairOrder.list" title="msg://com.x.equipment.view.web.repairorder/repairOrderListView.title"
                   icon="TASKS"/>
         </menu>
     </menu>
