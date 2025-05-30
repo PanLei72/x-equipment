@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 @JmixEntity
-@Table(name = "EQUI_EQUIPMENT_CHECK_JOB_ITEM", indexes = {
+@Table(name = "EQUI_CHECK_JOB_ITEM", indexes = {
         @Index(name = "IDX_EQUI_CHECK_JOB_ITEM_CHECK_JOB_ID", columnList = "CHECK_JOB_ID")
 })
 @Entity(name = "EQUI_CheckJobItem")

@@ -76,8 +76,8 @@ public class EquipmentRepairView extends StandardView {
 
             H5 faultTypeTitle = new H5("故障类型:");
             faultTypeTitle.setClassName("display-white-space");
-            Span email = new Span(repairOrder.getFaultType().getFaultTypeCode() + "（" + repairOrder.getFaultType().getDescription() + "）");
-            infoLine.add(faultTypeTitle, email);
+            Span faultType = new Span(repairOrder.getFaultType().getFaultTypeCode() + "（" + repairOrder.getFaultType().getDescription() + "）");
+            infoLine.add(faultTypeTitle, faultType);
 
             HorizontalLayout infoLine2 = createHorizontalLayout();
             H5 faultLevelTitle = new H5("故障等级:");
@@ -98,7 +98,7 @@ public class EquipmentRepairView extends StandardView {
 
             H5 repairTimeTitle = new H5("报修时间:");
             repairTimeTitle.setClassName("display-white-space");
-            Span repairTimeSpan = new Span(String.valueOf(repairOrder.getRepairTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
+            Span repairTimeSpan = new Span(repairOrder.getRepairTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
             infoLine4.add(repairTimeTitle, repairTimeSpan);
 
@@ -206,8 +206,8 @@ public class EquipmentRepairView extends StandardView {
             ThemeList gradeThemeList = gradeSpan.getElement().getThemeList();
 
             switch (grade) {
-                case "1" -> gradeThemeList.add("badge contrast");
-                case "2" -> gradeThemeList.add("badge primary");
+                case "A" -> gradeThemeList.add("badge contrast");
+                case "B" -> gradeThemeList.add("badge primary");
                 default -> gradeThemeList.add("badge");
             }
         }

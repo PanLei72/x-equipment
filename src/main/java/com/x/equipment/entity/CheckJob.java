@@ -18,7 +18,7 @@ import java.time.OffsetDateTime;
 import java.util.List;
 
 @JmixEntity
-@Table(name = "EQUI_EQUIPMENT_CHECK_JOB", indexes = {
+@Table(name = "EQUI_CHECK_JOB", indexes = {
         @Index(name = "IDX_EQUI_CHECK_JOB_CHECKLIST_ID", columnList = "CHECKLIST_ID")
 }, uniqueConstraints = {
         @UniqueConstraint(name = "IDX_EQUI_CHECK_JOB_UNQ", columnNames = {"JOB_NAME"})

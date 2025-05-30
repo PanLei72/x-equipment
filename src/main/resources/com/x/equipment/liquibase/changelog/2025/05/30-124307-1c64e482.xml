@@ -6,112 +6,9 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
     <changeSet id="1" author="EQUI">
-        <createTable tableName="EQUI_CHECK_LIST">
+        <createTable tableName="EQUI_CHECK_JOB">
             <column name="ID" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_EQUI_CHECK_LIST"/>
-            </column>
-            <column name="ACTIVE" remarks="是否启用" type="BOOLEAN">
-                <constraints nullable="false"/>
-            </column>
-            <column name="VERSION" type="INT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="CREATED_BY" type="VARCHAR(255)"/>
-            <column name="CREATED_DATE" type="timestamp with time zone"/>
-            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
-            <column name="LAST_MODIFIED_DATE" type="timestamp with time zone"/>
-            <column name="CHECKLIST_NAME" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="DESCRIPTION" type="VARCHAR(255)"/>
-            <column name="CATEGORY" type="VARCHAR(255)"/>
-        </createTable>
-    </changeSet>
-    <changeSet id="2" author="EQUI">
-        <createTable tableName="EQUI_CHECK_LIST_ITEM">
-            <column name="ID" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_EQUI_CHECK_LIST_ITEM"/>
-            </column>
-            <column name="VERSION" type="INT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="CREATED_BY" type="VARCHAR(255)"/>
-            <column name="CREATED_DATE" type="timestamp with time zone"/>
-            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
-            <column name="LAST_MODIFIED_DATE" type="timestamp with time zone"/>
-            <column name="CHECK_LIST_ID" type="BIGINT"/>
-            <column name="SEQUENCE" type="INT"/>
-            <column name="CHECKLIST_ITEM_NAME" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="DESCRIPTION" type="VARCHAR(255)"/>
-            <column name="CATEGORY" type="VARCHAR(255)"/>
-            <column name="CHECK_METHOD" type="VARCHAR(255)"/>
-            <column name="CHECK_LIST_ITEM_TYPE" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="STANDARD_VALUE" type="DECIMAL(19, 2)"/>
-            <column name="LOWER_LIMIT_VALUE" type="DECIMAL(19, 2)"/>
-            <column name="UPPER_LIMIT_VALUE" type="DECIMAL(19, 2)"/>
-        </createTable>
-    </changeSet>
-    <changeSet id="3" author="EQUI">
-        <createTable tableName="EQUI_CHECK_PLAN">
-            <column name="ID" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_EQUI_CHECK_PLAN"/>
-            </column>
-            <column name="VERSION" type="INT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="CREATED_BY" type="VARCHAR(255)"/>
-            <column name="CREATED_DATE" type="timestamp with time zone"/>
-            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
-            <column name="LAST_MODIFIED_DATE" type="timestamp with time zone"/>
-            <column name="CHECK_PLAN_NAME" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="DESCRIPTION" type="VARCHAR(255)"/>
-            <column name="CATEGORY" type="VARCHAR(255)"/>
-            <column name="CHECK_CYCLE" type="INT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="CHECK_CYCLE_UNIT" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="CHECKLIST_ID" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="EQUIPMENT_CLASS_ID" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet id="4" author="EQUI">
-        <createTable tableName="EQUI_EQUIPMENT">
-            <column name="ID" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_EQUI_EQUIPMENT"/>
-            </column>
-            <column name="VERSION" type="INT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="CREATED_BY" type="VARCHAR(255)"/>
-            <column name="CREATED_DATE" type="timestamp with time zone"/>
-            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
-            <column name="LAST_MODIFIED_DATE" type="timestamp with time zone"/>
-            <column name="EQUIPMENT_NAME" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="DESCRIPTION" type="VARCHAR(255)"/>
-            <column name="CATEGORY" type="VARCHAR(255)"/>
-            <column name="ASSET_CODE" type="VARCHAR(255)"/>
-            <column name="IMAGE" type="VARCHAR(1024)"/>
-            <column name="LEVEL_ID" type="BIGINT"/>
-        </createTable>
-    </changeSet>
-    <changeSet id="5" author="EQUI">
-        <createTable tableName="EQUI_EQUIPMENT_CHECK_JOB">
-            <column name="ID" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_EQUI_EQUIPMENT_CHECK_JOB"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_EQUI_CHECK_JOB"/>
             </column>
             <column name="VERSION" type="INT">
                 <constraints nullable="false"/>
@@ -146,10 +43,10 @@
             <column name="ACTUAL_TIME" type="DATETIME"/>
         </createTable>
     </changeSet>
-    <changeSet id="6" author="EQUI">
-        <createTable tableName="EQUI_EQUIPMENT_CHECK_JOB_ITEM">
+    <changeSet id="2" author="EQUI">
+        <createTable tableName="EQUI_CHECK_JOB_ITEM">
             <column name="ID" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_EQUI_EQUIPMENT_CHECK_JOB_ITEM"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_EQUI_CHECK_JOB_ITEM"/>
             </column>
             <column name="VERSION" type="INT">
                 <constraints nullable="false"/>
@@ -175,6 +72,109 @@
             <column name="CHECK_JOB_ID" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="EQUI">
+        <createTable tableName="EQUI_CHECK_LIST">
+            <column name="ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_EQUI_CHECK_LIST"/>
+            </column>
+            <column name="ACTIVE" remarks="是否启用" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="timestamp with time zone"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="timestamp with time zone"/>
+            <column name="CHECKLIST_NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(255)"/>
+            <column name="CATEGORY" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="4" author="EQUI">
+        <createTable tableName="EQUI_CHECK_LIST_ITEM">
+            <column name="ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_EQUI_CHECK_LIST_ITEM"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="timestamp with time zone"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="timestamp with time zone"/>
+            <column name="CHECK_LIST_ID" type="BIGINT"/>
+            <column name="SEQUENCE" type="INT"/>
+            <column name="CHECKLIST_ITEM_NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(255)"/>
+            <column name="CATEGORY" type="VARCHAR(255)"/>
+            <column name="CHECK_METHOD" type="VARCHAR(255)"/>
+            <column name="CHECK_LIST_ITEM_TYPE" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="STANDARD_VALUE" type="DECIMAL(19, 2)"/>
+            <column name="LOWER_LIMIT_VALUE" type="DECIMAL(19, 2)"/>
+            <column name="UPPER_LIMIT_VALUE" type="DECIMAL(19, 2)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="5" author="EQUI">
+        <createTable tableName="EQUI_CHECK_PLAN">
+            <column name="ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_EQUI_CHECK_PLAN"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="timestamp with time zone"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="timestamp with time zone"/>
+            <column name="CHECK_PLAN_NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(255)"/>
+            <column name="CATEGORY" type="VARCHAR(255)"/>
+            <column name="CHECK_CYCLE" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CHECK_CYCLE_UNIT" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CHECKLIST_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EQUIPMENT_CLASS_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="6" author="EQUI">
+        <createTable tableName="EQUI_EQUIPMENT">
+            <column name="ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_EQUI_EQUIPMENT"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="timestamp with time zone"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="timestamp with time zone"/>
+            <column name="EQUIPMENT_NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(255)"/>
+            <column name="CATEGORY" type="VARCHAR(255)"/>
+            <column name="ASSET_CODE" type="VARCHAR(255)"/>
+            <column name="IMAGE" type="VARCHAR(1024)"/>
+            <column name="LEVEL_ID" type="BIGINT"/>
         </createTable>
     </changeSet>
     <changeSet id="7" author="EQUI">
@@ -296,8 +296,7 @@
         </createTable>
     </changeSet>
     <changeSet id="13" author="EQUI">
-        <addUniqueConstraint columnNames="JOB_NAME" constraintName="IDX_EQUI_CHECK_JOB_UNQ"
-                             tableName="EQUI_EQUIPMENT_CHECK_JOB"/>
+        <addUniqueConstraint columnNames="JOB_NAME" constraintName="IDX_EQUI_CHECK_JOB_UNQ" tableName="EQUI_CHECK_JOB"/>
     </changeSet>
     <changeSet id="14" author="EQUI">
         <addUniqueConstraint columnNames="CHECKLIST_NAME" constraintName="IDX_EQUI_CHECK_LIST_UNQ"
@@ -332,22 +331,22 @@
                              tableName="EQUI_REPAIR_ORDER"/>
     </changeSet>
     <changeSet id="22" author="EQUI">
-        <createIndex indexName="IDX_EQUI_CHECK_JOB_CHECKLIST_ID" tableName="EQUI_EQUIPMENT_CHECK_JOB">
+        <createIndex indexName="IDX_EQUI_CHECK_JOB_CHECKLIST_ID" tableName="EQUI_CHECK_JOB">
             <column name="CHECKLIST_ID"/>
         </createIndex>
 
-        <addForeignKeyConstraint baseColumnNames="CHECKLIST_ID" baseTableName="EQUI_EQUIPMENT_CHECK_JOB"
-                                 constraintName="FK_EQUI_EQUIPMENT_CHECK_JOB_ON_CHECKLIST" referencedColumnNames="ID"
+        <addForeignKeyConstraint baseColumnNames="CHECKLIST_ID" baseTableName="EQUI_CHECK_JOB"
+                                 constraintName="FK_EQUI_CHECK_JOB_ON_CHECKLIST" referencedColumnNames="ID"
                                  referencedTableName="EQUI_CHECK_LIST"/>
     </changeSet>
     <changeSet id="23" author="EQUI">
-        <createIndex indexName="IDX_EQUI_CHECK_JOB_ITEM_CHECK_JOB_ID" tableName="EQUI_EQUIPMENT_CHECK_JOB_ITEM">
+        <createIndex indexName="IDX_EQUI_CHECK_JOB_ITEM_CHECK_JOB_ID" tableName="EQUI_CHECK_JOB_ITEM">
             <column name="CHECK_JOB_ID"/>
         </createIndex>
 
-        <addForeignKeyConstraint baseColumnNames="CHECK_JOB_ID" baseTableName="EQUI_EQUIPMENT_CHECK_JOB_ITEM"
-                                 constraintName="FK_EQUI_EQUIPMENT_CHECK_JOB_ITEM_ON_CHECK_JOB" onDelete="CASCADE"
-                                 referencedColumnNames="ID" referencedTableName="EQUI_EQUIPMENT_CHECK_JOB"/>
+        <addForeignKeyConstraint baseColumnNames="CHECK_JOB_ID" baseTableName="EQUI_CHECK_JOB_ITEM"
+                                 constraintName="FK_EQUI_CHECK_JOB_ITEM_ON_CHECK_JOB" onDelete="CASCADE"
+                                 referencedColumnNames="ID" referencedTableName="EQUI_CHECK_JOB"/>
     </changeSet>
     <changeSet id="24" author="EQUI">
         <createIndex indexName="IDX_EQUI_CHECK_LIST_ITEM_CHECK_LIST" tableName="EQUI_CHECK_LIST_ITEM">
@@ -359,19 +358,19 @@
                                  referencedTableName="EQUI_CHECK_LIST"/>
     </changeSet>
     <changeSet id="25" author="EQUI">
+        <addForeignKeyConstraint baseColumnNames="EQUIPMENT_ID" baseTableName="EQUI_CHECK_JOB"
+                                 constraintName="FK_EQUI_CHECK_JOB_ON_EQUIPMENT" referencedColumnNames="ID"
+                                 referencedTableName="EQUI_EQUIPMENT"/>
+    </changeSet>
+    <changeSet id="26" author="EQUI">
         <addForeignKeyConstraint baseColumnNames="CHECKLIST_ID" baseTableName="EQUI_CHECK_PLAN"
                                  constraintName="FK_EQUI_CHECK_PLAN_ON_CHECKLIST" referencedColumnNames="ID"
                                  referencedTableName="EQUI_CHECK_LIST"/>
     </changeSet>
-    <changeSet id="26" author="EQUI">
+    <changeSet id="27" author="EQUI">
         <addForeignKeyConstraint baseColumnNames="EQUIPMENT_CLASS_ID" baseTableName="EQUI_CHECK_PLAN"
                                  constraintName="FK_EQUI_CHECK_PLAN_ON_EQUIPMENT_CLASS" referencedColumnNames="ID"
                                  referencedTableName="EQUI_EQUIPMENT_CLASS"/>
-    </changeSet>
-    <changeSet id="27" author="EQUI">
-        <addForeignKeyConstraint baseColumnNames="EQUIPMENT_ID" baseTableName="EQUI_EQUIPMENT_CHECK_JOB"
-                                 constraintName="FK_EQUI_EQUIPMENT_CHECK_JOB_ON_EQUIPMENT" referencedColumnNames="ID"
-                                 referencedTableName="EQUI_EQUIPMENT"/>
     </changeSet>
     <changeSet id="28" author="EQUI">
         <addForeignKeyConstraint baseColumnNames="EQUIPMENT_ID" baseTableName="EQUI_EQUIPMENT_CLASS_EQUIPMENT"

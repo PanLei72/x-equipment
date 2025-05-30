@@ -39,26 +39,31 @@
                 <vbox>
                     <nativeLabel text="msg://equipmentCheck" classNames="mobile-main-label"/>
                     <hbox classNames="flex-wrap">
-                        <button text="设备点检" icon="FILE_ADD" width="120px" height="80px"/>
-                        <button text="点检确认" icon="CHECK_CIRCLE_O" width="120px" height="80px"/>
-                        <button text="点检查询" icon="SEARCH" width="120px" height="80px"/>
+                        <button id="checkJobButton" text="设备点检" icon="FILE_ADD" width="120px" height="80px"/>
+                        <button id="checkJobConfirmButton" text="点检确认" icon="CHECK_CIRCLE_O" width="120px"
+                                height="80px"/>
+                        <button id="checkJobQueryButton" text="点检查询" icon="SEARCH" width="120px" height="80px"/>
                     </hbox>
                 </vbox>
                 <vbox>
                     <nativeLabel text="msg://equipmentMaintenance" classNames="mobile-main-label"/>
                     <hbox classNames="flex-wrap">
-                        <button text="设备保养" icon="COG" width="120px" height="80px"/>
-                        <button text="保养确认" icon="CHECK_CIRCLE_O" width="120px" height="80px"/>
-                        <button text="保养查询" icon="SEARCH" width="120px" height="80px"/>
+                        <button id="maintenanceJobButton" text="设备保养" icon="COG" width="120px" height="80px"/>
+                        <button id="maintenanceJobConfirmButton" text="保养确认" icon="CHECK_CIRCLE_O" width="120px"
+                                height="80px"/>
+                        <button id="maintenanceJobQueryButton" text="保养查询" icon="SEARCH" width="120px"
+                                height="80px"/>
                     </hbox>
                 </vbox>
                 <vbox>
-                <nativeLabel text="msg://equipmentRepair" classNames="mobile-main-label"/>
-                <hbox>
-                    <button id="equipmentRepair" text="设备维修" icon="COG" width="120px" height="80px"/>
-                    <button id="equipmentRepairCreate" text="故障报修" icon="COG" width="120px" height="80px"/>
-                    <button id="equipmentRepairOrderQuery" text="维修查询" icon="SEARCH" width="120px" height="80px"/>
-                </hbox>
+                    <nativeLabel text="msg://equipmentRepair" classNames="mobile-main-label"/>
+                    <hbox classNames="flex-wrap">
+                        <button id="equipmentRepair" text="设备维修" icon="COGS" width="120px" height="80px"/>
+                        <button id="equipmentRepairCreate" text="故障报修" icon="FILE_ADD" width="120px" height="80px"/>
+                        <button id="equipmentRepairConfirm" text="维修确认" icon="CHECK_CIRCLE_O" width="120px" height="80px"/>
+                        <button id="equipmentRepairOrderQuery" text="维修查询" icon="SEARCH" width="120px"
+                                height="80px"/>
+                    </hbox>
                 </vbox>
             </flexLayout>
         </initialLayout>

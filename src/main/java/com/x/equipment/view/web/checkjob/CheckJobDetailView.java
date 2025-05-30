@@ -14,6 +14,6 @@ public class CheckJobDetailView extends StandardDetailView<CheckJob> {
     @Subscribe
     public void onBeforeSave(final BeforeSaveEvent event) {
         CheckJob checkJob = getEditedEntity();
-        checkJob.setJobStatus(JobStatus.NEW);
+        checkJob.setJobStatus(JobStatus.CREATED);
     }
 }

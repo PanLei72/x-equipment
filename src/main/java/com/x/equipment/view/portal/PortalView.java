@@ -32,18 +32,12 @@ public class PortalView extends View<ViewLayout> implements RouterLayout {
     private JmixButton equipmentManagementButton;
     @ViewComponent("tabSheet.tabAllModule")
     private Tab tabSheetTabAllModule;
-    @ViewComponent("tabSheet.tabSystemManagement")
-    private Tab tabSheetTabSystemManagement;
-    @ViewComponent("tabSheet.tabOperationExecution")
-    private Tab tabSheetTabOperationExecution;
     @ViewComponent
     private JmixButton fullScreenButton;
 
     @Subscribe("tabSheet")
     public void onTabSheetAttach(final AttachEvent event) {
         tabSheetTabAllModule.addComponentAsFirst(VaadinIcon.GRID_BIG.create());
-        tabSheetTabSystemManagement.addComponentAsFirst(VaadinIcon.DATABASE.create());
-        tabSheetTabOperationExecution.addComponentAsFirst(VaadinIcon.COGS.create());
     }
 
     @Subscribe(id = "equipmentManagementButton", subject = "clickListener")

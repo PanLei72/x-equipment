@@ -63,7 +63,7 @@ public class CheckJobGeneratorJob implements Job {
             checkJob.setCheckCycle(checkPlan.getCheckCycle());
             checkJob.setCheckCycleUnit(checkPlan.getCheckCycleUnit());
             checkJob.setChecklist(checkPlan.getChecklist());
-            checkJob.setJobStatus(JobStatus.NEW);
+            checkJob.setJobStatus(JobStatus.CREATED);
             checkJob.setPlanTime(LocalDateTime.now());
 
             dataManager.save(checkJob);

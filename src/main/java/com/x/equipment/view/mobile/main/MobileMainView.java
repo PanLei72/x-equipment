@@ -7,6 +7,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
 import com.x.equipment.entity.RepairOrder;
 import com.x.equipment.entity.User;
+import com.x.equipment.view.mobile.equipmentcheckjob.EquipmentCheckJobView;
 import com.x.equipment.view.mobile.equipmentrepair.EquipmentRepairView;
 import com.x.equipment.view.web.repairorder.RepairOrderDetailView;
 import com.x.equipment.view.web.repairorder.RepairOrderListView;
@@ -43,6 +44,11 @@ public class MobileMainView extends StandardMainView {
         viewNavigators.view(this, MobileMainView.class).navigate();
     }
 
+    @Subscribe(id = "checkJobButton", subject = "clickListener")
+    public void onCheckJobButtonClick(final ClickEvent<JmixButton> event) {
+        viewNavigators.view(this, EquipmentCheckJobView.class).withBackwardNavigation(true).navigate();
+    }
+
     @Subscribe(id = "equipmentRepair", subject = "clickListener")
     public void onEquipmentRepairClick(final ClickEvent<JmixButton> event) {
         viewNavigators.view(this, EquipmentRepairView.class).withBackwardNavigation(true).navigate();
@@ -68,7 +74,6 @@ public class MobileMainView extends StandardMainView {
 
     @Subscribe
     public void onAttachEvent(final AttachEvent event) {
-        initMobileMenu();
         initSideMenu();
 
     }
@@ -111,19 +116,6 @@ public class MobileMainView extends StandardMainView {
         );
     }
 
-    private void setMenuIcon(String menuItemId, String iconFilename) {
-        Optional.ofNullable(menu.getMenuItem(menuItemId))
-                .ifPresent(it -> it.setPrefixComponent(icon(iconFilename)));
-    }
-
-    private void initMobileMenu() {
-//        inspectionsTab = createTab("Inspections", "inspections", icon("inspection.svg"));
-//        turbineTab = createTab("Turbines", "turbines", icon("turbine.svg"));
-//        mainMenuTabs.add(
-//                inspectionsTab,
-//                turbineTab
-//        );
-    }
 
     private SvgIcon icon(String filename) {
         StreamResource iconResource = new StreamResource(filename,

@@ -7,9 +7,9 @@ import org.springframework.lang.Nullable;
 
 public enum JobStatus implements EnumClass<String> {
 
-    NEW("New"),
-    CANCEL("Cancel"),
-    DONE("Done");
+    CREATED("Created"),
+    CANCELED("Canceled"),
+    COMPLETED("Completed");
 
     private final String id;
 

@@ -38,18 +38,6 @@
                             <button id="reportButton" text="统计报表" icon="CHART_GRID" themeNames="large"/>
                         </flexLayout>
                     </tab>
-                    <tab id="tabSystemManagement" label="msg://systemManagement"
-                         >
-                        <flexLayout  alignItems="START" css="gap: 0.5em" flexWrap="WRAP" width="100%">
-                            <button  text="设备管理" icon="GRID_SMALL" themeNames="large"/>
-                            <button  text="统计报表" icon="CHART_GRID" themeNames="large"/>
-                        </flexLayout>
-                    </tab>
-                    <tab id="tabOperationExecution" label="msg://manufactureExecution">
-                        <flexLayout alignItems="START" css="gap: 0.5em" flexWrap="WRAP" width="100%">
-                            <button text="操作执行" icon="COGS" themeNames="large"/>
-                        </flexLayout>
-                    </tab>
                 </tabSheet>
             </vbox>
         </vbox>
