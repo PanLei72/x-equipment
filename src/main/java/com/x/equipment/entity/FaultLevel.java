@@ -42,7 +42,7 @@ public class FaultLevel {
     private OffsetDateTime lastModifiedDate;
 
     @InstanceName
-    @Column(name = "FAULT_LEVEL_CODE", nullable = false)
+    @Column(name = "FAULT_LEVEL_CODE", nullable = false, unique = true)
     @NotNull
     private String faultLevelCode;
 

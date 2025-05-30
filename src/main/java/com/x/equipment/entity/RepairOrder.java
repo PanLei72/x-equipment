@@ -45,7 +45,7 @@ public class RepairOrder {
     @Column(name = "LAST_MODIFIED_DATE")
     private OffsetDateTime lastModifiedDate;
 
-    @Column(name = "ORDER_NUMBER", nullable = false)
+    @Column(name = "ORDER_NUMBER", nullable = false, unique = true)
     @NotNull
     private String orderNumber;
 

@@ -41,7 +41,7 @@ public class EquipmentLevel {
     @Column(name = "LAST_MODIFIED_DATE")
     private OffsetDateTime lastModifiedDate;
 
-    @Column(name = "LEVEL_NAME", nullable = false)
+    @Column(name = "LEVEL_NAME", nullable = false, unique = true)
     @NotNull
     private String levelName;
 

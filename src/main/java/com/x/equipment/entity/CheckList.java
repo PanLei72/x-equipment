@@ -50,7 +50,7 @@ public class CheckList {
     private OffsetDateTime lastModifiedDate;
 
     @InstanceName
-    @Column(name = "CHECKLIST_NAME", nullable = false)
+    @Column(name = "CHECKLIST_NAME", nullable = false, unique = true)
     @NotNull
     private String checkListName;
 

@@ -42,11 +42,9 @@
             <textField id="jobNameField" property="jobName"/>
             <textField id="descriptionField" property="description"/>
             <textField id="categoryField" property="category"/>
-            <select id="jobStatusField" property="jobStatus" readOnly="true"/>
             <dateTimePicker id="planTimeField" property="planTime"/>
             <textField id="checkCycleField" property="checkCycle"/>
             <select id="checkCycleUnitField" property="checkCycleUnit"/>
-            <dateTimePicker id="actualTimeField" property="actualTime"/>
         </formLayout>
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveAction"/>

@@ -47,7 +47,7 @@ public class Equipment {
     private OffsetDateTime lastModifiedDate;
 
     @InstanceName
-    @Column(name = "EQUIPMENT_NAME", nullable = false)
+    @Column(name = "EQUIPMENT_NAME", nullable = false, unique = true)
     @NotNull
     private String equipmentName;
 

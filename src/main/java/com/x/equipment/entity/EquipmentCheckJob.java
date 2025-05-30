@@ -49,7 +49,7 @@ public class EquipmentCheckJob {
     @Column(name = "LAST_MODIFIED_DATE")
     private OffsetDateTime lastModifiedDate;
 
-    @Column(name = "JOB_NAME", nullable = false)
+    @Column(name = "JOB_NAME", nullable = false, unique = true)
     @NotNull
     private String jobName;
 

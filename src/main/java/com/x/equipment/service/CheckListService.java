@@ -1,0 +1,37 @@
+package com.x.equipment.service;
+
+import com.x.equipment.entity.CheckList;
+import io.jmix.core.DataManager;
+import io.jmix.core.querycondition.PropertyCondition;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Component("EQUI_CheckListService")
+public class CheckListService extends BaseService<CheckList>{
+
+    @Autowired
+    private DataManager dataManager;
+
+    @Override
+    public String generateName() {
+        return super.generateName(CheckList.class.getSimpleName());
+    }
+
+
+    @Override
+    public CheckList loadObjectByName(String name) {
+        if(StringUtils.isEmpty(name))
+        {
+            return null;
+        }
+        List<CheckList> checkListName = dataManager.load(CheckList.class).condition(PropertyCondition.equal("checkListName", name)).list();
+        if(checkListName.isEmpty())
+        {
+            return null;
+        }
+        return checkListName.getFirst();
+    }
+}

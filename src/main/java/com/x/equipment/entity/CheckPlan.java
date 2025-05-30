@@ -43,7 +43,7 @@ public class CheckPlan {
     private OffsetDateTime lastModifiedDate;
 
     @InstanceName
-    @Column(name = "CHECK_PLAN_NAME", nullable = false)
+    @Column(name = "CHECK_PLAN_NAME", nullable = false, unique = true)
     @NotNull
     private String checkPlanName;
 
