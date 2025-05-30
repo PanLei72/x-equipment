@@ -64,3 +64,31 @@ jmix-tabsheet.content-padding::part(content) {
 vaadin-virtual-list {
     scrollbar-color: rgba(99, 99, 99, 0.2) rgba(255,255,255,0);
 }
+
+/*portal home page styles*/
+.home-flowlayout-card {
+    border-radius: 6px;
+    padding: 0;
+    align-items: center;
+    gap: 10px;
+}
+
+.home-card-button {
+    background-color: #d7e0e6 !important;
+    color:#4f5c78;
+}
+.home-card-info {
+    background-color:#e1e8ed !important;
+    color:#4f5c78;
+}
+
+.home-card-background-color {
+    background-color :#e1e8ed !important;
+}
+
+.v-panel-caption {
+    background: #e1e8ed !important;
+    border-bottom: 1px solid #e1e8ed;
+    border-bottom: none;
+    border-radius: 6px;
+}

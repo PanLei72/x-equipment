@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fragment xmlns="http://jmix.io/schema/flowui/fragment">
+    <content>
+        <vbox id="root"
+              classNames="home-flowlayout-card home-card-background-color"
+              width="248px"
+              height="298px"
+              expand="applicationImage">
+            <hbox classNames="v-panel-caption"
+                  width="100%">
+                <button id="infoButton"
+                        icon="INFO_CIRCLE"
+                        classNames="home-card-info"/>
+            </hbox>
+            <image id="applicationImage"
+                   classNames="home-card-background-color"
+                   width="AUTO" height="AUTO">
+            </image>
+            <button id="applicationButton"
+                    classNames="home-card-button"
+                    width="100%"/>
+        </vbox>
+    </content>
+</fragment>

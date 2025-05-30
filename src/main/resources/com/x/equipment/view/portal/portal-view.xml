@@ -7,10 +7,11 @@
         <vbox id="vbox" width="100%" height="100%" expand="moduleVbox" margin="false" padding="false">
             <hbox classNames="portal-header" height="60px" expand="blankSpan">
                 <hbox>
-                    <image resource="./logo/logo.svg" classNames="application-logo" />
+                    <image resource="./logo/logo.svg" classNames="application-logo"/>
                     <h2 id="applicationTitle"
                         text="msg://applicationTitle.text"
-                        classNames="jmix-main-view-application-title" css="color: white; white-space: nowrap; text-align:left"/>
+                        classNames="jmix-main-view-application-title"
+                        css="color: white; white-space: nowrap; text-align:left"/>
                 </hbox>
                 <span id="blankSpan" width="100%"/>
                 <button id="fullScreenButton" icon="EXPAND_FULL" themeNames="tertiary" alignSelf="CENTER"/>
@@ -21,24 +22,29 @@
                     </items>
                 </dropdownButton>
             </hbox>
-            <vbox id="moduleVbox" expand="tabSheet" >
-                <button css="font-size: 20px"
-                       text="msg:///home"
-                        themeNames="tertiary"
-                       icon="HOME_O"/>
-                <tabSheet id="tabSheet"
-                          themeNames="large"
-                          width="100%"
-                          height="100%"
-                >
-                    <tab id="tabAllModule" label="msg://allModule">
-                        <flexLayout id="contentFlexLayout" alignItems="START" css="gap: 0.5em" flexWrap="WRAP" width="100%">
-                            <button id="equipmentManagementButton" text="设备管理" icon="GRID_SMALL" themeNames="large"/>
-                            <button id="mobileAppButton" text="操作执行" icon="COGS" themeNames="large"/>
-                            <button id="reportButton" text="统计报表" icon="CHART_GRID" themeNames="large"/>
-                        </flexLayout>
-                    </tab>
-                </tabSheet>
+            <vbox id="moduleVbox" expand="hbox" spacing="false" >
+                <button text="msg:///home"
+                        css="font-size: 20px"
+                        themeNames="tertiary large"
+                        icon="HOME_O"/>
+                <hbox id="hbox" classNames="flex-wrap">
+                    <fragment class="com.x.equipment.view.fragment.HomeCardFragment">
+                        <properties>
+                            <property name="applicationName" value="设备管理"/>
+                            <property name="applicationImagePath" value="icons/home/equipment-management.svg"/>
+                            <property name="viewId" value="EQUI_MainView"/>
+                            <property name="applicationIcon" value="GRID_SMALL"/>
+                        </properties>
+                    </fragment>
+                    <fragment class="com.x.equipment.view.fragment.HomeCardFragment">
+                        <properties>
+                            <property name="applicationName" value="操作执行"/>
+                            <property name="applicationImagePath" value="icons/home/execution.svg"/>
+                            <property name="viewId" value="MobileMainView"/>
+                            <property name="applicationIcon" value="COGS"/>
+                        </properties>
+                    </fragment>
+                </hbox>
             </vbox>
         </vbox>
     </layout>
