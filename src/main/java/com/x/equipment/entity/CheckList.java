@@ -14,7 +14,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.UUID;
 
 @JmixEntity
 @Table(name = "EQUI_CHECK_LIST")
@@ -23,7 +22,7 @@ public class CheckList {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
-    private UUID id;
+    private Long id;
 
     @Comment("是否启用")
     @Column(name = "ACTIVE", nullable = false)
@@ -65,11 +64,11 @@ public class CheckList {
     @OneToMany(mappedBy = "checkList")
     private List<CheckListItem> checkListItems;
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

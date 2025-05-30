@@ -14,7 +14,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @JmixEntity
@@ -26,7 +25,7 @@ public class EquipmentClass {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
-    private UUID id;
+    private Long id;
 
     @Column(name = "VERSION", nullable = false)
     @Version
@@ -103,11 +102,11 @@ public class EquipmentClass {
         this.version = version;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

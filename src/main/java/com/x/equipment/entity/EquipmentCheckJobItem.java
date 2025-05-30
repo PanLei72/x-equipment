@@ -15,7 +15,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
-import java.util.UUID;
 
 @JmixEntity
 @Table(name = "EQUI_EQUIPMENT_CHECK_JOB_ITEM", indexes = {
@@ -26,7 +25,7 @@ public class EquipmentCheckJobItem {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
-    private UUID id;
+    private Long id;
 
     @Column(name = "VERSION", nullable = false)
     @Version
@@ -214,11 +213,11 @@ public class EquipmentCheckJobItem {
         this.version = version;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
