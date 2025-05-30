@@ -13,7 +13,9 @@ import org.springframework.data.annotation.LastModifiedDate;
 import java.time.OffsetDateTime;
 
 @JmixEntity
-@Table(name = "EQUI_EQUIPMENT_LEVEL")
+@Table(name = "EQUI_EQUIPMENT_LEVEL", uniqueConstraints = {
+        @UniqueConstraint(name = "IDX_EQUI_EQUIPMENT_LEVEL_UNQ", columnNames = {"LEVEL_NAME"})
+})
 @Entity(name = "EQUI_EquipmentLevel")
 public class EquipmentLevel {
     @JmixGeneratedValue
@@ -41,7 +43,7 @@ public class EquipmentLevel {
     @Column(name = "LAST_MODIFIED_DATE")
     private OffsetDateTime lastModifiedDate;
 
-    @Column(name = "LEVEL_NAME", nullable = false, unique = true)
+    @Column(name = "LEVEL_NAME", nullable = false)
     @NotNull
     private String levelName;
 

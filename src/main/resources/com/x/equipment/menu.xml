@@ -18,8 +18,8 @@
         </menu>
         <menu id="jobManagement" title="msg://com.x.equipment/jobManagement" opened="true">
             <item view="EQUI_CheckPlan.list" title="msg://com.x.equipment.view.web.checkplan/checkPlanListView.title" icon="TIMER"/>
-            <item view="EQUI_EquipmentCheckJob.list"
-                  title="msg://com.x.equipment.view.web.equipmentcheckjob/equipmentCheckJobListView.title"
+            <item view="EQUI_CheckJob.list"
+                  title="msg://com.x.equipment.view.web.checkjob/checkJobListView.title"
                   icon="LINES_LIST"/>
         </menu>
         <menu id="repairManagement" title="msg://com.x.equipment/repairManagement" opened="true">

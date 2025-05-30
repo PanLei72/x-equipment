@@ -172,7 +172,7 @@
             <column name="UPPER_LIMIT_VALUE" type="DECIMAL(19, 2)"/>
             <column name="LOWER_LIMIT_VALUE" type="DECIMAL(19, 2)"/>
             <column name="CHECK_RESULT" type="VARCHAR(255)"/>
-            <column name="EQUIPMENT_CHECK_JOB_ID" type="BIGINT">
+            <column name="CHECK_JOB_ID" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -296,14 +296,60 @@
         </createTable>
     </changeSet>
     <changeSet id="13" author="EQUI">
-        <addUniqueConstraint columnNames="EQUIPMENT_CLASS_NAME" constraintName="UC_EQUIPMENTCLASS"
-                             tableName="EQUI_EQUIPMENT_CLASS"/>
+        <addUniqueConstraint columnNames="JOB_NAME" constraintName="IDX_EQUI_CHECK_JOB_UNQ"
+                             tableName="EQUI_EQUIPMENT_CHECK_JOB"/>
     </changeSet>
     <changeSet id="14" author="EQUI">
-        <addUniqueConstraint columnNames="EQUIPMENT_NAME" constraintName="UC_EQUIPMENT_EQUIPMENT_NAME"
-                             tableName="EQUI_EQUIPMENT"/>
+        <addUniqueConstraint columnNames="CHECKLIST_NAME" constraintName="IDX_EQUI_CHECK_LIST_UNQ"
+                             tableName="EQUI_CHECK_LIST"/>
     </changeSet>
     <changeSet id="15" author="EQUI">
+        <addUniqueConstraint columnNames="CHECK_PLAN_NAME" constraintName="IDX_EQUI_CHECK_PLAN_UNQ"
+                             tableName="EQUI_CHECK_PLAN"/>
+    </changeSet>
+    <changeSet id="16" author="EQUI">
+        <addUniqueConstraint columnNames="EQUIPMENT_CLASS_NAME" constraintName="IDX_EQUI_EQUIPMENT_CLASS_UNQ"
+                             tableName="EQUI_EQUIPMENT_CLASS"/>
+    </changeSet>
+    <changeSet id="17" author="EQUI">
+        <addUniqueConstraint columnNames="LEVEL_NAME" constraintName="IDX_EQUI_EQUIPMENT_LEVEL_UNQ"
+                             tableName="EQUI_EQUIPMENT_LEVEL"/>
+    </changeSet>
+    <changeSet id="18" author="EQUI">
+        <addUniqueConstraint columnNames="EQUIPMENT_NAME" constraintName="IDX_EQUI_EQUIPMENT_UNQ"
+                             tableName="EQUI_EQUIPMENT"/>
+    </changeSet>
+    <changeSet id="19" author="EQUI">
+        <addUniqueConstraint columnNames="FAULT_LEVEL_CODE" constraintName="IDX_EQUI_FAULT_LEVEL_UNQ"
+                             tableName="EQUI_FAULT_LEVEL"/>
+    </changeSet>
+    <changeSet id="20" author="EQUI">
+        <addUniqueConstraint columnNames="FAULT_TYPE_CODE" constraintName="IDX_EQUI_FAULT_TYPE_UNQ"
+                             tableName="EQUI_FAULT_TYPE"/>
+    </changeSet>
+    <changeSet id="21" author="EQUI">
+        <addUniqueConstraint columnNames="ORDER_NUMBER" constraintName="IDX_EQUI_REPAIR_ORDER_UNQ"
+                             tableName="EQUI_REPAIR_ORDER"/>
+    </changeSet>
+    <changeSet id="22" author="EQUI">
+        <createIndex indexName="IDX_EQUI_CHECK_JOB_CHECKLIST_ID" tableName="EQUI_EQUIPMENT_CHECK_JOB">
+            <column name="CHECKLIST_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="CHECKLIST_ID" baseTableName="EQUI_EQUIPMENT_CHECK_JOB"
+                                 constraintName="FK_EQUI_EQUIPMENT_CHECK_JOB_ON_CHECKLIST" referencedColumnNames="ID"
+                                 referencedTableName="EQUI_CHECK_LIST"/>
+    </changeSet>
+    <changeSet id="23" author="EQUI">
+        <createIndex indexName="IDX_EQUI_CHECK_JOB_ITEM_CHECK_JOB_ID" tableName="EQUI_EQUIPMENT_CHECK_JOB_ITEM">
+            <column name="CHECK_JOB_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="CHECK_JOB_ID" baseTableName="EQUI_EQUIPMENT_CHECK_JOB_ITEM"
+                                 constraintName="FK_EQUI_EQUIPMENT_CHECK_JOB_ITEM_ON_CHECK_JOB" onDelete="CASCADE"
+                                 referencedColumnNames="ID" referencedTableName="EQUI_EQUIPMENT_CHECK_JOB"/>
+    </changeSet>
+    <changeSet id="24" author="EQUI">
         <createIndex indexName="IDX_EQUI_CHECK_LIST_ITEM_CHECK_LIST" tableName="EQUI_CHECK_LIST_ITEM">
             <column name="CHECK_LIST_ID"/>
         </createIndex>
@@ -312,79 +358,47 @@
                                  constraintName="FK_EQUI_CHECK_LIST_ITEM_ON_CHECK_LIST" referencedColumnNames="ID"
                                  referencedTableName="EQUI_CHECK_LIST"/>
     </changeSet>
-    <changeSet id="16" author="EQUI">
-        <createIndex indexName="IDX_EQUI_EQUIPMENT_CHECK_JOB_CHECKLIST" tableName="EQUI_EQUIPMENT_CHECK_JOB">
-            <column name="CHECKLIST_ID"/>
-        </createIndex>
-
-        <addForeignKeyConstraint baseColumnNames="CHECKLIST_ID" baseTableName="EQUI_EQUIPMENT_CHECK_JOB"
-                                 constraintName="FK_EQUI_EQUIPMENT_CHECK_JOB_ON_CHECKLIST" referencedColumnNames="ID"
-                                 referencedTableName="EQUI_CHECK_LIST"/>
-    </changeSet>
-    <changeSet id="17" author="EQUI">
-        <createIndex indexName="IDX_EQUI_EQUIPMENT_CHECK_JOB_EQUIPMENT" tableName="EQUI_EQUIPMENT_CHECK_JOB">
-            <column name="EQUIPMENT_ID"/>
-        </createIndex>
-
-        <addForeignKeyConstraint baseColumnNames="EQUIPMENT_ID" baseTableName="EQUI_EQUIPMENT_CHECK_JOB"
-                                 constraintName="FK_EQUI_EQUIPMENT_CHECK_JOB_ON_EQUIPMENT" referencedColumnNames="ID"
-                                 referencedTableName="EQUI_EQUIPMENT"/>
-    </changeSet>
-    <changeSet id="18" author="EQUI">
-        <createIndex indexName="IDX_EQUI_EQUIPMENT_CHECK_JOB_ITEM_EQUIPMENT_CHECK_JOB"
-                     tableName="EQUI_EQUIPMENT_CHECK_JOB_ITEM">
-            <column name="EQUIPMENT_CHECK_JOB_ID"/>
-        </createIndex>
-
-        <addForeignKeyConstraint baseColumnNames="EQUIPMENT_CHECK_JOB_ID" baseTableName="EQUI_EQUIPMENT_CHECK_JOB_ITEM"
-                                 constraintName="FK_EQUI_EQUIPMENT_CHECK_JOB_ITEM_ON_EQUIPMENT_CHECK_JOB"
-                                 onDelete="CASCADE" referencedColumnNames="ID"
-                                 referencedTableName="EQUI_EQUIPMENT_CHECK_JOB"/>
-    </changeSet>
-    <changeSet id="19" author="EQUI">
-        <createIndex indexName="IDX_EQUI_EQUIPMENT_LEVEL" tableName="EQUI_EQUIPMENT">
-            <column name="LEVEL_ID"/>
-        </createIndex>
-
-        <addForeignKeyConstraint baseColumnNames="LEVEL_ID" baseTableName="EQUI_EQUIPMENT"
-                                 constraintName="FK_EQUI_EQUIPMENT_ON_LEVEL" referencedColumnNames="ID"
-                                 referencedTableName="EQUI_EQUIPMENT_LEVEL"/>
-    </changeSet>
-    <changeSet id="20" author="EQUI">
-        <createIndex indexName="IDX_EQUI_REPAIR_ORDER_EQUIPMENT" tableName="EQUI_REPAIR_ORDER">
-            <column name="EQUIPMENT_ID"/>
-        </createIndex>
-
-        <addForeignKeyConstraint baseColumnNames="EQUIPMENT_ID" baseTableName="EQUI_REPAIR_ORDER"
-                                 constraintName="FK_EQUI_REPAIR_ORDER_ON_EQUIPMENT" referencedColumnNames="ID"
-                                 referencedTableName="EQUI_EQUIPMENT"/>
-    </changeSet>
-    <changeSet id="21" author="EQUI">
+    <changeSet id="25" author="EQUI">
         <addForeignKeyConstraint baseColumnNames="CHECKLIST_ID" baseTableName="EQUI_CHECK_PLAN"
                                  constraintName="FK_EQUI_CHECK_PLAN_ON_CHECKLIST" referencedColumnNames="ID"
                                  referencedTableName="EQUI_CHECK_LIST"/>
     </changeSet>
-    <changeSet id="22" author="EQUI">
+    <changeSet id="26" author="EQUI">
         <addForeignKeyConstraint baseColumnNames="EQUIPMENT_CLASS_ID" baseTableName="EQUI_CHECK_PLAN"
                                  constraintName="FK_EQUI_CHECK_PLAN_ON_EQUIPMENT_CLASS" referencedColumnNames="ID"
                                  referencedTableName="EQUI_EQUIPMENT_CLASS"/>
     </changeSet>
-    <changeSet id="23" author="EQUI">
+    <changeSet id="27" author="EQUI">
+        <addForeignKeyConstraint baseColumnNames="EQUIPMENT_ID" baseTableName="EQUI_EQUIPMENT_CHECK_JOB"
+                                 constraintName="FK_EQUI_EQUIPMENT_CHECK_JOB_ON_EQUIPMENT" referencedColumnNames="ID"
+                                 referencedTableName="EQUI_EQUIPMENT"/>
+    </changeSet>
+    <changeSet id="28" author="EQUI">
         <addForeignKeyConstraint baseColumnNames="EQUIPMENT_ID" baseTableName="EQUI_EQUIPMENT_CLASS_EQUIPMENT"
                                  constraintName="FK_EQUI_EQUIPMENT_CLASS_EQUIPMENT_ON_EQUIPMENT"
                                  referencedColumnNames="ID" referencedTableName="EQUI_EQUIPMENT"/>
     </changeSet>
-    <changeSet id="24" author="EQUI">
+    <changeSet id="29" author="EQUI">
         <addForeignKeyConstraint baseColumnNames="EQUIPMENT_CLASS_ID" baseTableName="EQUI_EQUIPMENT_CLASS_EQUIPMENT"
                                  constraintName="FK_EQUI_EQUIPMENT_CLASS_EQUIPMENT_ON_EQUIPMENT_CLASS"
                                  referencedColumnNames="ID" referencedTableName="EQUI_EQUIPMENT_CLASS"/>
     </changeSet>
-    <changeSet id="25" author="EQUI">
+    <changeSet id="30" author="EQUI">
+        <addForeignKeyConstraint baseColumnNames="LEVEL_ID" baseTableName="EQUI_EQUIPMENT"
+                                 constraintName="FK_EQUI_EQUIPMENT_ON_LEVEL" referencedColumnNames="ID"
+                                 referencedTableName="EQUI_EQUIPMENT_LEVEL"/>
+    </changeSet>
+    <changeSet id="31" author="EQUI">
+        <addForeignKeyConstraint baseColumnNames="EQUIPMENT_ID" baseTableName="EQUI_REPAIR_ORDER"
+                                 constraintName="FK_EQUI_REPAIR_ORDER_ON_EQUIPMENT" referencedColumnNames="ID"
+                                 referencedTableName="EQUI_EQUIPMENT"/>
+    </changeSet>
+    <changeSet id="32" author="EQUI">
         <addForeignKeyConstraint baseColumnNames="FAULT_LEVEL_ID" baseTableName="EQUI_REPAIR_ORDER"
                                  constraintName="FK_EQUI_REPAIR_ORDER_ON_FAULT_LEVEL" referencedColumnNames="ID"
                                  referencedTableName="EQUI_FAULT_LEVEL"/>
     </changeSet>
-    <changeSet id="26" author="EQUI">
+    <changeSet id="33" author="EQUI">
         <addForeignKeyConstraint baseColumnNames="FAULT_TYPE_ID" baseTableName="EQUI_REPAIR_ORDER"
                                  constraintName="FK_EQUI_REPAIR_ORDER_ON_FAULT_TYPE" referencedColumnNames="ID"
                                  referencedTableName="EQUI_FAULT_TYPE"/>

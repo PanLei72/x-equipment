@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view xmlns="http://jmix.io/schema/flowui/view"
-      title="msg://equipmentCheckJobDetailView.title"
+      title="msg://checkJobDetailView.title"
       focusComponent="form">
     <data>
-        <instance id="equipmentCheckJobDc"
-                  class="com.x.equipment.entity.EquipmentCheckJob">
+        <instance id="checkJobDc"
+                  class="com.x.equipment.entity.CheckJob">
             <fetchPlan extends="_base">
                 <property name="checklist" fetchPlan="_base"/>
                 <property name="equipment" fetchPlan="_base"/>
                 <property name="checkJobItems" fetchPlan="_base"/>
             </fetchPlan>
-            <loader id="equipmentCheckJobDl"/>
+            <loader id="checkJobDl"/>
             <collection id="checkJobItemsDc" property="checkJobItems"/>
         </instance>
     </data>
@@ -22,7 +22,7 @@
         <action id="closeAction" type="detail_close"/>
     </actions>
     <layout>
-        <formLayout id="form" dataContainer="equipmentCheckJobDc">
+        <formLayout id="form" dataContainer="checkJobDc">
             <responsiveSteps>
                 <responsiveStep minWidth="0" columns="1"/>
                 <responsiveStep minWidth="40em" columns="2"/>

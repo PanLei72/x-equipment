@@ -16,7 +16,9 @@ import java.time.OffsetDateTime;
 import java.util.List;
 
 @JmixEntity
-@Table(name = "EQUI_CHECK_LIST")
+@Table(name = "EQUI_CHECK_LIST", uniqueConstraints = {
+        @UniqueConstraint(name = "IDX_EQUI_CHECK_LIST_UNQ", columnNames = {"CHECKLIST_NAME"})
+})
 @Entity(name = "EQUI_CheckList")
 public class CheckList {
     @JmixGeneratedValue
@@ -50,7 +52,7 @@ public class CheckList {
     private OffsetDateTime lastModifiedDate;
 
     @InstanceName
-    @Column(name = "CHECKLIST_NAME", nullable = false, unique = true)
+    @Column(name = "CHECKLIST_NAME", nullable = false)
     @NotNull
     private String checkListName;
 

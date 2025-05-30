@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view xmlns="http://jmix.io/schema/flowui/view"
-      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
-      title="msg://equipmentCheckJobListView.title"
-      focusComponent="equipmentCheckJobsDataGrid">
+      title="msg://checkJobListView.title"
+      focusComponent="checkJobsDataGrid">
     <data>
-        <collection id="equipmentCheckJobsDc"
-                    class="com.x.equipment.entity.EquipmentCheckJob">
+        <collection id="checkJobsDc"
+                    class="com.x.equipment.entity.CheckJob">
             <fetchPlan extends="_base">
                 <property name="checklist" fetchPlan="_base"/>
                 <property name="equipment" fetchPlan="_base"/>
             </fetchPlan>
-            <loader id="equipmentCheckJobsDl" readOnly="true">
+            <loader id="checkJobsDl" readOnly="true">
                 <query>
-                    <![CDATA[select e from EQUI_EquipmentCheckJob e order by e.jobName]]>
+                    <![CDATA[select e from EQUI_CheckJob e order by e.jobName]]>
                 </query>
             </loader>
             <collection id="checkJobItemsDc" property="checkJobItems"/>
@@ -31,7 +30,7 @@
     </actions>
     <layout>
         <genericFilter id="genericFilter"
-                       dataLoader="equipmentCheckJobsDl">
+                       dataLoader="checkJobsDl">
             <responsiveSteps>
                 <responsiveStep minWidth="0" columns="1"/>
                 <responsiveStep minWidth="40em" columns="3"/>
@@ -45,15 +44,15 @@
             </configurations>
         </genericFilter>
         <hbox id="buttonsPanel" classNames="buttons-panel">
-            <button id="createButton" action="equipmentCheckJobsDataGrid.createAction"/>
-            <button id="editButton" action="equipmentCheckJobsDataGrid.editAction"/>
-            <button id="removeButton" action="equipmentCheckJobsDataGrid.removeAction"/>
-            <simplePagination id="pagination" dataLoader="equipmentCheckJobsDl"/>
+            <button id="createButton" action="checkJobsDataGrid.createAction"/>
+            <button id="editButton" action="checkJobsDataGrid.editAction"/>
+            <button id="removeButton" action="checkJobsDataGrid.removeAction"/>
+            <simplePagination id="pagination" dataLoader="checkJobsDl"/>
         </hbox>
-        <dataGrid id="equipmentCheckJobsDataGrid"
+        <dataGrid id="checkJobsDataGrid"
                   width="100%"
                   minHeight="15em"
-                  dataContainer="equipmentCheckJobsDc"
+                  dataContainer="checkJobsDc"
                   columnReorderingAllowed="true">
             <actions>
                 <action id="createAction" type="list_create">

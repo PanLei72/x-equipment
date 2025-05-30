@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 @JmixEntity
 @Table(name = "EQUI_EQUIPMENT_CLASS", uniqueConstraints = {
-        @UniqueConstraint(name = "UC_EQUIPMENTCLASS", columnNames = {"EQUIPMENT_CLASS_NAME"})
+        @UniqueConstraint(name = "IDX_EQUI_EQUIPMENT_CLASS_UNQ", columnNames = {"EQUIPMENT_CLASS_NAME"})
 })
 @Entity(name = "EQUI_EquipmentClass")
 public class EquipmentClass {
@@ -48,7 +48,7 @@ public class EquipmentClass {
     private OffsetDateTime lastModifiedDate;
 
     @InstanceName
-    @Column(name = "EQUIPMENT_CLASS_NAME", nullable = false, unique = true)
+    @Column(name = "EQUIPMENT_CLASS_NAME", nullable = false)
     @NotNull
     private String equipmentClassName;
 

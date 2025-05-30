@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 @JmixEntity
-@Table(name = "EQUI_REPAIR_ORDER", indexes = {
-        @Index(name = "IDX_EQUI_REPAIR_ORDER_EQUIPMENT", columnList = "EQUIPMENT_ID")
+@Table(name = "EQUI_REPAIR_ORDER", uniqueConstraints = {
+        @UniqueConstraint(name = "IDX_EQUI_REPAIR_ORDER_UNQ", columnNames = {"ORDER_NUMBER"})
 })
 @Entity(name = "EQUI_RepairOrder")
 public class RepairOrder {
@@ -45,7 +45,7 @@ public class RepairOrder {
     @Column(name = "LAST_MODIFIED_DATE")
     private OffsetDateTime lastModifiedDate;
 
-    @Column(name = "ORDER_NUMBER", nullable = false, unique = true)
+    @Column(name = "ORDER_NUMBER", nullable = false)
     @NotNull
     private String orderNumber;
 

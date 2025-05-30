@@ -18,10 +18,10 @@ import java.time.OffsetDateTime;
 
 @JmixEntity
 @Table(name = "EQUI_EQUIPMENT_CHECK_JOB_ITEM", indexes = {
-        @Index(name = "IDX_EQUI_EQUIPMENT_CHECK_JOB_ITEM_EQUIPMENT_CHECK_JOB", columnList = "EQUIPMENT_CHECK_JOB_ID")
+        @Index(name = "IDX_EQUI_CHECK_JOB_ITEM_CHECK_JOB_ID", columnList = "CHECK_JOB_ID")
 })
-@Entity(name = "EQUI_EquipmentCheckJobItem")
-public class EquipmentCheckJobItem {
+@Entity(name = "EQUI_CheckJobItem")
+public class CheckJobItem {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
@@ -81,9 +81,13 @@ public class EquipmentCheckJobItem {
     private String checkResult;
 
     @OnDeleteInverse(DeletePolicy.CASCADE)
-    @JoinColumn(name = "EQUIPMENT_CHECK_JOB_ID", nullable = false)
+    @JoinColumn(name = "CHECK_JOB_ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private EquipmentCheckJob equipmentCheckJob;
+    private CheckJob checkJob;
+
+    public CheckJob getCheckJob() {
+        return checkJob;
+    }
 
     public String getCheckMethod() {
         return checkMethod;
@@ -93,12 +97,12 @@ public class EquipmentCheckJobItem {
         this.checkMethod = checkMethod;
     }
 
-    public EquipmentCheckJob getEquipmentCheckJob() {
-        return equipmentCheckJob;
+    public CheckJob getEquipmentCheckJob() {
+        return checkJob;
     }
 
-    public void setEquipmentCheckJob(EquipmentCheckJob equipmentCheckJob) {
-        this.equipmentCheckJob = equipmentCheckJob;
+    public void setEquipmentCheckJob(CheckJob checkJob) {
+        this.checkJob = checkJob;
     }
 
     public String getCheckResult() {

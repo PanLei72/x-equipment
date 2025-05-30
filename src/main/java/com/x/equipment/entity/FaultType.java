@@ -13,7 +13,9 @@ import org.springframework.data.annotation.LastModifiedDate;
 import java.time.OffsetDateTime;
 
 @JmixEntity
-@Table(name = "EQUI_FAULT_TYPE")
+@Table(name = "EQUI_FAULT_TYPE", uniqueConstraints = {
+        @UniqueConstraint(name = "IDX_EQUI_FAULT_TYPE_UNQ", columnNames = {"FAULT_TYPE_CODE"})
+})
 @Entity(name = "EQUI_FaultType")
 public class FaultType {
     @JmixGeneratedValue
@@ -42,7 +44,7 @@ public class FaultType {
     private OffsetDateTime lastModifiedDate;
 
     @InstanceName
-    @Column(name = "FAULT_TYPE_CODE", nullable = false, unique = true)
+    @Column(name = "FAULT_TYPE_CODE", nullable = false)
     @NotNull
     private String faultTypeCode;
 

@@ -19,11 +19,12 @@ import java.util.List;
 
 @JmixEntity
 @Table(name = "EQUI_EQUIPMENT_CHECK_JOB", indexes = {
-        @Index(name = "IDX_EQUI_EQUIPMENT_CHECK_JOB_CHECKLIST", columnList = "CHECKLIST_ID"),
-        @Index(name = "IDX_EQUI_EQUIPMENT_CHECK_JOB_EQUIPMENT", columnList = "EQUIPMENT_ID")
+        @Index(name = "IDX_EQUI_CHECK_JOB_CHECKLIST_ID", columnList = "CHECKLIST_ID")
+}, uniqueConstraints = {
+        @UniqueConstraint(name = "IDX_EQUI_CHECK_JOB_UNQ", columnNames = {"JOB_NAME"})
 })
-@Entity(name = "EQUI_EquipmentCheckJob")
-public class EquipmentCheckJob {
+@Entity(name = "EQUI_CheckJob")
+public class CheckJob {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
@@ -49,7 +50,7 @@ public class EquipmentCheckJob {
     @Column(name = "LAST_MODIFIED_DATE")
     private OffsetDateTime lastModifiedDate;
 
-    @Column(name = "JOB_NAME", nullable = false, unique = true)
+    @Column(name = "JOB_NAME", nullable = false)
     @NotNull
     private String jobName;
 
@@ -90,14 +91,14 @@ public class EquipmentCheckJob {
     private LocalDateTime actualTime;
 
     @Composition
-    @OneToMany(mappedBy = "equipmentCheckJob")
-    private List<EquipmentCheckJobItem> checkJobItems;
+    @OneToMany(mappedBy = "checkJob")
+    private List<CheckJobItem> checkJobItems;
 
-    public List<EquipmentCheckJobItem> getCheckJobItems() {
+    public List<CheckJobItem> getCheckJobItems() {
         return checkJobItems;
     }
 
-    public void setCheckJobItems(List<EquipmentCheckJobItem> checkJobItems) {
+    public void setCheckJobItems(List<CheckJobItem> checkJobItems) {
         this.checkJobItems = checkJobItems;
     }
 
