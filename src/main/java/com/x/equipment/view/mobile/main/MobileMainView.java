@@ -13,6 +13,7 @@ import com.x.equipment.view.mobile.equipmentrepair.EquipmentRepairConfirmView;
 import com.x.equipment.view.mobile.equipmentrepair.EquipmentRepairView;
 import com.x.equipment.view.mobile.equipmentrepair.RepairOrderCreateView;
 import com.x.equipment.view.mobile.equipmentrepairorderquery.EquipmentRepairOrderQueryView;
+import com.x.equipment.view.portal.PortalView;
 import com.x.equipment.view.web.repairorder.RepairOrderDetailView;
 import com.x.equipment.view.web.repairorder.RepairOrderListView;
 import com.x.equipment.view.web.user.UserDetailView;
@@ -20,6 +21,7 @@ import io.jmix.core.security.CurrentAuthentication;
 import io.jmix.flowui.Notifications;
 import io.jmix.flowui.ViewNavigators;
 import io.jmix.flowui.app.main.StandardMainView;
+import io.jmix.flowui.component.UiComponentUtils;
 import io.jmix.flowui.component.main.JmixListMenu;
 import io.jmix.flowui.kit.component.button.JmixButton;
 import io.jmix.flowui.kit.component.main.ListMenu;
@@ -43,7 +45,17 @@ public class MobileMainView extends StandardMainView {
 
     @Subscribe(id = "homeButton", subject = "clickListener")
     public void onHomeButtonClick(final ClickEvent<JmixButton> event) {
-        viewNavigators.view(this, MobileMainView.class).navigate();
+        View<?> currentView = UiComponentUtils.getCurrentView();
+
+        if(currentView instanceof PortalView) {
+            return;
+        }
+
+        if(currentView instanceof MobileMainView) {
+            viewNavigators.view(this, PortalView.class).navigate();
+        } else {
+            viewNavigators.view(this, MobileMainView.class).navigate();
+        }
     }
 
     @Subscribe(id = "checkJobButton", subject = "clickListener")

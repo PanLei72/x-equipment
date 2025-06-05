@@ -89,10 +89,10 @@ public class EquipmentCheckJobItemQueryView extends StandardDetailView<CheckJob>
 
             HorizontalLayout infoLine4 = createHorizontalLayout();
 
-            H5 planTimeTitle = new H5("标准值:");
-            planTimeTitle.setClassName("display-white-space");
-            Span planTimeSpan = new Span(checkJobItem.getStandardValue() != null ? metadataTools.format(checkJobItem.getStandardValue()) : "");
-            infoLine4.add(planTimeTitle, planTimeSpan);
+            H5 standardValueTitle = new H5("标准值:");
+            standardValueTitle.setClassName("display-white-space");
+            Span standardValueSpan = new Span(checkJobItem.getStandardValue() != null ? metadataTools.format(checkJobItem.getStandardValue()) : "");
+            infoLine4.add(standardValueTitle, standardValueSpan);
 
 
             HorizontalLayout infoLine5 = createHorizontalLayout();
@@ -131,7 +131,7 @@ public class EquipmentCheckJobItemQueryView extends StandardDetailView<CheckJob>
     public void onBeforeSave(final StandardDetailView.BeforeSaveEvent event) {
         CheckJob checkJob = this.getEditedEntity();
         checkJob.setJobStatus(JobStatus.COMPLETED);
-        checkJob.setActualTime(LocalDateTime.now());
+        checkJob.setActualCompleteTime(LocalDateTime.now());
     }
 
 

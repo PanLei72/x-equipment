@@ -100,11 +100,11 @@ public class EquipmentRepairOrderQueryView extends StandardView {
 
             HorizontalLayout infoLine4 = createHorizontalLayout();
 
-            H5 planTimeTitle = new H5("故障时间:");
-            planTimeTitle.setClassName("display-white-space");
-            Span planTimeSpan = new Span(repairOrder.getRepairTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+            H5 repairTimeTitle = new H5("故障时间:");
+            repairTimeTitle.setClassName("display-white-space");
+            Span repairTimeSpan = new Span(repairOrder.getRepairTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
-            infoLine4.add(planTimeTitle, planTimeSpan);
+            infoLine4.add(repairTimeTitle, repairTimeSpan);
 
 
             HorizontalLayout infoLine5 = createHorizontalLayout();

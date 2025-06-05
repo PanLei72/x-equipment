@@ -16,6 +16,7 @@ import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.theme.lumo.LumoUtility;
+import com.x.equipment.constants.RepairOrderStatus;
 import com.x.equipment.entity.RepairOrder;
 import com.x.equipment.view.mobile.main.MobileMainView;
 import io.jmix.core.FileRef;
@@ -129,14 +130,15 @@ public class EquipmentRepairView extends StandardView {
             buttonsPanel.setPadding(false);
             buttonsPanel.setSpacing(false);
 
-            Button startButton = new Button(new Icon(VaadinIcon.CHEVRON_CIRCLE_RIGHT_O));
-            startButton.setText(messages.getMessage("actions.Start"));
-            startButton.addClickListener(e ->
-                    viewNavigators.detailView(this, RepairOrder.class)
-                    .withViewClass(RepairOrderStartView.class)
-                    .editEntity(repairOrder)
-                    .withBackwardNavigation(true)
-                    .navigate());
+            if(RepairOrderStatus.CREATED.equals(repairOrder.getOrderStatus())) {
+                Button startButton = new Button(new Icon(VaadinIcon.CHEVRON_CIRCLE_RIGHT_O));
+                startButton.setText(messages.getMessage("actions.Start"));
+                startButton.addClickListener(e ->
+                        viewNavigators.detailView(this, RepairOrder.class)
+                                .withViewClass(RepairOrderStartView.class)
+                                .editEntity(repairOrder)
+                                .withBackwardNavigation(true)
+                                .navigate());
 //            startButton.addClickListener(e -> dialogWindows.detail(this, RepairOrder.class)
 //                    .withViewClass(RepairOrderStartView.class)
 //                    .editEntity(repairOrder)
@@ -146,17 +148,24 @@ public class EquipmentRepairView extends StandardView {
 //                        }
 //                    })
 //                    .open());
-            startButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE);
+                startButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE);
 
-            Button completeButton = new Button(new Icon(VaadinIcon.CHECK_CIRCLE_O));
-            completeButton.setText(messages.getMessage("actions.Complete"));
-            completeButton.addClickListener(e ->
-                    viewNavigators.detailView(this, RepairOrder.class)
-                            .withViewClass(RepairOrderCompleteView.class)
-                            .editEntity(repairOrder)
-                            .withBackwardNavigation(true)
-                            .navigate());
-            completeButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE);
+                buttonsPanel.add(startButton);
+            }
+
+            if(RepairOrderStatus.IN_PROGRESS.equals(repairOrder.getOrderStatus())) {
+                Button completeButton = new Button(new Icon(VaadinIcon.CHECK_CIRCLE_O));
+                completeButton.setText(messages.getMessage("actions.Complete"));
+                completeButton.addClickListener(e ->
+                        viewNavigators.detailView(this, RepairOrder.class)
+                                .withViewClass(RepairOrderCompleteView.class)
+                                .editEntity(repairOrder)
+                                .withBackwardNavigation(true)
+                                .navigate());
+                completeButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE);
+
+                buttonsPanel.add(completeButton);
+            }
 
 
             Button cancelButton = new Button(new Icon(VaadinIcon.CLOSE_CIRCLE_O));
@@ -169,8 +178,7 @@ public class EquipmentRepairView extends StandardView {
                             .navigate());
             cancelButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE);
 
-
-            buttonsPanel.add(startButton, completeButton, cancelButton);
+            buttonsPanel.add(cancelButton);
 
             infoLayout.add(avatar, buttonsPanel);
 

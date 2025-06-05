@@ -72,12 +72,13 @@
                 <column property="description" autoWidth="true"/>
                 <column property="category" autoWidth="true"/>
                 <column property="equipment" autoWidth="true"/>
+                <column property="checklist" autoWidth="true"/>
                 <column property="jobStatus" autoWidth="true"/>
-                <column property="planTime" autoWidth="true"/>
+                <column property="planStartTime" autoWidth="true"/>
+                <column property="planCompleteTime" autoWidth="true"/>
                 <column property="checkCycle" autoWidth="true"/>
                 <column property="checkCycleUnit" autoWidth="true"/>
-                <column property="actualTime" autoWidth="true"/>
-                <column property="checklist" autoWidth="true"/>
+                <column property="actualCompleteTime" autoWidth="true"/>
             </columns>
         </dataGrid>
         <tabSheet id="tabSheet" width="100%" height="100%" minHeight="15em" themeNames="small"

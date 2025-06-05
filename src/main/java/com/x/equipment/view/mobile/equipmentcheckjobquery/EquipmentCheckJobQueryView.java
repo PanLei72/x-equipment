@@ -93,14 +93,20 @@ public class EquipmentCheckJobQueryView extends StandardView {
 
             HorizontalLayout infoLine4 = createHorizontalLayout();
 
-            H5 planTimeTitle = new H5("计划时间:");
-            planTimeTitle.setClassName("display-white-space");
-            Span planTimeSpan = new Span(checkJob.getPlanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+            H5 planStartTimeTitle = new H5("计划时间:");
+            planStartTimeTitle.setClassName("display-white-space");
+            Span planStartTimeSpan = new Span(checkJob.getPlanStartTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
-            infoLine4.add(planTimeTitle, planTimeSpan);
+            infoLine4.add(planStartTimeTitle, planStartTimeSpan);
 
+            HorizontalLayout infoLine5 = createHorizontalLayout();
 
-            infoLayout.add(infoLine, infoLine2, infoLine3, infoLine4);
+            H5 planCompleteTimeTitle = new H5("计划完成时间:");
+            planCompleteTimeTitle.setClassName("display-white-space");
+            Span planCompleteTimeSpan = new Span(checkJob.getPlanCompleteTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+
+            infoLine5.add(planCompleteTimeTitle, planCompleteTimeSpan);
+            infoLayout.add(infoLine, infoLine2, infoLine3, infoLine4, infoLine5);
 
             Avatar avatar = new Avatar();
             avatar.addThemeVariants(AvatarVariant.LUMO_XLARGE);

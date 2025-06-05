@@ -75,9 +75,13 @@ public class CheckJob {
     @NotNull
     private String jobStatus;
 
-    @Column(name = "PLAN_TIME", nullable = false)
+    @Column(name = "PLAN_START_TIME", nullable = false)
     @NotNull
-    private LocalDateTime planTime;
+    private LocalDateTime planStartTime;
+
+    @NotNull
+    @Column(name = "PLAN_COMPLETE_TIME", nullable = false)
+    private LocalDateTime planCompleteTime;
 
     @Column(name = "CHECK_CYCLE", nullable = false)
     @NotNull
@@ -87,12 +91,20 @@ public class CheckJob {
     @NotNull
     private String checkCycleUnit;
 
-    @Column(name = "ACTUAL_TIME")
-    private LocalDateTime actualTime;
+    @Column(name = "ACTUAL_COMPLETE_TIME")
+    private LocalDateTime actualCompleteTime;
 
     @Composition
-    @OneToMany(mappedBy = "checkJob", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "checkJob", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<CheckJobItem> checkJobItems;
+
+    public LocalDateTime getPlanCompleteTime() {
+        return planCompleteTime;
+    }
+
+    public void setPlanCompleteTime(LocalDateTime planCompleteTime) {
+        this.planCompleteTime = planCompleteTime;
+    }
 
     public List<CheckJobItem> getCheckJobItems() {
         return checkJobItems;
@@ -126,12 +138,12 @@ public class CheckJob {
         this.jobName = jobName;
     }
 
-    public LocalDateTime getActualTime() {
-        return actualTime;
+    public LocalDateTime getActualCompleteTime() {
+        return actualCompleteTime;
     }
 
-    public void setActualTime(LocalDateTime actualTime) {
-        this.actualTime = actualTime;
+    public void setActualCompleteTime(LocalDateTime actualCompleteTime) {
+        this.actualCompleteTime = actualCompleteTime;
     }
 
     public CheckCycleUnit getCheckCycleUnit() {
@@ -150,12 +162,12 @@ public class CheckJob {
         this.checkCycle = checkCycle;
     }
 
-    public LocalDateTime getPlanTime() {
-        return planTime;
+    public LocalDateTime getPlanStartTime() {
+        return planStartTime;
     }
 
-    public void setPlanTime(LocalDateTime planTime) {
-        this.planTime = planTime;
+    public void setPlanStartTime(LocalDateTime planStartTime) {
+        this.planStartTime = planStartTime;
     }
 
     public JobStatus getJobStatus() {

@@ -93,14 +93,22 @@ public class EquipmentCheckJobView extends StandardView {
 
             HorizontalLayout infoLine4 = createHorizontalLayout();
 
-            H5 planTimeTitle = new H5("计划时间:");
-            planTimeTitle.setClassName("display-white-space");
-            Span planTimeSpan = new Span(checkJob.getPlanTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+            H5 planStartTimeTitle = new H5("计划开始时间:");
+            planStartTimeTitle.setClassName("display-white-space");
+            Span planStartTimeSpan = new Span(checkJob.getPlanStartTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
-            infoLine4.add(planTimeTitle, planTimeSpan);
+            infoLine4.add(planStartTimeTitle, planStartTimeSpan);
+
+            HorizontalLayout infoLine5 = createHorizontalLayout();
+
+            H5 planCompleteTimeTitle = new H5("计划完成时间:");
+            planCompleteTimeTitle.setClassName("display-white-space");
+            Span planCompleteTimeSpan = new Span(checkJob.getPlanCompleteTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+
+            infoLine5.add(planCompleteTimeTitle, planCompleteTimeSpan);
 
 
-            infoLayout.add(infoLine, infoLine2, infoLine3, infoLine4);
+            infoLayout.add(infoLine, infoLine2, infoLine3, infoLine4, infoLine5);
 
             Avatar avatar = new Avatar();
             avatar.addThemeVariants(AvatarVariant.LUMO_XLARGE);
@@ -124,17 +132,17 @@ public class EquipmentCheckJobView extends StandardView {
             buttonsPanel.setPadding(false);
             buttonsPanel.setSpacing(false);
 
-            Button startButton = new Button(new Icon(VaadinIcon.CHECK_CIRCLE_O));
-            startButton.setText(messages.getMessage("actions.Start"));
-            startButton.addClickListener(e ->
+            Button completeButton = new Button(new Icon(VaadinIcon.CHECK_CIRCLE_O));
+            completeButton.setText(messages.getMessage("actions.Complete"));
+            completeButton.addClickListener(e ->
                     viewNavigators.detailView(this, CheckJob.class)
                             .withViewClass(EquipmentCheckJobItemView.class)
                             .editEntity(checkJob)
                             .withBackwardNavigation(true)
                             .navigate());
-            startButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE);
+            completeButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE);
 
-            buttonsPanel.add(startButton);
+            buttonsPanel.add(completeButton);
 
             infoLayout.add(avatar, buttonsPanel);
 

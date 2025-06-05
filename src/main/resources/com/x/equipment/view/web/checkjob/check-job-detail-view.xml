@@ -41,9 +41,10 @@
             </entityPicker>
             <textField id="descriptionField" property="description"/>
             <textField id="categoryField" property="category"/>
-            <dateTimePicker id="planTimeField" property="planTime"/>
             <textField id="checkCycleField" property="checkCycle"/>
             <select id="checkCycleUnitField" property="checkCycleUnit"/>
+            <dateTimePicker id="planStartTimeField" property="planStartTime"/>
+            <dateTimePicker id="planCompleteTimeField" property="planCompleteTime"/>
         </formLayout>
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveAction"/>

@@ -31,7 +31,10 @@
             <column name="JOB_STATUS" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="PLAN_TIME" type="DATETIME">
+            <column name="PLAN_START_TIME" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PLAN_COMPLETE_TIME" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
             <column name="CHECK_CYCLE" type="INT">
@@ -40,7 +43,7 @@
             <column name="CHECK_CYCLE_UNIT" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="ACTUAL_TIME" type="DATETIME"/>
+            <column name="ACTUAL_COMPLETE_TIME" type="DATETIME"/>
         </createTable>
     </changeSet>
     <changeSet id="2" author="EQUI">
