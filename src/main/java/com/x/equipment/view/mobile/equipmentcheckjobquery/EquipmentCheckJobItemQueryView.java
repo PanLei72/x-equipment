@@ -1,4 +1,4 @@
-package com.x.equipment.view.mobile.equipmentcheckjob;
+package com.x.equipment.view.mobile.equipmentcheckjobquery;
 
 
 import com.vaadin.flow.component.html.H4;
@@ -15,13 +15,8 @@ import com.x.equipment.constants.JobStatus;
 import com.x.equipment.entity.CheckJob;
 import com.x.equipment.entity.CheckJobItem;
 import com.x.equipment.view.mobile.main.MobileMainView;
-import io.jmix.core.DataManager;
-import io.jmix.core.Messages;
 import io.jmix.core.MetadataTools;
 import io.jmix.flowui.UiComponents;
-import io.jmix.flowui.ViewNavigators;
-import io.jmix.flowui.component.textfield.TypedTextField;
-import io.jmix.flowui.data.value.ContainerValueSource;
 import io.jmix.flowui.model.DataComponents;
 import io.jmix.flowui.model.InstanceContainer;
 import io.jmix.flowui.view.*;
@@ -30,23 +25,16 @@ import org.springframework.lang.Nullable;
 
 import java.time.LocalDateTime;
 
-@Route(value = "equipment-check-job-item-view/:id", layout = MobileMainView.class)
-@ViewController(id = "EQUI_EquipmentCheckJobItemView")
-@ViewDescriptor(path = "equipment-check-job-item-view.xml")
+@Route(value = "equipment-check-job-item-query-view/:id", layout = MobileMainView.class)
+@ViewController(id = "EQUI_EquipmentCheckJobItemQueryView")
+@ViewDescriptor(path = "equipment-check-job-item-query-view.xml")
 @EditedEntityContainer("checkJobDc")
-public class EquipmentCheckJobItemView extends StandardDetailView<CheckJob> {
-
+public class EquipmentCheckJobItemQueryView extends StandardDetailView<CheckJob>  {
 
     @Autowired
     protected UiComponents uiComponents;
     @Autowired
     protected MetadataTools metadataTools;
-    @Autowired
-    private Messages messages;
-    @Autowired
-    private ViewNavigators viewNavigators;
-    @Autowired
-    private DataManager dataManager;
     @Autowired
     private DataComponents dataComponents;
     @ViewComponent
@@ -127,10 +115,8 @@ public class EquipmentCheckJobItemView extends StandardDetailView<CheckJob> {
 
             H5 checkResultTitle = new H5("检查结果:");
             checkResultTitle.setClassName("display-white-space");
-            TypedTextField<String> checkResultField = uiComponents.create(TypedTextField.class);
-            checkResultField.setValueSource(new ContainerValueSource<>(checkJobItemDc, "checkResult"));
-
-            infoLine7.add(checkResultTitle, checkResultField);
+            Span checkResultSpan = new Span(checkJobItem.getCheckResult());
+            infoLine7.add(upperLimitValueTitle, checkResultSpan);
 
 
             infoLayout.add(infoLine, infoLine1, infoLine2, infoLine3, infoLine4, infoLine5,infoLine6, infoLine7);
@@ -142,7 +128,7 @@ public class EquipmentCheckJobItemView extends StandardDetailView<CheckJob> {
     }
 
     @Subscribe
-    public void onBeforeSave(final BeforeSaveEvent event) {
+    public void onBeforeSave(final StandardDetailView.BeforeSaveEvent event) {
         CheckJob checkJob = this.getEditedEntity();
         checkJob.setJobStatus(JobStatus.COMPLETED);
         checkJob.setActualTime(LocalDateTime.now());
@@ -177,5 +163,4 @@ public class EquipmentCheckJobItemView extends StandardDetailView<CheckJob> {
 
         return gradeSpan;
     }
-
 }

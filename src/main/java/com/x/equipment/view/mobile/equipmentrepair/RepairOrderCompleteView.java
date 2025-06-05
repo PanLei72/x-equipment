@@ -9,15 +9,15 @@ import io.jmix.flowui.view.*;
 
 import java.time.LocalDateTime;
 
-@Route(value = "repair-orders-confirm/:id", layout = MobileMainView.class)
-@ViewController(id = "EQUI_RepairOrder.confirm")
-@ViewDescriptor(path = "repair-order-confirm-view.xml")
+@Route(value = "repair-orders-complete/:id", layout = MobileMainView.class)
+@ViewController(id = "EQUI_RepairOrder.complete")
+@ViewDescriptor(path = "repair-order-complete-view.xml")
 @EditedEntityContainer("repairOrderDc")
-public class RepairOrderConfirmView extends StandardDetailView<RepairOrder> {
+public class RepairOrderCompleteView extends StandardDetailView<RepairOrder> {
     @Subscribe("saveAction")
     public void onSaveAction(final ActionPerformedEvent event) {
         RepairOrder repairOrder = this.getEditedEntity();
-        repairOrder.setOrderStatus(RepairOrderStatus.CLOSED);
+        repairOrder.setOrderStatus(RepairOrderStatus.COMPLETED);
         repairOrder.setCompleteRepairTime(LocalDateTime.now());
 
         closeWithSave();

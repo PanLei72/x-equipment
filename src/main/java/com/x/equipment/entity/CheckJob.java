@@ -50,11 +50,11 @@ public class CheckJob {
     @Column(name = "LAST_MODIFIED_DATE")
     private OffsetDateTime lastModifiedDate;
 
+    @InstanceName
     @Column(name = "JOB_NAME", nullable = false)
     @NotNull
     private String jobName;
 
-    @InstanceName
     @Column(name = "DESCRIPTION")
     private String description;
 

@@ -8,7 +8,11 @@ import com.vaadin.flow.server.StreamResource;
 import com.x.equipment.entity.RepairOrder;
 import com.x.equipment.entity.User;
 import com.x.equipment.view.mobile.equipmentcheckjob.EquipmentCheckJobView;
+import com.x.equipment.view.mobile.equipmentcheckjobquery.EquipmentCheckJobQueryView;
+import com.x.equipment.view.mobile.equipmentrepair.EquipmentRepairConfirmView;
 import com.x.equipment.view.mobile.equipmentrepair.EquipmentRepairView;
+import com.x.equipment.view.mobile.equipmentrepair.RepairOrderCreateView;
+import com.x.equipment.view.mobile.equipmentrepairorderquery.EquipmentRepairOrderQueryView;
 import com.x.equipment.view.web.repairorder.RepairOrderDetailView;
 import com.x.equipment.view.web.repairorder.RepairOrderListView;
 import com.x.equipment.view.web.user.UserDetailView;
@@ -21,8 +25,6 @@ import io.jmix.flowui.kit.component.button.JmixButton;
 import io.jmix.flowui.kit.component.main.ListMenu;
 import io.jmix.flowui.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.Optional;
 
 @Route(value = "mobile-main")
 @ViewController("MobileMainView")
@@ -49,6 +51,25 @@ public class MobileMainView extends StandardMainView {
         viewNavigators.view(this, EquipmentCheckJobView.class).withBackwardNavigation(true).navigate();
     }
 
+    @Subscribe(id = "maintenanceJobButton", subject = "clickListener")
+    public void onMaintenanceJobButtonClick(final ClickEvent<JmixButton> event) {
+        viewNavigators.view(this, EquipmentCheckJobView.class).withBackwardNavigation(true).navigate();
+    }
+
+    @Subscribe(id = "checkJobQueryButton", subject = "clickListener")
+    public void onCheckJobQueryButtonClick(final ClickEvent<JmixButton> event) {
+        viewNavigators.view(this, EquipmentCheckJobQueryView.class).withBackwardNavigation(true).navigate();
+
+    }
+
+    @Subscribe(id = "maintenanceJobQueryButton", subject = "clickListener")
+    public void onMaintenanceJobQueryButtonClick(final ClickEvent<JmixButton> event) {
+        viewNavigators.view(this, EquipmentCheckJobQueryView.class).withBackwardNavigation(true).navigate();
+
+    }
+
+
+
     @Subscribe(id = "equipmentRepair", subject = "clickListener")
     public void onEquipmentRepairClick(final ClickEvent<JmixButton> event) {
         viewNavigators.view(this, EquipmentRepairView.class).withBackwardNavigation(true).navigate();
@@ -57,16 +78,22 @@ public class MobileMainView extends StandardMainView {
     @Subscribe(id = "equipmentRepairCreate", subject = "clickListener")
     public void onEquipmentRepairCreateClick(final ClickEvent<JmixButton> event) {
         viewNavigators.detailView(this, RepairOrder.class)
-                .withViewClass(RepairOrderDetailView.class)
+                .withViewClass(RepairOrderCreateView.class)
                 .newEntity()
                 .withBackwardNavigation(true)
                 .navigate();
     }
 
+    @Subscribe(id = "equipmentRepairConfirm", subject = "clickListener")
+    public void onEquipmentRepairConfirmClick(final ClickEvent<JmixButton> event) {
+        viewNavigators.view(this, EquipmentRepairConfirmView.class).withBackwardNavigation(true).navigate();
+
+    }
+
     @Subscribe(id = "equipmentRepairOrderQuery", subject = "clickListener")
     public void onEquipmentRepairOrderQueryClick(final ClickEvent<JmixButton> event) {
         viewNavigators.listView(this, RepairOrder.class)
-                .withViewClass(RepairOrderListView.class)
+                .withViewClass(EquipmentRepairOrderQueryView.class)
                 .withBackwardNavigation(true)
                 .navigate();
     }

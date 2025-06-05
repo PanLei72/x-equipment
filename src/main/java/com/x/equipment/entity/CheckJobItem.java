@@ -50,6 +50,7 @@ public class CheckJobItem {
     @Column(name = "SEQUENCE")
     private Integer sequence;
 
+    @InstanceName
     @Column(name = "JOB_ITEM_NAME", nullable = false)
     @NotNull
     private String jobItemName;
@@ -57,7 +58,6 @@ public class CheckJobItem {
     @Column(name = "CATEGORY")
     private String category;
 
-    @InstanceName
     @Column(name = "DESCRIPTION")
     private String description;
 

@@ -52,11 +52,11 @@ public class CheckListItem {
     @Column(name = "SEQUENCE")
     private Integer sequence;
 
+    @InstanceName
     @Column(name = "CHECKLIST_ITEM_NAME", nullable = false)
     @NotNull
     private String checklistItemName;
 
-    @InstanceName
     @Column(name = "DESCRIPTION")
     private String description;
 

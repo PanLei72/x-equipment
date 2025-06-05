@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://repairOrderCloseView.title"
+      focusComponent="form">
+    <data>
+        <instance id="repairOrderDc"
+                  class="com.x.equipment.entity.RepairOrder">
+            <fetchPlan extends="_base"/>
+            <loader id="repairOrderDl"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <formLayout id="form" dataContainer="repairOrderDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="2"/>
+            </responsiveSteps>
+            <textField id="orderNumberField" property="orderNumber" readOnly="true"/>
+            <textField id="descriptionField" property="description" readOnly="true"/>
+            <select id="orderStatusField" property="orderStatus" readOnly="true"/>
+            <dateTimePicker id="repairTimeField" property="repairTime" readOnly="true"/>
+            <dateTimePicker id="startRepairTimeField" property="startRepairTime" readOnly="true"/>
+            <dateTimePicker id="completeRepairTimeField" property="completeRepairTime" readOnly="true"/>
+        </formLayout>
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>

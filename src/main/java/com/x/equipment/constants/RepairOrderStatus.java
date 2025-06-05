@@ -9,7 +9,8 @@ public enum RepairOrderStatus implements EnumClass<String> {
 
     CREATED("Created"),
     IN_PROGRESS("InProgress"),
-    REPAIRED("Repaired"),
+    COMPLETED("Completed"),
+    CANCELED("Canceled"),
     CLOSED("Closed");
 
     private final String id;

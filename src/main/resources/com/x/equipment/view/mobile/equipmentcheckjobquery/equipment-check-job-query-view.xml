@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://equipmentCheckJobQueryView.title">
+    <data>
+        <collection id="checkJobsDc"
+                    class="com.x.equipment.entity.CheckJob">
+            <fetchPlan extends="_base"/>
+            <loader id="checkJobsDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from EQUI_CheckJob e order by e.jobName]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+
+    <layout>
+        <virtualList id="virtualList" width="100%"
+                     itemsContainer="checkJobsDc"
+                     alignSelf="CENTER"/>
+    </layout>
+</view>
