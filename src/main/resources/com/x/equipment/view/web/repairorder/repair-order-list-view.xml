@@ -38,11 +38,11 @@
             </responsiveSteps>
             <configurations>
                 <configuration id="defaultFilter" name="msg:///defaultFilter" default="true">
-                    <propertyFilter property="orderNumber" operation="CONTAINS"/>
-                    <propertyFilter property="description" operation="CONTAINS"/>
-                    <propertyFilter property="equipment" operation="EQUAL"/>
-                    <propertyFilter property="faultLevel" operation="EQUAL"/>
-                    <propertyFilter property="faultType" operation="EQUAL"/>
+                    <propertyFilter property="orderNumber" operation="CONTAINS" operationEditable="true"/>
+                    <propertyFilter property="description" operation="CONTAINS" operationEditable="true"/>
+                    <propertyFilter property="equipment" operation="EQUAL" operationEditable="true"/>
+                    <propertyFilter property="faultLevel" operation="EQUAL" operationEditable="true"/>
+                    <propertyFilter property="faultType" operation="EQUAL" operationEditable="true"/>
                 </configuration>
             </configurations>
             <properties include=".*"/>

@@ -34,8 +34,8 @@
             </responsiveSteps>
             <configurations>
                 <configuration id="defaultFilter" name="msg:///defaultFilter" default="true">
-                    <propertyFilter property="levelName" operation="CONTAINS"/>
-                    <propertyFilter property="description" operation="CONTAINS"/>
+                    <propertyFilter property="levelName" operation="CONTAINS" operationEditable="true"/>
+                    <propertyFilter property="description" operation="CONTAINS" operationEditable="true"/>
                 </configuration>
             </configurations>
             <properties include=".*"/>
