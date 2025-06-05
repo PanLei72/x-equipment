@@ -1,6 +1,5 @@
 package com.x.equipment.service;
 
-import com.x.equipment.entity.CheckList;
 import com.x.equipment.entity.CheckPlan;
 import io.jmix.core.DataManager;
 import io.jmix.core.querycondition.PropertyCondition;

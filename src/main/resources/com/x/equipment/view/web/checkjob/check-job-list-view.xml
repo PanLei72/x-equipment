@@ -71,32 +71,19 @@
                 <column property="jobName" autoWidth="true"/>
                 <column property="description" autoWidth="true"/>
                 <column property="category" autoWidth="true"/>
+                <column property="equipment" autoWidth="true"/>
                 <column property="jobStatus" autoWidth="true"/>
                 <column property="planTime" autoWidth="true"/>
                 <column property="checkCycle" autoWidth="true"/>
                 <column property="checkCycleUnit" autoWidth="true"/>
                 <column property="actualTime" autoWidth="true"/>
                 <column property="checklist" autoWidth="true"/>
-                <column property="equipment" autoWidth="true"/>
             </columns>
         </dataGrid>
         <tabSheet id="tabSheet" width="100%" height="100%" minHeight="15em" themeNames="small"
                   classNames="content-padding">
             <tab id="tabChecklistItems" label="msg://com.x.equipment.entity/CheckList.checkListItems">
                 <dataGrid id="checkJobItemsDataGrid" dataContainer="checkJobItemsDc" width="100%" height="100%">
-                    <actions>
-                        <action id="createAction" type="list_create">
-                            <properties>
-                                <property name="openMode" value="DIALOG"/>
-                            </properties>
-                        </action>
-                        <action id="editAction" type="list_edit">
-                            <properties>
-                                <property name="openMode" value="DIALOG"/>
-                            </properties>
-                        </action>
-                        <action id="removeAction" type="list_remove"/>
-                    </actions>
                     <columns>
                         <column property="sequence" autoWidth="true"/>
                         <column property="jobItemName" autoWidth="true"/>

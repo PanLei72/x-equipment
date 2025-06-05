@@ -91,7 +91,7 @@ public class CheckJob {
     private LocalDateTime actualTime;
 
     @Composition
-    @OneToMany(mappedBy = "checkJob")
+    @OneToMany(mappedBy = "checkJob", cascade={CascadeType.PERSIST, CascadeType.REMOVE})
     private List<CheckJobItem> checkJobItems;
 
     public List<CheckJobItem> getCheckJobItems() {

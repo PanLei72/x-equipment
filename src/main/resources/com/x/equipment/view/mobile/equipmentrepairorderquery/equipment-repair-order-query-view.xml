@@ -17,6 +17,11 @@
     </facets>
 
     <layout>
+        <flexLayout flexWrap="WRAP">
+            <propertyFilter labelWidth="8em" property="orderNumber" operation="CONTAINS" dataLoader="repairOrdersDl" operationEditable="true"/>
+            <propertyFilter labelWidth="8em" property="description" operation="CONTAINS" dataLoader="repairOrdersDl" operationEditable="true"/>
+        </flexLayout>
+        <simplePagination id="pagination" dataLoader="repairOrdersDl" itemsPerPageVisible="true" autoLoad="true"/>
         <virtualList id="virtualList" width="100%"
                      itemsContainer="repairOrdersDc"
                      alignSelf="CENTER"/>

@@ -2,8 +2,10 @@ package com.x.equipment.job;
 
 import com.x.equipment.constants.JobStatus;
 import com.x.equipment.entity.*;
+import com.x.equipment.service.CheckJobService;
 import io.jmix.core.DataManager;
 import io.jmix.core.security.Authenticated;
+import io.jmix.flowui.model.DataContext;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -12,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +24,10 @@ public class CheckJobGeneratorJob implements Job {
     private static final Logger log = LoggerFactory.getLogger(CheckJobGeneratorJob.class);
     @Autowired
     private DataManager dataManager;
+
+    @Autowired
+    private CheckJobService checkJobService;
+
 
     @Authenticated
     @Override
@@ -56,8 +63,10 @@ public class CheckJobGeneratorJob implements Job {
         }
 
         for (Equipment equipment : equipmentList) {
+            String jobName = checkJobService.generateJobName();
+
             CheckJob checkJob = dataManager.create(CheckJob.class);
-            checkJob.setJobName(LocalDateTime.now().toString());
+            checkJob.setJobName(jobName);
             checkJob.setDescription(checkPlan.getDescription());
             checkJob.setEquipment(equipment);
             checkJob.setCheckCycle(checkPlan.getCheckCycle());
@@ -66,8 +75,7 @@ public class CheckJobGeneratorJob implements Job {
             checkJob.setJobStatus(JobStatus.CREATED);
             checkJob.setPlanTime(LocalDateTime.now());
 
-            dataManager.save(checkJob);
-
+            List<CheckJobItem> checkJobItemList = new ArrayList<>();
             for(CheckListItem checkListItem : checkListItemList) {
                 CheckJobItem checkJobItem = dataManager.create(CheckJobItem.class);
                 checkJobItem.setJobItemName(checkListItem.getChecklistItemName());
@@ -80,11 +88,15 @@ public class CheckJobGeneratorJob implements Job {
                 checkJobItem.setStandardValue(checkListItem.getStandardValue());
                 checkJobItem.setLowerLimitValue(checkListItem.getLowerLimitValue());
                 checkJobItem.setUpperLimitValue(checkListItem.getUpperLimitValue());
-                checkJobItem.setEquipmentCheckJob(checkJob);
+                checkJobItem.setCheckJob(checkJob);
 
-                dataManager.save(checkJobItem);
+                checkJobItemList.add(checkJobItem);
+
             }
 
+            checkJob.setCheckJobItems(checkJobItemList);
+
+            dataManager.save(checkJob);
         }
 
     }

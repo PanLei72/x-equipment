@@ -17,6 +17,12 @@
     </facets>
 
     <layout>
+        <flexLayout flexWrap="WRAP">
+            <propertyFilter labelWidth="8em" property="jobName" operation="CONTAINS" dataLoader="checkJobsDl" operationEditable="true"/>
+            <propertyFilter labelWidth="8em" property="description" operation="CONTAINS" dataLoader="checkJobsDl" operationEditable="true"/>
+            <propertyFilter labelWidth="8em" property="category" operation="CONTAINS" dataLoader="checkJobsDl" operationEditable="true"/>
+        </flexLayout>
+        <simplePagination id="pagination" dataLoader="checkJobsDl" itemsPerPageVisible="true" autoLoad="true"/>
         <virtualList id="virtualList" width="100%"
                      itemsContainer="checkJobsDc"
                      alignSelf="CENTER"/>

@@ -39,7 +39,6 @@
                     <action id="entityClear" type="entity_clear"/>
                 </actions>
             </entityPicker>
-            <textField id="jobNameField" property="jobName"/>
             <textField id="descriptionField" property="description"/>
             <textField id="categoryField" property="category"/>
             <dateTimePicker id="planTimeField" property="planTime"/>

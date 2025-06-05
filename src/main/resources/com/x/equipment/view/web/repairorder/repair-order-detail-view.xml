@@ -42,7 +42,6 @@
                 <responsiveStep minWidth="0" columns="1"/>
                 <responsiveStep minWidth="40em" columns="2"/>
             </responsiveSteps>
-            <textField id="orderNumberField" property="orderNumber"/>
             <entityPicker id="equipmentField" property="equipment">
                 <actions>
                     <action id="entityLookupAction" type="entity_lookup"/>

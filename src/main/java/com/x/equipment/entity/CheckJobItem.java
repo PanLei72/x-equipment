@@ -85,10 +85,6 @@ public class CheckJobItem {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private CheckJob checkJob;
 
-    public CheckJob getCheckJob() {
-        return checkJob;
-    }
-
     public String getCheckMethod() {
         return checkMethod;
     }
@@ -97,11 +93,11 @@ public class CheckJobItem {
         this.checkMethod = checkMethod;
     }
 
-    public CheckJob getEquipmentCheckJob() {
+    public CheckJob getCheckJob() {
         return checkJob;
     }
 
-    public void setEquipmentCheckJob(CheckJob checkJob) {
+    public void setCheckJob(CheckJob checkJob) {
         this.checkJob = checkJob;
     }
 
