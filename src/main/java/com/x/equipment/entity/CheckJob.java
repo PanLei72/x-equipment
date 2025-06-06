@@ -1,5 +1,6 @@
 package com.x.equipment.entity;
 
+import com.x.equipment.constants.CheckCategory;
 import com.x.equipment.constants.CheckCycleUnit;
 import com.x.equipment.constants.JobStatus;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
@@ -58,7 +59,8 @@ public class CheckJob {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @Column(name = "CATEGORY")
+    @NotNull
+    @Column(name = "CATEGORY", nullable = false)
     private String category;
 
     @JoinColumn(name = "CHECKLIST_ID", nullable = false)
@@ -98,6 +100,25 @@ public class CheckJob {
     @OneToMany(mappedBy = "checkJob", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<CheckJobItem> checkJobItems;
 
+    @Column(name = "REMARK")
+    private String remark;
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public void setCategory(CheckCategory category) {
+        this.category = category == null ? null : category.getId();
+    }
+
+    public CheckCategory getCategory() {
+        return category == null ? null : CheckCategory.fromId(category);
+    }
+
     public LocalDateTime getPlanCompleteTime() {
         return planCompleteTime;
     }
@@ -112,14 +133,6 @@ public class CheckJob {
 
     public void setCheckJobItems(List<CheckJobItem> checkJobItems) {
         this.checkJobItems = checkJobItems;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public String getDescription() {

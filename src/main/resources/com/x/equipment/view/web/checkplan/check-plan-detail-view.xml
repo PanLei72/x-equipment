@@ -27,7 +27,7 @@
             </responsiveSteps>
             <textField id="checkPlanNameField" property="checkPlanName"/>
             <textField id="descriptionField" property="description"/>
-            <textField id="categoryField" property="category"/>
+            <comboBox id="categoryField" property="category"/>
             <entityPicker id="equipmentClassField" property="equipmentClass">
                 <actions>
                     <action id="entityLookupAction" type="entity_lookup"/>

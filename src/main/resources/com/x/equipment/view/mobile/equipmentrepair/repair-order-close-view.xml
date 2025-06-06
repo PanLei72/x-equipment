@@ -28,6 +28,7 @@
             <dateTimePicker id="repairTimeField" property="repairTime" readOnly="true"/>
             <dateTimePicker id="startRepairTimeField" property="startRepairTime" readOnly="true"/>
             <dateTimePicker id="completeRepairTimeField" property="completeRepairTime" readOnly="true"/>
+            <textField id="remarkField" property="remark"/>
         </formLayout>
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveAction"/>

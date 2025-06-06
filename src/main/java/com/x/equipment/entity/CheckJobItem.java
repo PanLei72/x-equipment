@@ -85,6 +85,17 @@ public class CheckJobItem {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private CheckJob checkJob;
 
+    @Column(name = "REMARK")
+    private String remark;
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     public String getCheckMethod() {
         return checkMethod;
     }

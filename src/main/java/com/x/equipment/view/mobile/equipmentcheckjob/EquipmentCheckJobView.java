@@ -18,6 +18,7 @@ import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.theme.lumo.LumoUtility;
+import com.x.equipment.constants.CheckCategory;
 import com.x.equipment.entity.CheckJob;
 import com.x.equipment.view.mobile.main.MobileMainView;
 import io.jmix.core.FileRef;
@@ -26,14 +27,13 @@ import io.jmix.core.Messages;
 import io.jmix.core.MetadataTools;
 import io.jmix.flowui.UiComponents;
 import io.jmix.flowui.ViewNavigators;
-import io.jmix.flowui.view.StandardView;
-import io.jmix.flowui.view.Supply;
-import io.jmix.flowui.view.ViewController;
-import io.jmix.flowui.view.ViewDescriptor;
+import io.jmix.flowui.model.CollectionLoader;
+import io.jmix.flowui.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Route(value = "equipment-check-job-view", layout = MobileMainView.class)
 @ViewController(id = "EQUI_EquipmentCheckJobView")
@@ -50,6 +50,16 @@ public class EquipmentCheckJobView extends StandardView {
     private FileStorage fileStorage;
     @Autowired
     private ViewNavigators viewNavigators;
+    @ViewComponent
+    private CollectionLoader<CheckJob> checkJobsDl;
+
+    @Subscribe
+    public void onQueryParametersChange(final QueryParametersChangeEvent event) {
+        List<String> categoryParams = event.getQueryParameters().getParameters().get("category");
+        if (categoryParams != null && !categoryParams.isEmpty()) {
+            checkJobsDl.setParameter("category", categoryParams.getFirst());
+        }
+    }
 
     @Supply(to = "virtualList", subject = "renderer")
     private Renderer<CheckJob> virtualListRenderer() {
@@ -63,18 +73,15 @@ public class EquipmentCheckJobView extends StandardView {
 
             H4 orderNumber = new H4(checkJob.getJobName());
 
+            infoLayout.add(orderNumber);
+            HorizontalLayout equipmentLine = createHorizontalLayout();
 
+            H5 equipmentTitle = new H5("设备:");
+            equipmentTitle.setClassName("display-white-space");
             Span equipmentNameSpan = new Span(String.valueOf(checkJob.getEquipment().getEquipmentName()));
 
-            infoLayout.add(orderNumber, equipmentNameSpan);
+            equipmentLine.add(equipmentTitle, equipmentNameSpan);
 
-            HorizontalLayout infoLine = createHorizontalLayout();
-            infoLine.addClassName(LumoUtility.AlignItems.CENTER);
-
-            H5 categoryTitle = new H5("分类:");
-            categoryTitle.setClassName("display-white-space");
-            Span category = new Span(checkJob.getCategory());
-            infoLine.add(categoryTitle, category);
 
             HorizontalLayout infoLine2 = createHorizontalLayout();
             H5 descriptionTitle = new H5("描述:");
@@ -108,7 +115,7 @@ public class EquipmentCheckJobView extends StandardView {
             infoLine5.add(planCompleteTimeTitle, planCompleteTimeSpan);
 
 
-            infoLayout.add(infoLine, infoLine2, infoLine3, infoLine4, infoLine5);
+            infoLayout.add(equipmentLine, infoLine2, infoLine3, infoLine4, infoLine5);
 
             Avatar avatar = new Avatar();
             avatar.addThemeVariants(AvatarVariant.LUMO_XLARGE);
@@ -132,17 +139,27 @@ public class EquipmentCheckJobView extends StandardView {
             buttonsPanel.setPadding(false);
             buttonsPanel.setSpacing(false);
 
-            Button completeButton = new Button(new Icon(VaadinIcon.CHECK_CIRCLE_O));
-            completeButton.setText(messages.getMessage("actions.Complete"));
-            completeButton.addClickListener(e ->
+            Button startButton = new Button(new Icon(VaadinIcon.CHECK_CIRCLE_O));
+            startButton.setText(messages.getMessage("actions.Start"));
+            startButton.addClickListener(e ->
                     viewNavigators.detailView(this, CheckJob.class)
                             .withViewClass(EquipmentCheckJobItemView.class)
                             .editEntity(checkJob)
                             .withBackwardNavigation(true)
                             .navigate());
-            completeButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE);
+            startButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE);
 
-            buttonsPanel.add(completeButton);
+            Button cancelButton = new Button(new Icon(VaadinIcon.CLOSE_CIRCLE_O));
+            cancelButton.setText(messages.getMessage("actions.Cancel"));
+            cancelButton.addClickListener(e ->
+                    viewNavigators.detailView(this, CheckJob.class)
+                            .withViewClass(EquipmentCheckJobCancelView.class)
+                            .editEntity(checkJob)
+                            .withBackwardNavigation(true)
+                            .navigate());
+            cancelButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE);
+
+            buttonsPanel.add(startButton, cancelButton);
 
             infoLayout.add(avatar, buttonsPanel);
 

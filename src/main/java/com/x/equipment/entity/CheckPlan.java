@@ -1,6 +1,7 @@
 package com.x.equipment.entity;
 
 import com.x.equipment.constants.CheckCycleUnit;
+import com.x.equipment.constants.CheckCategory;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
@@ -52,7 +53,8 @@ public class CheckPlan {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @Column(name = "CATEGORY")
+    @NotNull
+    @Column(name = "CATEGORY", nullable = false)
     private String category;
 
     @Column(name = "CHECK_CYCLE", nullable = false)
@@ -72,6 +74,14 @@ public class CheckPlan {
     @NotNull
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     private EquipmentClass equipmentClass;
+
+    public void setCategory(CheckCategory category) {
+        this.category = category == null ? null : category.getId();
+    }
+
+    public CheckCategory getCategory() {
+        return category == null ? null : CheckCategory.fromId(category);
+    }
 
     public EquipmentClass getEquipmentClass() {
         return equipmentClass;
@@ -119,14 +129,6 @@ public class CheckPlan {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public OffsetDateTime getLastModifiedDate() {

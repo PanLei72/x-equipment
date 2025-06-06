@@ -11,6 +11,8 @@ import com.vaadin.flow.data.renderer.Renderer;
 import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.LumoUtility;
+import com.x.equipment.constants.CheckItemResult;
+import com.x.equipment.constants.CheckListItemType;
 import com.x.equipment.constants.JobStatus;
 import com.x.equipment.entity.CheckJob;
 import com.x.equipment.entity.CheckJobItem;
@@ -20,15 +22,21 @@ import io.jmix.core.Messages;
 import io.jmix.core.MetadataTools;
 import io.jmix.flowui.UiComponents;
 import io.jmix.flowui.ViewNavigators;
+import io.jmix.flowui.component.combobox.JmixComboBox;
+import io.jmix.flowui.component.radiobuttongroup.JmixRadioButtonGroup;
 import io.jmix.flowui.component.textfield.TypedTextField;
+import io.jmix.flowui.component.validation.Validator;
 import io.jmix.flowui.data.value.ContainerValueSource;
+import io.jmix.flowui.exception.ValidationException;
 import io.jmix.flowui.model.DataComponents;
 import io.jmix.flowui.model.InstanceContainer;
 import io.jmix.flowui.view.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 @Route(value = "equipment-check-job-item-view/:id", layout = MobileMainView.class)
 @ViewController(id = "EQUI_EquipmentCheckJobItemView")
@@ -51,6 +59,8 @@ public class EquipmentCheckJobItemView extends StandardDetailView<CheckJob> {
     private DataComponents dataComponents;
     @ViewComponent
     private InstanceContainer<CheckJob> checkJobDc;
+    @ViewComponent
+    private MessageBundle messageBundle;
 
     @Supply(to = "virtualList", subject = "renderer")
     private Renderer<CheckJobItem> virtualListRenderer() {
@@ -81,23 +91,16 @@ public class EquipmentCheckJobItemView extends StandardDetailView<CheckJob> {
 
             H5 categoryTitle = new H5("分类:");
             categoryTitle.setClassName("display-white-space");
-            Span category = new Span(checkJobItem.getCategory());
+            Span category = this.createGradeSpan(checkJobItem.getCategory());
             infoLine1.add(categoryTitle, category);
 
             HorizontalLayout infoLine2 = createHorizontalLayout();
             H5 descriptionTitle = new H5("描述:");
             descriptionTitle.setClassName("display-white-space");
-            Span faultLevelSpan = createGradeSpan(checkJobItem.getDescription());
+            Span faultLevelSpan = new Span(checkJobItem.getDescription());
 
             infoLine2.add(descriptionTitle, faultLevelSpan);
 
-            HorizontalLayout infoLine3 = createHorizontalLayout();
-
-            H5 checkCycleTitle = new H5("检查项类型:");
-            checkCycleTitle.setClassName("display-white-space");
-            Span checkCycleSpan = new Span(String.valueOf(checkJobItem.getCheckListItemType()));
-
-            infoLine3.add(checkCycleTitle, checkCycleSpan);
 
             HorizontalLayout infoLine4 = createHorizontalLayout();
 
@@ -127,13 +130,56 @@ public class EquipmentCheckJobItemView extends StandardDetailView<CheckJob> {
 
             H5 checkResultTitle = new H5("检查结果:");
             checkResultTitle.setClassName("display-white-space");
-            TypedTextField<String> checkResultField = uiComponents.create(TypedTextField.class);
-            checkResultField.setValueSource(new ContainerValueSource<>(checkJobItemDc, "checkResult"));
 
-            infoLine7.add(checkResultTitle, checkResultField);
+            infoLine7.add(checkResultTitle);
+
+            if(CheckListItemType.BOOLEAN.equals(checkJobItem.getCheckListItemType())) {
+                JmixRadioButtonGroup checkResultField = uiComponents.create(JmixRadioButtonGroup.class);
+                checkResultField.setItems(Arrays.stream(CheckItemResult.values()).map(Enum::name).toList());
+                checkResultField.setValueSource(new ContainerValueSource<>(checkJobItemDc, "checkResult"));
+                infoLine7.add(checkResultField);
+            }else if(CheckListItemType.NUMBER.equals(checkJobItem.getCheckListItemType())) {
+                TypedTextField<String> checkResultField = uiComponents.create(TypedTextField.class);
+                checkResultField.setClearButtonVisible(true);
+                checkResultField.addValidator(new Validator<String>() {
+                    @Override
+                    public void accept(String value) {
+                        if (StringUtils.isBlank(value)) {
+                            return;
+                        }
+                        // 使用正则表达式校验小数或整数（支持正负号和小数点）
+                        boolean validation = value.matches("^-?\\d*\\.?\\d+$");
+                        if(!validation)
+                        {
+                            throw new ValidationException(messageBundle.getMessage("checkResultNotNumber"));
+                        }
+
+                    }
+                });
+                checkResultField.setValueSource(new ContainerValueSource<>(checkJobItemDc, "checkResult"));
+                infoLine7.add(checkResultField);
+            }else if(CheckListItemType.LIST.equals(checkJobItem.getCheckListItemType())) {
+                JmixComboBox<String> checkResultComboBox = uiComponents.create(JmixComboBox.class);
+                checkResultComboBox.setValueSource(new ContainerValueSource<>(checkJobItemDc, "checkResult"));
+                infoLine7.add(checkResultComboBox);
+            }else {
+                TypedTextField<String> checkResultField = uiComponents.create(TypedTextField.class);
+                checkResultField.setClearButtonVisible(true);
+                checkResultField.setValueSource(new ContainerValueSource<>(checkJobItemDc, "checkResult"));
+                infoLine7.add(checkResultField);
+            }
+
+            HorizontalLayout infoLine8 = createHorizontalLayout();
+            H5 remarkTitle = new H5("备注:");
+            remarkTitle.setClassName("display-white-space");
+            TypedTextField<String> remarkField = uiComponents.create(TypedTextField.class);
+            remarkField.setClearButtonVisible(true);
+            remarkField.setValueSource(new ContainerValueSource<>(checkJobItemDc, "remark"));
+
+            infoLine8.add(remarkTitle, remarkField);
 
 
-            infoLayout.add(infoLine, infoLine1, infoLine2, infoLine3, infoLine4, infoLine5,infoLine6, infoLine7);
+            infoLayout.add(infoLine, infoLine1, infoLine2, infoLine4, infoLine5,infoLine6, infoLine7, infoLine8);
 
             rootCardLayout.add(infoLayout);
 

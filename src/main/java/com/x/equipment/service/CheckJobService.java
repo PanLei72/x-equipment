@@ -109,7 +109,7 @@ public class CheckJobService extends BaseService<CheckJob> {
             CheckJob checkJob = dataManager.create(CheckJob.class);
             checkJob.setJobName(jobName);
             checkJob.setDescription(checkPlan.getDescription());
-            checkJob.setCategory(checkJob.getCategory());
+            checkJob.setCategory(checkPlan.getCategory());
             checkJob.setEquipment(equipment);
             checkJob.setCheckCycle(checkPlan.getCheckCycle());
             checkJob.setCheckCycleUnit(checkPlan.getCheckCycleUnit());
@@ -175,7 +175,7 @@ public class CheckJobService extends BaseService<CheckJob> {
                 .maxResults(1)
                 .list();
 
-        if(checkJobList != null && !checkJobList.isEmpty())
+        if(!checkJobList.isEmpty())
         {
             return checkJobList.getFirst();
         }

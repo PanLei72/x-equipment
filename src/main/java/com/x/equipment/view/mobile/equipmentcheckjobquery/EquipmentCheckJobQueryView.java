@@ -18,6 +18,7 @@ import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.theme.lumo.LumoUtility;
+import com.x.equipment.constants.JobStatus;
 import com.x.equipment.entity.CheckJob;
 import com.x.equipment.view.mobile.main.MobileMainView;
 import io.jmix.core.FileRef;
@@ -26,14 +27,13 @@ import io.jmix.core.Messages;
 import io.jmix.core.MetadataTools;
 import io.jmix.flowui.UiComponents;
 import io.jmix.flowui.ViewNavigators;
-import io.jmix.flowui.view.StandardView;
-import io.jmix.flowui.view.Supply;
-import io.jmix.flowui.view.ViewController;
-import io.jmix.flowui.view.ViewDescriptor;
+import io.jmix.flowui.model.CollectionLoader;
+import io.jmix.flowui.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Route(value = "equipment-check-job-query-view", layout = MobileMainView.class)
 @ViewController(id = "EQUI_EquipmentCheckJobQueryView")
@@ -50,7 +50,16 @@ public class EquipmentCheckJobQueryView extends StandardView {
     private FileStorage fileStorage;
     @Autowired
     private ViewNavigators viewNavigators;
+    @ViewComponent
+    private CollectionLoader<CheckJob> checkJobsDl;
 
+    @Subscribe
+    public void onQueryParametersChange(final QueryParametersChangeEvent event) {
+        List<String> categoryParams = event.getQueryParameters().getParameters().get("category");
+        if (categoryParams != null && !categoryParams.isEmpty()) {
+            checkJobsDl.setParameter("category", categoryParams.getFirst());
+        }
+    }
     @Supply(to = "virtualList", subject = "renderer")
     private Renderer<CheckJob> virtualListRenderer() {
         return new ComponentRenderer<>(checkJob -> {
@@ -62,24 +71,29 @@ public class EquipmentCheckJobQueryView extends StandardView {
             infoLayout.addClassNames(LumoUtility.Padding.Vertical.SMALL, LumoUtility.Gap.SMALL);
 
             H4 orderNumber = new H4(checkJob.getJobName());
+            infoLayout.add(orderNumber);
 
+            HorizontalLayout equipmentLine = createHorizontalLayout();
 
+            H5 equipmentTitle = new H5("设备:");
+            equipmentTitle.setClassName("display-white-space");
             Span equipmentNameSpan = new Span(String.valueOf(checkJob.getEquipment().getEquipmentName()));
 
-            infoLayout.add(orderNumber, equipmentNameSpan);
+            equipmentLine.add(equipmentTitle, equipmentNameSpan);
 
-            HorizontalLayout infoLine = createHorizontalLayout();
-            infoLine.addClassName(LumoUtility.AlignItems.CENTER);
 
-            H5 categoryTitle = new H5("分类:");
-            categoryTitle.setClassName("display-white-space");
-            Span category = new Span(checkJob.getCategory());
-            infoLine.add(categoryTitle, category);
+            HorizontalLayout jobStatusLine = createHorizontalLayout();
+
+            H5 jobStatusTitle = new H5("状态:");
+            jobStatusTitle.setClassName("display-white-space");
+            Span jobStatusSpan = this.createJobStatusSpan(checkJob.getJobStatus());
+
+            jobStatusLine.add(jobStatusTitle, jobStatusSpan);
 
             HorizontalLayout infoLine2 = createHorizontalLayout();
             H5 descriptionTitle = new H5("描述:");
             descriptionTitle.setClassName("display-white-space");
-            Span faultLevelSpan = createGradeSpan(checkJob.getDescription());
+            Span faultLevelSpan = createCategorySpan(checkJob.getDescription());
 
             infoLine2.add(descriptionTitle, faultLevelSpan);
 
@@ -106,7 +120,7 @@ public class EquipmentCheckJobQueryView extends StandardView {
             Span planCompleteTimeSpan = new Span(checkJob.getPlanCompleteTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
             infoLine5.add(planCompleteTimeTitle, planCompleteTimeSpan);
-            infoLayout.add(infoLine, infoLine2, infoLine3, infoLine4, infoLine5);
+            infoLayout.add(equipmentLine, jobStatusLine, infoLine2, infoLine3, infoLine4, infoLine5);
 
             Avatar avatar = new Avatar();
             avatar.addThemeVariants(AvatarVariant.LUMO_XLARGE);
@@ -166,16 +180,32 @@ public class EquipmentCheckJobQueryView extends StandardView {
         return layout;
     }
 
-    protected Span createGradeSpan(@Nullable String grade) {
-        Span gradeSpan = new Span(metadataTools.format(grade));
+    protected Span createCategorySpan(@Nullable String category) {
+        Span gradeSpan = new Span(metadataTools.format(category));
 
-        if (grade != null) {
-            ThemeList gradeThemeList = gradeSpan.getElement().getThemeList();
+        if (category != null) {
+            ThemeList categoryThemeList = gradeSpan.getElement().getThemeList();
 
-            switch (grade) {
-                case "A" -> gradeThemeList.add("badge contrast");
-                case "B" -> gradeThemeList.add("badge primary");
-                default -> gradeThemeList.add("badge");
+            switch (category) {
+                case "Inspection" -> categoryThemeList.add("badge contrast");
+                case "Maintenance" -> categoryThemeList.add("badge primary");
+                default -> categoryThemeList.add("badge");
+            }
+        }
+
+        return gradeSpan;
+    }
+
+    protected Span createJobStatusSpan(@Nullable JobStatus jobStatus) {
+        Span gradeSpan = new Span(metadataTools.format(jobStatus));
+
+        if (jobStatus != null) {
+            ThemeList jobStatusThemeList = gradeSpan.getElement().getThemeList();
+
+            switch (jobStatus) {
+                case JobStatus.CREATED -> jobStatusThemeList.add("badge primary");
+                case JobStatus.COMPLETED -> jobStatusThemeList.add("badge contrast");
+                default -> jobStatusThemeList.add("badge");
             }
         }
 

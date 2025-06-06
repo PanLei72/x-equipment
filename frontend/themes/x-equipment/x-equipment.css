@@ -55,6 +55,9 @@ jmix-tabsheet.content-padding::part(content) {
 
 .display-white-space {
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    min-width: 5em;
 }
 
 .jmix-main-view-navigation {

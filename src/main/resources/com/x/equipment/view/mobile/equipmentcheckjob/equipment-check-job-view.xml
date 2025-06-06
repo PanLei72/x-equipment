@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
       title="msg://equipmentCheckJobView.title">
     <data>
         <collection id="checkJobsDc"
@@ -8,6 +9,13 @@
             <loader id="checkJobsDl" readOnly="true">
                 <query>
                     <![CDATA[select e from EQUI_CheckJob e where e.jobStatus in ('Created') order by e.jobName]]>
+                    <condition>
+                        <and>
+                            <c:jpql>
+                                <c:where>e.category = :category</c:where>
+                            </c:jpql>
+                        </and>
+                    </condition>
                 </query>
             </loader>
         </collection>

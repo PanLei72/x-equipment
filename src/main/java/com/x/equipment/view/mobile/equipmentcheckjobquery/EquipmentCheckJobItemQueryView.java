@@ -69,13 +69,13 @@ public class EquipmentCheckJobItemQueryView extends StandardDetailView<CheckJob>
 
             H5 categoryTitle = new H5("分类:");
             categoryTitle.setClassName("display-white-space");
-            Span category = new Span(checkJobItem.getCategory());
+            Span category = this.createGradeSpan(checkJobItem.getCategory());
             infoLine1.add(categoryTitle, category);
 
             HorizontalLayout infoLine2 = createHorizontalLayout();
             H5 descriptionTitle = new H5("描述:");
             descriptionTitle.setClassName("display-white-space");
-            Span faultLevelSpan = createGradeSpan(checkJobItem.getDescription());
+            Span faultLevelSpan = new Span(checkJobItem.getDescription());
 
             infoLine2.add(descriptionTitle, faultLevelSpan);
 
@@ -116,10 +116,16 @@ public class EquipmentCheckJobItemQueryView extends StandardDetailView<CheckJob>
             H5 checkResultTitle = new H5("检查结果:");
             checkResultTitle.setClassName("display-white-space");
             Span checkResultSpan = new Span(checkJobItem.getCheckResult());
-            infoLine7.add(upperLimitValueTitle, checkResultSpan);
+            infoLine7.add(checkResultTitle, checkResultSpan);
 
+            HorizontalLayout infoLine8 = createHorizontalLayout();
 
-            infoLayout.add(infoLine, infoLine1, infoLine2, infoLine3, infoLine4, infoLine5,infoLine6, infoLine7);
+            H5 remarkTitle = new H5("检查结果:");
+            remarkTitle.setClassName("display-white-space");
+            Span remarkSpan = new Span(checkJobItem.getRemark());
+            infoLine8.add(upperLimitValueTitle, remarkSpan);
+
+            infoLayout.add(infoLine, infoLine1, infoLine2, infoLine3, infoLine4, infoLine5,infoLine6, infoLine7, infoLine8);
 
             rootCardLayout.add(infoLayout);
 

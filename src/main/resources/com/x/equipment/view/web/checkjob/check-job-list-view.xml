@@ -39,7 +39,7 @@
                 <configuration id="defaultFilter" name="msg:///defaultFilter" default="true">
                     <propertyFilter property="jobName" operation="CONTAINS" operationEditable="true"/>
                     <propertyFilter property="description" operation="CONTAINS" operationEditable="true"/>
-                    <propertyFilter property="category" operation="CONTAINS" operationEditable="true"/>
+                    <propertyFilter property="category" operation="EQUAL" operationEditable="true"/>
                 </configuration>
             </configurations>
         </genericFilter>
@@ -79,6 +79,7 @@
                 <column property="checkCycle" autoWidth="true"/>
                 <column property="checkCycleUnit" autoWidth="true"/>
                 <column property="actualCompleteTime" autoWidth="true"/>
+                <column property="remark"/>
             </columns>
         </dataGrid>
         <tabSheet id="tabSheet" width="100%" height="100%" minHeight="15em" themeNames="small"
@@ -95,6 +96,7 @@
                         <column property="upperLimitValue" autoWidth="true"/>
                         <column property="lowerLimitValue" autoWidth="true"/>
                         <column property="checkResult" autoWidth="true"/>
+                        <column property="remark" autoWidth="true"/>
                     </columns>
                 </dataGrid>
             </tab>

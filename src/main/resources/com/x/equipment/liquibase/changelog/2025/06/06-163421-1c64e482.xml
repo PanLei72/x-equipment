@@ -21,7 +21,9 @@
                 <constraints nullable="false"/>
             </column>
             <column name="DESCRIPTION" type="VARCHAR(255)"/>
-            <column name="CATEGORY" type="VARCHAR(255)"/>
+            <column name="CATEGORY" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
             <column name="CHECKLIST_ID" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
@@ -44,6 +46,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="ACTUAL_COMPLETE_TIME" type="DATETIME"/>
+            <column name="REMARK" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
     <changeSet id="2" author="EQUI">
@@ -75,6 +78,7 @@
             <column name="CHECK_JOB_ID" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
+            <column name="REMARK" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
     <changeSet id="3" author="EQUI">
@@ -143,7 +147,9 @@
                 <constraints nullable="false"/>
             </column>
             <column name="DESCRIPTION" type="VARCHAR(255)"/>
-            <column name="CATEGORY" type="VARCHAR(255)"/>
+            <column name="CATEGORY" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
             <column name="CHECK_CYCLE" type="INT">
                 <constraints nullable="false"/>
             </column>
@@ -296,6 +302,7 @@
             <column name="COMPLETE_REPAIR_TIME" type="DATETIME"/>
             <column name="FAULT_LEVEL_ID" type="BIGINT"/>
             <column name="FAULT_TYPE_ID" type="BIGINT"/>
+            <column name="REMARK" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
     <changeSet id="13" author="EQUI">

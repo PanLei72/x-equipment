@@ -33,6 +33,7 @@
             </entityPicker>
             <select id="orderStatusField" property="orderStatus" readOnly="true"/>
             <dateTimePicker id="repairTimeField" property="repairTime" readOnly="true"/>
+            <textField id="remarkField" property="remark"/>
         </formLayout>
         <hbox id="detailActions">
             <button id="saveAndCloseButton" action="saveAction"/>

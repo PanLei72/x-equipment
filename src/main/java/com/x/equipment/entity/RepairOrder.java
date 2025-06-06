@@ -77,6 +77,17 @@ public class RepairOrder {
     @ManyToOne(fetch = FetchType.LAZY)
     private FaultType faultType;
 
+    @Column(name = "REMARK")
+    private String remark;
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
 
     public FaultLevel getFaultLevel() {
         return faultLevel;

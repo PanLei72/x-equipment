@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
       title="msg://equipmentCheckJobQueryView.title">
     <data>
         <collection id="checkJobsDc"
@@ -8,6 +9,13 @@
             <loader id="checkJobsDl" readOnly="true">
                 <query>
                     <![CDATA[select e from EQUI_CheckJob e order by e.jobName]]>
+                    <condition>
+                        <and>
+                            <c:jpql>
+                                <c:where>e.category = :category</c:where>
+                            </c:jpql>
+                        </and>
+                    </condition>
                 </query>
             </loader>
         </collection>
@@ -20,7 +28,6 @@
         <flexLayout flexWrap="WRAP">
             <propertyFilter labelWidth="8em" property="jobName" operation="CONTAINS" dataLoader="checkJobsDl" operationEditable="true"/>
             <propertyFilter labelWidth="8em" property="description" operation="CONTAINS" dataLoader="checkJobsDl" operationEditable="true"/>
-            <propertyFilter labelWidth="8em" property="category" operation="CONTAINS" dataLoader="checkJobsDl" operationEditable="true"/>
         </flexLayout>
         <simplePagination id="pagination" dataLoader="checkJobsDl" itemsPerPageVisible="true" autoLoad="true"/>
         <virtualList id="virtualList" width="100%"

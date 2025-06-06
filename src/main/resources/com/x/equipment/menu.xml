@@ -26,6 +26,8 @@
             <item view="EQUI_RepairOrder.list" title="msg://com.x.equipment.view.web.repairorder/repairOrderListView.title"
                   icon="TASKS"/>
         </menu>
+        <item view="EQUI_EquipmentCheckJobCancelView"
+              title="msg://com.x.equipment.view.mobile.equipmentcheckjob/equipmentCheckJobCancelView.title"/>
     </menu>
 
     <menu id="userData" title="msg://com.x.mes/menu.userManagement" icon="USERS">
