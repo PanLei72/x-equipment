@@ -39,6 +39,8 @@ public class EquipmentCheckJobItemQueryView extends StandardDetailView<CheckJob>
     private DataComponents dataComponents;
     @ViewComponent
     private InstanceContainer<CheckJob> checkJobDc;
+    @ViewComponent
+    private MessageBundle messageBundle;
 
     @Supply(to = "virtualList", subject = "renderer")
     private Renderer<CheckJobItem> virtualListRenderer() {
@@ -59,7 +61,7 @@ public class EquipmentCheckJobItemQueryView extends StandardDetailView<CheckJob>
             HorizontalLayout infoLine = createHorizontalLayout();
             infoLine.addClassName(LumoUtility.AlignItems.CENTER);
 
-            H5 checkMethodTitle = new H5("检查方法:");
+            H5 checkMethodTitle = new H5(messageBundle.getMessage("checkMethod"));
             checkMethodTitle.setClassName("display-white-space");
             Span checkMethod = new Span(checkJobItem.getCheckMethod());
             infoLine.add(checkMethodTitle, checkMethod);
@@ -67,13 +69,13 @@ public class EquipmentCheckJobItemQueryView extends StandardDetailView<CheckJob>
             HorizontalLayout infoLine1 = createHorizontalLayout();
             infoLine1.addClassName(LumoUtility.AlignItems.CENTER);
 
-            H5 categoryTitle = new H5("分类:");
+            H5 categoryTitle = new H5(messageBundle.getMessage("category"));
             categoryTitle.setClassName("display-white-space");
             Span category = this.createGradeSpan(checkJobItem.getCategory());
             infoLine1.add(categoryTitle, category);
 
             HorizontalLayout infoLine2 = createHorizontalLayout();
-            H5 descriptionTitle = new H5("描述:");
+            H5 descriptionTitle = new H5(messageBundle.getMessage("description"));
             descriptionTitle.setClassName("display-white-space");
             Span faultLevelSpan = new Span(checkJobItem.getDescription());
 
@@ -81,15 +83,15 @@ public class EquipmentCheckJobItemQueryView extends StandardDetailView<CheckJob>
 
             HorizontalLayout infoLine3 = createHorizontalLayout();
 
-            H5 checkCycleTitle = new H5("检查项类型:");
-            checkCycleTitle.setClassName("display-white-space");
-            Span checkCycleSpan = new Span(String.valueOf(checkJobItem.getCheckListItemType()));
+            H5 checkListItemTypeTitle = new H5(messageBundle.getMessage("checkListItemType"));
+            checkListItemTypeTitle.setClassName("display-white-space");
+            Span checkListItemTypeSpan = new Span(String.valueOf(checkJobItem.getCheckListItemType()));
 
-            infoLine3.add(checkCycleTitle, checkCycleSpan);
+            infoLine3.add(checkListItemTypeTitle, checkListItemTypeSpan);
 
             HorizontalLayout infoLine4 = createHorizontalLayout();
 
-            H5 standardValueTitle = new H5("标准值:");
+            H5 standardValueTitle = new H5(messageBundle.getMessage("standardValue"));
             standardValueTitle.setClassName("display-white-space");
             Span standardValueSpan = new Span(checkJobItem.getStandardValue() != null ? metadataTools.format(checkJobItem.getStandardValue()) : "");
             infoLine4.add(standardValueTitle, standardValueSpan);
@@ -97,7 +99,7 @@ public class EquipmentCheckJobItemQueryView extends StandardDetailView<CheckJob>
 
             HorizontalLayout infoLine5 = createHorizontalLayout();
 
-            H5 lowerLimitValueTitle = new H5("下限值:");
+            H5 lowerLimitValueTitle = new H5(messageBundle.getMessage("lowerLimitValue"));
             lowerLimitValueTitle.setClassName("display-white-space");
             Span lowerLimitValueSpan = new Span(checkJobItem.getLowerLimitValue() != null ? metadataTools.format(checkJobItem.getLowerLimitValue()) : "");
             infoLine5.add(lowerLimitValueTitle, lowerLimitValueSpan);
@@ -105,7 +107,7 @@ public class EquipmentCheckJobItemQueryView extends StandardDetailView<CheckJob>
 
             HorizontalLayout infoLine6 = createHorizontalLayout();
 
-            H5 upperLimitValueTitle = new H5("上限值:");
+            H5 upperLimitValueTitle = new H5(messageBundle.getMessage("upperLimitValue"));
             upperLimitValueTitle.setClassName("display-white-space");
             Span UpperLimitValueSpan = new Span(checkJobItem.getUpperLimitValue() != null ? metadataTools.format(checkJobItem.getUpperLimitValue()) : "");
             infoLine6.add(upperLimitValueTitle, UpperLimitValueSpan);
@@ -113,14 +115,14 @@ public class EquipmentCheckJobItemQueryView extends StandardDetailView<CheckJob>
 
             HorizontalLayout infoLine7 = createHorizontalLayout();
 
-            H5 checkResultTitle = new H5("检查结果:");
+            H5 checkResultTitle = new H5(messageBundle.getMessage("checkResult"));
             checkResultTitle.setClassName("display-white-space");
             Span checkResultSpan = new Span(checkJobItem.getCheckResult());
             infoLine7.add(checkResultTitle, checkResultSpan);
 
             HorizontalLayout infoLine8 = createHorizontalLayout();
 
-            H5 remarkTitle = new H5("检查结果:");
+            H5 remarkTitle = new H5(messageBundle.getMessage("remark"));
             remarkTitle.setClassName("display-white-space");
             Span remarkSpan = new Span(checkJobItem.getRemark());
             infoLine8.add(upperLimitValueTitle, remarkSpan);
@@ -134,7 +136,7 @@ public class EquipmentCheckJobItemQueryView extends StandardDetailView<CheckJob>
     }
 
     @Subscribe
-    public void onBeforeSave(final StandardDetailView.BeforeSaveEvent event) {
+    public void onBeforeSave(final BeforeSaveEvent event) {
         CheckJob checkJob = this.getEditedEntity();
         checkJob.setJobStatus(JobStatus.COMPLETED);
         checkJob.setActualCompleteTime(LocalDateTime.now());

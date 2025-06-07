@@ -52,6 +52,8 @@ public class EquipmentCheckJobView extends StandardView {
     private ViewNavigators viewNavigators;
     @ViewComponent
     private CollectionLoader<CheckJob> checkJobsDl;
+    @ViewComponent
+    private MessageBundle messageBundle;
 
     @Subscribe
     public void onQueryParametersChange(final QueryParametersChangeEvent event) {
@@ -76,7 +78,7 @@ public class EquipmentCheckJobView extends StandardView {
             infoLayout.add(orderNumber);
             HorizontalLayout equipmentLine = createHorizontalLayout();
 
-            H5 equipmentTitle = new H5("设备:");
+            H5 equipmentTitle = new H5(messageBundle.getMessage("equipment"));
             equipmentTitle.setClassName("display-white-space");
             Span equipmentNameSpan = new Span(String.valueOf(checkJob.getEquipment().getEquipmentName()));
 
@@ -84,7 +86,7 @@ public class EquipmentCheckJobView extends StandardView {
 
 
             HorizontalLayout infoLine2 = createHorizontalLayout();
-            H5 descriptionTitle = new H5("描述:");
+            H5 descriptionTitle = new H5(messageBundle.getMessage("description"));
             descriptionTitle.setClassName("display-white-space");
             Span faultLevelSpan = createGradeSpan(checkJob.getDescription());
 
@@ -92,7 +94,7 @@ public class EquipmentCheckJobView extends StandardView {
 
             HorizontalLayout infoLine3 = createHorizontalLayout();
 
-            H5 checkCycleTitle = new H5("检查周期:");
+            H5 checkCycleTitle = new H5(messageBundle.getMessage("checkCycle"));
             checkCycleTitle.setClassName("display-white-space");
             Span checkCycleSpan = new Span(String.valueOf(checkJob.getCheckCycle()) + checkJob.getCheckCycleUnit());
 
@@ -100,7 +102,7 @@ public class EquipmentCheckJobView extends StandardView {
 
             HorizontalLayout infoLine4 = createHorizontalLayout();
 
-            H5 planStartTimeTitle = new H5("计划开始时间:");
+            H5 planStartTimeTitle = new H5(messageBundle.getMessage("planStartTime"));
             planStartTimeTitle.setClassName("display-white-space");
             Span planStartTimeSpan = new Span(checkJob.getPlanStartTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
@@ -108,7 +110,7 @@ public class EquipmentCheckJobView extends StandardView {
 
             HorizontalLayout infoLine5 = createHorizontalLayout();
 
-            H5 planCompleteTimeTitle = new H5("计划完成时间:");
+            H5 planCompleteTimeTitle = new H5(messageBundle.getMessage("planCompleteTime"));
             planCompleteTimeTitle.setClassName("display-white-space");
             Span planCompleteTimeSpan = new Span(checkJob.getPlanCompleteTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 

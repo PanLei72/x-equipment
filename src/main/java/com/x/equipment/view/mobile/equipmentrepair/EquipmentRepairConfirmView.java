@@ -29,10 +29,7 @@ import io.jmix.core.MetadataTools;
 import io.jmix.flowui.UiComponents;
 import io.jmix.flowui.ViewNavigators;
 import io.jmix.flowui.component.details.JmixDetails;
-import io.jmix.flowui.view.StandardView;
-import io.jmix.flowui.view.Supply;
-import io.jmix.flowui.view.ViewController;
-import io.jmix.flowui.view.ViewDescriptor;
+import io.jmix.flowui.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 
@@ -53,6 +50,8 @@ public class EquipmentRepairConfirmView extends StandardView {
     private FileStorage fileStorage;
     @Autowired
     private ViewNavigators viewNavigators;
+    @ViewComponent
+    private MessageBundle messageBundle;
 
     @Supply(to = "virtualList", subject = "renderer")
     private Renderer<RepairOrder> virtualListRenderer() {
@@ -73,13 +72,13 @@ public class EquipmentRepairConfirmView extends StandardView {
             HorizontalLayout infoLine = createHorizontalLayout();
             infoLine.addClassName(LumoUtility.AlignItems.CENTER);
 
-            H5 faultTypeTitle = new H5("故障类型:");
+            H5 faultTypeTitle = new H5(messageBundle.getMessage("faultType"));
             faultTypeTitle.setClassName("display-white-space");
             Span faultType = new Span(repairOrder.getFaultType().getFaultTypeCode() + "（" + repairOrder.getFaultType().getDescription() + "）");
             infoLine.add(faultTypeTitle, faultType);
 
             HorizontalLayout infoLine2 = createHorizontalLayout();
-            H5 faultLevelTitle = new H5("故障等级:");
+            H5 faultLevelTitle = new H5(messageBundle.getMessage("faultLevel"));
             faultLevelTitle.setClassName("display-white-space");
             Span faultLevelSpan = createGradeSpan(repairOrder.getFaultLevel().getFaultLevelCode() + "（" + repairOrder.getFaultLevel().getDescription() + "）");
 
@@ -87,7 +86,7 @@ public class EquipmentRepairConfirmView extends StandardView {
 
             HorizontalLayout infoLine3 = createHorizontalLayout();
 
-            H5 descriptionTitle = new H5("描述:");
+            H5 descriptionTitle = new H5(messageBundle.getMessage("description"));
             descriptionTitle.setClassName("display-white-space");
             Span descriptionSpan = new Span(String.valueOf(repairOrder.getDescription()));
 
@@ -95,7 +94,7 @@ public class EquipmentRepairConfirmView extends StandardView {
 
             HorizontalLayout infoLine4 = createHorizontalLayout();
 
-            H5 repairTimeTitle = new H5("报修时间:");
+            H5 repairTimeTitle = new H5(messageBundle.getMessage("repairTime"));
             repairTimeTitle.setClassName("display-white-space");
             Span repairTimeSpan = new Span(repairOrder.getRepairTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
@@ -103,7 +102,7 @@ public class EquipmentRepairConfirmView extends StandardView {
 
             HorizontalLayout infoLine5 = createHorizontalLayout();
 
-            H5 startRepairTimeTitle = new H5("开始时间:");
+            H5 startRepairTimeTitle = new H5(messageBundle.getMessage("startRepairTime"));
             startRepairTimeTitle.setClassName("display-white-space");
             Span startRepairTimeTitleSpan = new Span(repairOrder.getStartRepairTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
@@ -112,7 +111,7 @@ public class EquipmentRepairConfirmView extends StandardView {
 
             HorizontalLayout infoLine6 = createHorizontalLayout();
 
-            H5 completeRepairTimeTitle = new H5("完成时间:");
+            H5 completeRepairTimeTitle = new H5(messageBundle.getMessage("completeRepairTime"));
             completeRepairTimeTitle.setClassName("display-white-space");
             Span completeRepairTimeTitleSpan = new Span(repairOrder.getCompleteRepairTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
@@ -123,7 +122,7 @@ public class EquipmentRepairConfirmView extends StandardView {
             detailInfoLayout.add(infoLine, infoLine2, infoLine3, infoLine4, infoLine5, infoLine6);
 
             JmixDetails infoDetails = uiComponents.create(JmixDetails.class);
-            infoDetails.setSummaryText("详细信息");
+            infoDetails.setSummaryText(messageBundle.getMessage("infoDetails"));
             infoDetails.setContent(detailInfoLayout);
 
             infoLayout.add(infoDetails, new Hr());

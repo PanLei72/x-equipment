@@ -30,7 +30,7 @@
                 <hbox id="hbox" classNames="flex-wrap">
                     <fragment class="com.x.equipment.view.fragment.HomeCardFragment">
                         <properties>
-                            <property name="applicationName" value="设备管理"/>
+                            <property name="applicationName" value="equipmentManagement"/>
                             <property name="applicationImagePath" value="icons/home/equipment-management.svg"/>
                             <property name="viewId" value="EQUI_MainView"/>
                             <property name="applicationIcon" value="GRID_SMALL"/>
@@ -38,7 +38,7 @@
                     </fragment>
                     <fragment class="com.x.equipment.view.fragment.HomeCardFragment">
                         <properties>
-                            <property name="applicationName" value="操作执行"/>
+                            <property name="applicationName" value="operationExecution"/>
                             <property name="applicationImagePath" value="icons/home/execution.svg"/>
                             <property name="viewId" value="MobileMainView"/>
                             <property name="applicationIcon" value="COGS"/>

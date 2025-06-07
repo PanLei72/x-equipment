@@ -81,7 +81,7 @@ public class EquipmentCheckJobItemView extends StandardDetailView<CheckJob> {
             HorizontalLayout infoLine = createHorizontalLayout();
             infoLine.addClassName(LumoUtility.AlignItems.CENTER);
 
-            H5 checkMethodTitle = new H5("检查方法:");
+            H5 checkMethodTitle = new H5(messageBundle.getMessage("checkMethod"));
             checkMethodTitle.setClassName("display-white-space");
             Span checkMethod = new Span(checkJobItem.getCheckMethod());
             infoLine.add(checkMethodTitle, checkMethod);
@@ -89,13 +89,13 @@ public class EquipmentCheckJobItemView extends StandardDetailView<CheckJob> {
             HorizontalLayout infoLine1 = createHorizontalLayout();
             infoLine1.addClassName(LumoUtility.AlignItems.CENTER);
 
-            H5 categoryTitle = new H5("分类:");
+            H5 categoryTitle = new H5(messageBundle.getMessage("category"));
             categoryTitle.setClassName("display-white-space");
             Span category = this.createGradeSpan(checkJobItem.getCategory());
             infoLine1.add(categoryTitle, category);
 
             HorizontalLayout infoLine2 = createHorizontalLayout();
-            H5 descriptionTitle = new H5("描述:");
+            H5 descriptionTitle = new H5(messageBundle.getMessage("description"));
             descriptionTitle.setClassName("display-white-space");
             Span faultLevelSpan = new Span(checkJobItem.getDescription());
 
@@ -104,7 +104,7 @@ public class EquipmentCheckJobItemView extends StandardDetailView<CheckJob> {
 
             HorizontalLayout infoLine4 = createHorizontalLayout();
 
-            H5 standardValueTitle = new H5("标准值:");
+            H5 standardValueTitle = new H5(messageBundle.getMessage("standardValue"));
             standardValueTitle.setClassName("display-white-space");
             Span standardValueSpan = new Span(checkJobItem.getStandardValue() != null ? metadataTools.format(checkJobItem.getStandardValue()) : "");
             infoLine4.add(standardValueTitle, standardValueSpan);
@@ -112,7 +112,7 @@ public class EquipmentCheckJobItemView extends StandardDetailView<CheckJob> {
 
             HorizontalLayout infoLine5 = createHorizontalLayout();
 
-            H5 lowerLimitValueTitle = new H5("下限值:");
+            H5 lowerLimitValueTitle = new H5(messageBundle.getMessage("lowerLimitValue"));
             lowerLimitValueTitle.setClassName("display-white-space");
             Span lowerLimitValueSpan = new Span(checkJobItem.getLowerLimitValue() != null ? metadataTools.format(checkJobItem.getLowerLimitValue()) : "");
             infoLine5.add(lowerLimitValueTitle, lowerLimitValueSpan);
@@ -120,7 +120,7 @@ public class EquipmentCheckJobItemView extends StandardDetailView<CheckJob> {
 
             HorizontalLayout infoLine6 = createHorizontalLayout();
 
-            H5 upperLimitValueTitle = new H5("上限值:");
+            H5 upperLimitValueTitle = new H5(messageBundle.getMessage("upperLimitValue"));
             upperLimitValueTitle.setClassName("display-white-space");
             Span UpperLimitValueSpan = new Span(checkJobItem.getUpperLimitValue() != null ? metadataTools.format(checkJobItem.getUpperLimitValue()) : "");
             infoLine6.add(upperLimitValueTitle, UpperLimitValueSpan);
@@ -128,7 +128,7 @@ public class EquipmentCheckJobItemView extends StandardDetailView<CheckJob> {
 
             HorizontalLayout infoLine7 = createHorizontalLayout();
 
-            H5 checkResultTitle = new H5("检查结果:");
+            H5 checkResultTitle = new H5(messageBundle.getMessage("checkResult"));
             checkResultTitle.setClassName("display-white-space");
 
             infoLine7.add(checkResultTitle);
@@ -170,7 +170,7 @@ public class EquipmentCheckJobItemView extends StandardDetailView<CheckJob> {
             }
 
             HorizontalLayout infoLine8 = createHorizontalLayout();
-            H5 remarkTitle = new H5("备注:");
+            H5 remarkTitle = new H5(messageBundle.getMessage("remark"));
             remarkTitle.setClassName("display-white-space");
             TypedTextField<String> remarkField = uiComponents.create(TypedTextField.class);
             remarkField.setClearButtonVisible(true);

@@ -18,6 +18,7 @@ import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.theme.lumo.LumoUtility;
+import com.x.equipment.constants.RepairOrderStatus;
 import com.x.equipment.entity.RepairOrder;
 import com.x.equipment.view.mobile.equipmentcheckjobquery.EquipmentCheckJobItemQueryView;
 import com.x.equipment.view.mobile.main.MobileMainView;
@@ -27,10 +28,7 @@ import io.jmix.core.Messages;
 import io.jmix.core.MetadataTools;
 import io.jmix.flowui.UiComponents;
 import io.jmix.flowui.ViewNavigators;
-import io.jmix.flowui.view.StandardView;
-import io.jmix.flowui.view.Supply;
-import io.jmix.flowui.view.ViewController;
-import io.jmix.flowui.view.ViewDescriptor;
+import io.jmix.flowui.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 
@@ -52,6 +50,8 @@ public class EquipmentRepairOrderQueryView extends StandardView {
     private FileStorage fileStorage;
     @Autowired
     private ViewNavigators viewNavigators;
+    @ViewComponent
+    private MessageBundle messageBundle;
 
     @Supply(to = "virtualList", subject = "renderer")
     private Renderer<RepairOrder> virtualListRenderer() {
@@ -70,37 +70,37 @@ public class EquipmentRepairOrderQueryView extends StandardView {
             HorizontalLayout infoLine = createHorizontalLayout();
             infoLine.addClassName(LumoUtility.AlignItems.CENTER);
 
-            H5 categoryTitle = new H5("设备:");
-            categoryTitle.setClassName("display-white-space");
-            Span category = new Span(repairOrder.getEquipment().getEquipmentName());
-            infoLine.add(categoryTitle, category);
+            H5 equipmentTitle = new H5(messageBundle.getMessage("equipment"));
+            equipmentTitle.setClassName("display-white-space");
+            Span equipmentName = new Span(repairOrder.getEquipment().getEquipmentName());
+            infoLine.add(equipmentTitle, equipmentName);
 
             HorizontalLayout infoLine2 = createHorizontalLayout();
-            H5 descriptionTitle = new H5("描述:");
+            H5 descriptionTitle = new H5(messageBundle.getMessage("description"));
             descriptionTitle.setClassName("display-white-space");
-            Span faultLevelSpan = createGradeSpan(repairOrder.getDescription());
+            Span faultLevelSpan = new Span(repairOrder.getDescription());
 
             infoLine2.add(descriptionTitle, faultLevelSpan);
 
             HorizontalLayout infoLine3 = createHorizontalLayout();
 
-            H5 checkCycleTitle = new H5("故障类型:");
-            checkCycleTitle.setClassName("display-white-space");
-            Span checkCycleSpan = new Span(repairOrder.getFaultType().getFaultTypeCode());
+            H5 faultTypeTitle = new H5(messageBundle.getMessage("faultType"));
+            faultTypeTitle.setClassName("display-white-space");
+            Span faultTypeCodeSpan = new Span(repairOrder.getFaultType().getFaultTypeCode());
 
-            infoLine3.add(checkCycleTitle, checkCycleSpan);
+            infoLine3.add(faultTypeTitle, faultTypeCodeSpan);
 
             HorizontalLayout infoLine31= createHorizontalLayout();
 
-            H5 orderStatusTitle = new H5("状态:");
+            H5 orderStatusTitle = new H5(messageBundle.getMessage("orderStatus"));
             orderStatusTitle.setClassName("display-white-space");
-            Span orderStatusTitleSpan = new Span(repairOrder.getOrderStatus().name());
+            Span orderStatusTitleSpan = this.createOrderStatusSpan(repairOrder.getOrderStatus());
 
             infoLine31.add(orderStatusTitle, orderStatusTitleSpan);
 
             HorizontalLayout infoLine4 = createHorizontalLayout();
 
-            H5 repairTimeTitle = new H5("故障时间:");
+            H5 repairTimeTitle = new H5(messageBundle.getMessage("repairTime"));
             repairTimeTitle.setClassName("display-white-space");
             Span repairTimeSpan = new Span(repairOrder.getRepairTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
@@ -109,7 +109,7 @@ public class EquipmentRepairOrderQueryView extends StandardView {
 
             HorizontalLayout infoLine5 = createHorizontalLayout();
 
-            H5 startTimeTitle = new H5("开始时间:");
+            H5 startTimeTitle = new H5(messageBundle.getMessage("startTime"));
             startTimeTitle.setClassName("display-white-space");
             Span startTimeSpan = new Span(repairOrder.getStartRepairTime() != null ?
                     repairOrder.getStartRepairTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) : null);
@@ -120,7 +120,7 @@ public class EquipmentRepairOrderQueryView extends StandardView {
             HorizontalLayout infoLine6 = createHorizontalLayout();
 
 
-            H5 completeTimeTitle = new H5("完成时间:");
+            H5 completeTimeTitle = new H5(messageBundle.getMessage("completeTime"));
             completeTimeTitle.setClassName("display-white-space");
             Span completeTimeSpan = new Span(repairOrder.getCompleteRepairTime() != null ?
                     repairOrder.getCompleteRepairTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")): null);
@@ -167,15 +167,18 @@ public class EquipmentRepairOrderQueryView extends StandardView {
         return layout;
     }
 
-    protected Span createGradeSpan(@Nullable String grade) {
-        Span gradeSpan = new Span(metadataTools.format(grade));
+    protected Span createOrderStatusSpan(@Nullable RepairOrderStatus repairOrderStatus) {
+        Span gradeSpan = new Span(metadataTools.format(repairOrderStatus));
 
-        if (grade != null) {
+        if (repairOrderStatus != null) {
             ThemeList gradeThemeList = gradeSpan.getElement().getThemeList();
 
-            switch (grade) {
-                case "A" -> gradeThemeList.add("badge contrast");
-                case "B" -> gradeThemeList.add("badge primary");
+            switch (repairOrderStatus) {
+                case RepairOrderStatus.CREATED -> gradeThemeList.add("badge contrast");
+                case RepairOrderStatus.IN_PROGRESS -> gradeThemeList.add("badge primary");
+                case RepairOrderStatus.COMPLETED -> gradeThemeList.add("badge primary");
+                case RepairOrderStatus.CANCELED -> gradeThemeList.add("badge primary");
+                case RepairOrderStatus.CLOSED -> gradeThemeList.add("badge primary");
                 default -> gradeThemeList.add("badge");
             }
         }
