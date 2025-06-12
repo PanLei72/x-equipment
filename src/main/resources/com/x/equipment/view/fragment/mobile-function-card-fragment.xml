@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fragment xmlns="http://jmix.io/schema/flowui/fragment">
+    <content>
+        <vbox id="checkJobVbox" height="6em" width="6em" css="cursor:pointer;" justifyContent="CENTER" >
+            <image id="staticImage" resource="icons/settings.svg" width="4em" height="4em"/>
+            <span id="nameSpan" width="100%"/>
+        </vbox>
+    </content>
+</fragment>

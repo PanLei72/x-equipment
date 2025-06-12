@@ -39,26 +39,51 @@
                 <vbox>
                     <nativeLabel text="msg://equipmentCheck" classNames="mobile-main-label"/>
                     <hbox classNames="flex-wrap">
-                        <button id="checkJobButton" text="msg://equipmentCheck" icon="FILE_ADD" width="120px" height="80px"/>
-                        <button id="checkJobQueryButton" text="msg://equipmentCheckQuery" icon="SEARCH" width="120px" height="80px"/>
+                        <fragment class="com.x.equipment.view.fragment.MobileFunctionCardFragment">
+                            <properties>
+                                <property name="name" value="equipmentCheck"/>
+                                <property name="imagePath" value="icons/mobile/equipment-check.svg"/>
+                                <property name="viewId" value="EQUI_EquipmentCheckJobView"/>
+                            </properties>
+                        </fragment>
+                        <vbox id="checkJobQueryVbox" height="6em" width="6em" css="cursor:pointer;" justifyContent="CENTER" >
+                            <image resource="icons/mobile/check-query.svg" width="4em" height="4em"/>
+                            <span width="100%" text="msg://equipmentCheckQuery"/>
+                        </vbox>
                     </hbox>
                 </vbox>
                 <vbox>
                     <nativeLabel text="msg://equipmentMaintenance" classNames="mobile-main-label"/>
                     <hbox classNames="flex-wrap">
-                        <button id="maintenanceJobButton" text="msg://equipmentMaintenance" icon="COG" width="120px" height="80px"/>
-                        <button id="maintenanceJobQueryButton" text="msg://equipmentMaintenanceQuery" icon="SEARCH" width="120px"
-                                height="80px"/>
+                        <vbox id="maintenanceJobVbox" height="6em" width="6em" css="cursor:pointer;" justifyContent="CENTER" >
+                            <image resource="icons/mobile/equipment-maintenance.svg" width="4em" height="4em"/>
+                            <span width="100%" text="msg://equipmentMaintenance"/>
+                        </vbox>
+                        <vbox id="maintenanceJobQueryVbox" height="6em" width="6em" css="cursor:pointer;" justifyContent="CENTER" >
+                            <image resource="icons/mobile/maintenance-query.svg" width="4em" height="4em"/>
+                            <span width="100%" text="msg://equipmentMaintenanceQuery"/>
+                        </vbox>
                     </hbox>
                 </vbox>
                 <vbox>
                     <nativeLabel text="msg://equipmentRepair" classNames="mobile-main-label"/>
                     <hbox classNames="flex-wrap">
-                        <button id="equipmentRepairCreate" text="msg://equipmentRepairRequest" icon="FILE_ADD" width="120px" height="80px"/>
-                        <button id="equipmentRepair" text="msg://equipmentRepair" icon="COGS" width="120px" height="80px"/>
-                        <button id="equipmentRepairConfirm" text="msg://equipmentRepairConfirm" icon="CHECK_CIRCLE_O" width="120px" height="80px"/>
-                        <button id="equipmentRepairOrderQuery" text="msg://equipmentRepairQuery" icon="SEARCH" width="120px"
-                                height="80px"/>
+                        <vbox id="equipmentRepairCreateVbox" height="6em" width="6em" css="cursor:pointer;" justifyContent="CENTER" >
+                            <image resource="icons/mobile/repair-create.svg" width="4em" height="4em"/>
+                            <span width="100%" text="msg://equipmentRepairRequest"/>
+                        </vbox>
+                        <vbox id="equipmentRepairVbox" height="6em" width="6em" css="cursor:pointer;" justifyContent="CENTER" >
+                            <image resource="icons/mobile/repair-order.svg" width="4em" height="4em"/>
+                            <span width="100%" text="msg://equipmentRepair"/>
+                        </vbox>
+                        <vbox id="equipmentRepairConfirmVbox" height="6em" width="6em" css="cursor:pointer;" justifyContent="CENTER" >
+                            <image resource="icons/mobile/repair-confirm.svg" width="4em" height="4em"/>
+                            <span width="100%" text="msg://equipmentRepairConfirm"/>
+                        </vbox>
+                        <vbox id="equipmentRepairOrderQueryVbox" height="6em" width="6em" css="cursor:pointer;" justifyContent="CENTER" >
+                            <image resource="icons/mobile/repair-query.svg" width="4em" height="4em"/>
+                            <span width="100%" text="msg://equipmentRepairQuery"/>
+                        </vbox>
                     </hbox>
                 </vbox>
             </flexLayout>

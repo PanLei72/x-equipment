@@ -3,6 +3,7 @@ package com.x.equipment.view.mobile.main;
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.icon.SvgIcon;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.QueryParameters;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
@@ -60,49 +61,33 @@ public class MobileMainView extends StandardMainView {
         }
     }
 
-    @Subscribe(id = "checkJobButton", subject = "clickListener")
-    public void onCheckJobButtonClick(final ClickEvent<JmixButton> event) {
-        viewNavigators.view(this, EquipmentCheckJobView.class)
-                .withBackwardNavigation(true)
-                .withQueryParameters(QueryParameters.of("category", CheckCategory.INSPECTION.getId()))
-                .navigate();
-    }
 
-    @Subscribe(id = "maintenanceJobButton", subject = "clickListener")
-    public void onMaintenanceJobButtonClick(final ClickEvent<JmixButton> event) {
+    @Subscribe(id = "maintenanceJobVbox", subject = "clickListener")
+    public void onMaintenanceJobVboxClick(final ClickEvent<VerticalLayout> event) {
         viewNavigators.view(this, EquipmentCheckJobView.class)
                 .withBackwardNavigation(true)
                 .withQueryParameters(QueryParameters.of("category", CheckCategory.MAINTENANCE.getId()))
                 .navigate();
     }
 
-    @Subscribe(id = "checkJobQueryButton", subject = "clickListener")
-    public void onCheckJobQueryButtonClick(final ClickEvent<JmixButton> event) {
+    @Subscribe(id = "checkJobQueryVbox", subject = "clickListener")
+    public void onCheckJobQueryVboxClick(final ClickEvent<VerticalLayout> event) {
         viewNavigators.view(this, EquipmentCheckJobQueryView.class)
                 .withBackwardNavigation(true)
                 .withQueryParameters(QueryParameters.of("category", CheckCategory.INSPECTION.getId()))
                 .navigate();
-
     }
 
-    @Subscribe(id = "maintenanceJobQueryButton", subject = "clickListener")
-    public void onMaintenanceJobQueryButtonClick(final ClickEvent<JmixButton> event) {
+    @Subscribe(id = "maintenanceJobQueryVbox", subject = "clickListener")
+    public void onMaintenanceJobQueryVboxClick(final ClickEvent<VerticalLayout> event) {
         viewNavigators.view(this, EquipmentCheckJobQueryView.class)
                 .withBackwardNavigation(true)
                 .withQueryParameters(QueryParameters.of("category", CheckCategory.MAINTENANCE.getId()))
                 .navigate();
-
     }
 
-
-
-    @Subscribe(id = "equipmentRepair", subject = "clickListener")
-    public void onEquipmentRepairClick(final ClickEvent<JmixButton> event) {
-        viewNavigators.view(this, EquipmentRepairView.class).withBackwardNavigation(true).navigate();
-    }
-
-    @Subscribe(id = "equipmentRepairCreate", subject = "clickListener")
-    public void onEquipmentRepairCreateClick(final ClickEvent<JmixButton> event) {
+    @Subscribe(id = "equipmentRepairCreateVbox", subject = "clickListener")
+    public void onEquipmentRepairCreateVboxClick(final ClickEvent<VerticalLayout> event) {
         viewNavigators.detailView(this, RepairOrder.class)
                 .withViewClass(RepairOrderCreateView.class)
                 .newEntity()
@@ -110,14 +95,18 @@ public class MobileMainView extends StandardMainView {
                 .navigate();
     }
 
-    @Subscribe(id = "equipmentRepairConfirm", subject = "clickListener")
-    public void onEquipmentRepairConfirmClick(final ClickEvent<JmixButton> event) {
-        viewNavigators.view(this, EquipmentRepairConfirmView.class).withBackwardNavigation(true).navigate();
-
+    @Subscribe(id = "equipmentRepairVbox", subject = "clickListener")
+    public void onEquipmentRepairVboxClick(final ClickEvent<VerticalLayout> event) {
+        viewNavigators.view(this, EquipmentRepairView.class).withBackwardNavigation(true).navigate();
     }
 
-    @Subscribe(id = "equipmentRepairOrderQuery", subject = "clickListener")
-    public void onEquipmentRepairOrderQueryClick(final ClickEvent<JmixButton> event) {
+    @Subscribe(id = "equipmentRepairConfirmVbox", subject = "clickListener")
+    public void onEquipmentRepairConfirmVboxClick(final ClickEvent<VerticalLayout> event) {
+        viewNavigators.view(this, EquipmentRepairConfirmView.class).withBackwardNavigation(true).navigate();
+    }
+
+    @Subscribe(id = "equipmentRepairOrderQueryVbox", subject = "clickListener")
+    public void onEquipmentRepairOrderQueryVboxClick(final ClickEvent<VerticalLayout> event) {
         viewNavigators.listView(this, RepairOrder.class)
                 .withViewClass(EquipmentRepairOrderQueryView.class)
                 .withBackwardNavigation(true)
